@@ -36,8 +36,8 @@
 \setmainfont{Times New Roman}
 \setmathrm{Times New Roman} % 数学字体设为 Times New Roman
 \setCJKmathfont{Times New Roman} % 中文里面的数字字体设为 Times New Roman
-\setsansfont{Helvetica}[Scale=MatchLowercase]
-\setmonofont{Monaco}[Scale=MatchLowercase]
+% \setsansfont{Helvetica}[Scale=MatchLowercase]
+% \setmonofont{Monaco}[Scale=MatchLowercase]
 
 %  create some new or renew commands
 \renewcommand{\title}[2]{\def\@title@zh{#1}\def\@title@en{#2}}
