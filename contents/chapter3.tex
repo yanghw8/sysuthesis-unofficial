@@ -1,9 +1,11 @@
 % !TEX root = ../main.tex
 \chapter{一些重要的\LaTeX{}环境}\label{chap:evm}
+\chapteren{Important \LaTeX{} environments}
 
 本模版中的公式、插图、表格和章节等，均用\texttt{$\backslash$lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{$\backslash$ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。
 
 \section{公式示例}
+\sectionen{Formula example}
 
 文中的公式建议使用\texttt{amsmath}宏包的\texttt{align}环境，该环境在对多行公式对齐方面具有很大的优势，具体的讨论请看知乎用户\href{https://www.zhihu.com/people/bo-xue-duo-wen-63}{\strong{博闻多学}}的\href{https://www.zhihu.com/question/477805692/answer/2045084752}{\strong{回答}}。
 
@@ -26,12 +28,14 @@
 公式的引用示例：\ref{eqn:taylorseries}为泰勒级数。
 
 \section{插图示例}
+\sectionen{Figure example}
 
 文中插图的插图建议使用\texttt{graphicx}宏包的\texttt{figure}环境搭配\texttt{$\backslash$includegraphics}命令。例如：
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/hexbin.pdf}
-	\caption{六边形分bin图}
+	\bicaption{六边形分bin图}
+    {Hexagonal binned plot}
 	\label{fig:hexbin}
 \end{figure}
 \begin{figure}[!htp]
@@ -39,24 +43,30 @@
     \begin{subfigure}{0.45\textwidth}
         \centering
 	    \includegraphics[width=1\textwidth]{figures/histogram.pdf}
-	    \caption{柱状图}
+	    \bicaption{柱状图}
+        {Histogram}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
         \centering
 	    \includegraphics[width=1\textwidth]{figures/piechart.pdf}
-	    \caption{饼状图}
+	    \bicaption{饼状图}
+        {Pie chart}
     \end{subfigure}
-    \caption{子图示例}
+    \bicaption{子图示例}
+    {Subfigure example}
     \label{fig:subfig}
 \end{figure}
 
 插图的引用示例：\ref{fig:hexbin}是普通插图。
 
 \section{表格示例}
+\sectionen{Table example}
 
 文中的表格建议使用\texttt{table}环境里嵌套\texttt{tabular}环境，简单的表格样式一般采用三线表。
 \begin{table}[!htp]
-    \caption{2022年北京冬奥会奖牌榜}
+    \zihao{5}
+    \bicaption{2022年北京冬奥会奖牌榜}
+    {2022 Beijing winter Olympics medals}
     \label{tab:01}
     \centering
     \begin{tabular}{ccrrrr}
@@ -82,6 +92,7 @@
 表格的引用示例：\ref{tab:01}是2022年北京冬奥会奖牌榜。
 
 \section{其他数学环境示例}
+\sectionen{Other theorem environments example}
 
 以下是本模版预设的数学环境示例：
 
@@ -130,6 +141,7 @@
 \end{proof}
 
 \section{代码示例}
+\sectionen{Code listings example}
 
 在论文中插入代码，我们使用的是\texttt{listings}宏包的\texttt{lstlisting}环境，如：
 \begin{lstlisting}[language=python]
@@ -166,49 +178,44 @@ plt.show()
 建议代码不设置\texttt{caption}选项，也不要使用\texttt{$\backslash$ref}来引用，因为我没给代码环境设置中文标签 (> <)。
 
 \section{参考文献}\label{sec:bibstyle}
+\sectionen{References example}
 
 \subsection{引用格式}
+\subsectionen{Citation format}
 
+例如：
 \begin{enumerate}
-    \item 参考文献为论文中所有引文、引用观点以及对论文有重要影响和启发的文献；
-    \item 参考文献按在论文中出现的先后依次排序；个别学科若通用该学科惯用的排序规范，可以例外；
-    \item 参考文献内容一般排列在论文末尾 （论文篇幅较大且引用文献较多的，可在每章末尾注出），序码与论文加注处对应；
-    \item 参考文献标注格式：
-        \begin{enumerate}
-            \item 期刊：[序号] 作者. 文章题目. 刊名, 出版年份, 卷号(期号): 页码
-            \item 图书：[序号] 著者. 书名. 版次（2版以上）. 出版地, 出版年份. 页码
-            \item 研讨会论文：[序号] 作者. 文章题目. 会议名称. 地名. 国名. 月份. 年份. 卷号
-            \item 学位论文：[序号] 作者. 论文题目. 博/硕士论文. 校名. 页码、
-            \item 电子文献：[序号] 主要责任者. 电子文献题名. 电子文献的出处或可获得地址, 发表或更新日期/引用日期（任选）
-        \end{enumerate}
-
-    例如：
-        \begin{enumerate}
-            \item 这是一个期刊的引用\cite{LIGOScientific:2017zic}；
-            \item 这是一个图书的引用\cite{Rubakov:2017xzr}；
-            \item 这是一个研讨会论文的引用\cite{Tanikawa:2021+x}；
-            \item 这是博士论文的引用\cite{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\cite{Shojaeifar:2015csv,SongRen:2020}；
-            \item 这是电子文献的引用\cite{Piro:2021oaa,bilibili:read}。
-        \end{enumerate}
+    \item 这是一个期刊的引用\cite{LIGOScientific:2017zic}；
+    \item 这是一个图书的引用\cite{Rubakov:2017xzr,Zhang:2021}；
+    \item 这是一个研讨会论文的引用\cite{Tanikawa:2021+x}；
+    \item 这是博士论文的引用\cite{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\cite{Shojaeifar:2015csv,SongRen:2020}；
+    \item 这是电子文献的引用\cite{Piro:2021oaa,bilibili:read}。
+    \item 这是报纸的引用\cite{Li:2005}。
 \end{enumerate}
 
 \subsection{参考文献引用说明}
+\subsectionen{References citation notes}
 
 参考文献的引用格式已经由\texttt{sysuthesis.bst}设置好了。引用时，请将引用信息编入\texttt{ref}文件夹的\texttt{refs.bib}文件中，语法要符合\hologo{BibTeX}格式，并在文中引用处使用\texttt{$\backslash$cite}命令。建议只使用\ref{tab:entrytypes}中的几种\hologo{BibTeX}条目类型（Entry Types）。
 \begin{table}[!htp]
-    \caption{本模版设置好的\hologo{BibTeX}字段类型}
+    \zihao{5}
+    \bicaption{本模版设置好的\hologo{BibTeX}字段类型}
+    {The entry types used in this template}
     \label{tab:entrytypes}
     \centering
-    \begin{tabular}{ll}
+    \begin{tabular}{lll}
     \hline
-    引用文献的类型 & Entry Types \\
+    引用文献的类型  & 标识 & Entry Types \\
     \hline
-    期刊    & \texttt{article} \\
-    图书    & \texttt{book} \\
-    研讨会论文    & \texttt{conference} \\  
-    博士论文    & \texttt{phdthesis} \\
-    硕士论文    & \texttt{mastersthesis} \\
-    电子文献   & \texttt{online} \\
+    期刊    &[J] & \texttt{article} \\
+    图书    &[M] & \texttt{book} \\
+    研讨会论文 &[C]    & \texttt{conference} \\  
+    博士论文   &[D]  & \texttt{phdthesis} \\
+    硕士论文   &[D]  & \texttt{mastersthesis} \\
+    报纸      &[N] & \texttt{newspaper} \\
+    电子公告   &[EB/OL] & \texttt{online} \\
+    电子期刊   &[J/OL] & \texttt{articleonline} \\
+    电子图书   &[M/OL] & \texttt{bookonline} \\
     \hline
     \end{tabular}
 \end{table}
@@ -229,4 +236,6 @@ plt.show()
 请点击\cite{ZhaoWen:2017twxjz}查看该期刊文章的引用效果。这是中文图书的引用效果\cite{Huang:2012hxwl}。
 
 \section{注释}
+\sectionen{Remarks}
+
 注释：可以用“脚注”或“文后注”来标注引用著作中的一些观点和案例，但全文标注方式应统一，本文统一使用“脚注”\footnote{这里是注释内容。}。

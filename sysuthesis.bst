@@ -41,6 +41,8 @@ ENTRY
     author
     booktitle
     chapter
+    citedate
+    date
     edition
     editor
     eid
@@ -58,6 +60,7 @@ ENTRY
     school
     series
     title
+    translator
     type
     url
     urldate
@@ -99,6 +102,34 @@ FUNCTION {output.nonnull}
   if$
   s
 }
+FUNCTION {output.empty}
+{ 's :=
+  output.state mid.sentence =
+    {"" * write$ }
+    {}
+  if$
+  s
+}
+FUNCTION {output.space}
+{ 's :=
+  output.state mid.sentence =
+    { " " * write$ }
+    { output.state after.block =
+        { add.period$ write$
+          newline$
+          " " write$
+        }
+        { output.state before.all =
+            'write$
+            { add.period$ " " * write$ }
+          if$
+        }
+      if$
+      mid.sentence 'output.state :=
+    }
+  if$
+  s
+}
 FUNCTION {output}
 { duplicate$ empty$
     'pop$
@@ -113,7 +144,8 @@ FUNCTION {output.check}
   if$
 }
 FUNCTION {fin.entry}
-{ duplicate$ empty$
+{ add.period$
+  duplicate$ empty$
     'pop$
     'write$
   if$
@@ -256,19 +288,23 @@ FUNCTION {bbl.etal}
 FUNCTION {bbl.editors}
 { language empty$
   { "editors" }
-  { "编者"}
+  { "编"}
   if$
 }
 
 FUNCTION {bbl.editor}
 { language empty$
-  { "editors" }
-  { "编者"}
+  { "editor" }
+  { "编"}
   if$
 }
 
-FUNCTION {bbl.edby}
-{ "edited by" }
+FUNCTION {bbl.translator}
+{ language empty$
+  { "translator" }
+  { "译"}
+  if$
+}
 
 FUNCTION {bbl.edition}
 { language empty$
@@ -325,35 +361,35 @@ FUNCTION {bbl.phdthesis}
 FUNCTION {bbl.first}
 { language empty$
   { "1st" }
-  { "第1" }
+  { "第 1" }
   if$
 }
 
 FUNCTION {bbl.second}
 { language empty$
   { "2nd" }
-  { "第2" }
+  { "第 2" }
   if$
 }
 
 FUNCTION {bbl.third}
 { language empty$
   { "3rd" }
-  { "第3" }
+  { "第 3" }
   if$
 }
 
 FUNCTION {bbl.fourth}
 { language empty$
   { "4th" }
-  { "第4" }
+  { "第 4" }
   if$
 }
 
 FUNCTION {bbl.fifth}
 { language empty$
   { "4th" }
-  { "第5"}
+  { "第 5"}
   if$
 }
 
@@ -427,8 +463,7 @@ MACRO {ieeese} {"IEEE Trans. Software Eng."}
 
 MACRO {ieeetc} {"IEEE Trans. Comput."}
 
-MACRO {ieeetcad}
- {"IEEE Trans. Comput. Aid. Des."}
+MACRO {ieeetcad} {"IEEE Trans. Comput. Aid. Des."}
 
 MACRO {ipl} {"Inf. Process. Lett."}
 
@@ -506,7 +541,7 @@ FUNCTION {format.names}
     { namesleft #0 > }
     { s nameptr
       "{vv~}{ll}{ f{~}}{ jj}"
-      format.name$ "u" change.case$
+      format.name$
       remove.dots
       bib.name.font
       bibinfo bibinfo.check
@@ -566,6 +601,16 @@ FUNCTION {format.editors}
     }
   if$
 }
+FUNCTION {format.translator}
+{ translator "translator" format.names duplicate$ empty$ 'skip$
+    {
+      "," *
+      " " *
+      bbl.translator
+      *
+    }
+  if$
+}
 FUNCTION {format.note}
 {
  note empty$
@@ -605,7 +650,7 @@ FUNCTION {output.bibitem}
 FUNCTION {format.url}
 { url empty$
     { " " }
-    { new.block "\url{" url * "}" * }
+    { "\url{" url * "}" * }
   if$
 }
 
@@ -639,7 +684,7 @@ FUNCTION {word.in}
 { bbl.in capitalize
   " " * }
 
-FUNCTION {format.date}
+FUNCTION {format.year}
 {
   ""
   duplicate$ empty$
@@ -659,11 +704,11 @@ FUNCTION {format.date}
     }
   if$
 }
-FUNCTION{format.urldate}
+FUNCTION {format.date}
 {
   ""
   duplicate$ empty$
-  urldate  "urldate"  bibinfo.check duplicate$ empty$
+  date  "date"  bibinfo.check duplicate$ empty$
     { swap$ 'skip$
         { "there's a month but no year in " cite$ * warning$ }
       if$
@@ -678,6 +723,18 @@ FUNCTION{format.urldate}
       *
     }
   if$
+}
+FUNCTION{format.urldate}
+{ citedate empty$
+  { " " }
+  { "(" urldate * ")" * }
+  if$
+}
+FUNCTION{format.citedate}
+{ citedate empty$
+  { " " }
+  { "[" citedate * "]" * }
+if$
 }
 FUNCTION {format.btitle}
 { title "title" bibinfo.check
@@ -706,26 +763,7 @@ FUNCTION {format.volume}
         if$
         "volume and number" number either.or.check
       }
-      { "第" volume * "卷" * }
-      if$
-    }
-  if$
-}
-FUNCTION {format.bvolume}
-{ volume empty$
-    { "" }
-    {
-      language empty$
-      { bbl.volume volume tie.or.space.prefix
-        "volume" bibinfo.check * *
-        series "series" bibinfo.check
-        duplicate$ empty$ 'pop$
-          { swap$ bbl.of space.word * swap$
-            emphasize * }
-        if$
-        "volume and number" number either.or.check
-      }
-      { "第" volume * "册" * }
+      { " (第" volume * "卷) " * }
       if$
     }
   if$
@@ -825,6 +863,13 @@ FUNCTION {format.edition}
       }
   if$
 }
+FUNCTION {format.newspaper.edition}
+{ edition empty$
+  { " " }
+  { "(" edition * ")" * }
+if$
+}
+
 INTEGERS { multiresult }
 FUNCTION {multi.page.check}
 { 't :=
@@ -907,7 +952,6 @@ FUNCTION {format.vol.num.pages}
     { format.journal.eid }
   if$
 }
-
 FUNCTION {format.chapter.pages}
 { chapter empty$
     'format.pages
@@ -1089,6 +1133,7 @@ FUNCTION {format.org.or.pub}
     }
   if$
 }
+
 FUNCTION {format.publisher.address}
 { publisher "publisher" bibinfo.warn format.org.or.pub
 }
@@ -1096,12 +1141,16 @@ FUNCTION {format.publisher.address}
 FUNCTION {format.organization.address}
 { organization "organization" bibinfo.check format.org.or.pub
 }
+FUNCTION {format.school.address}
+{ school "school" bibinfo.check format.org.or.pub
+}
 
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   new.block
   format.title "title" output.check
+  "[J]" output.empty
   new.block
   crossref missing$
     {
@@ -1109,7 +1158,7 @@ FUNCTION {article}
       remove.dots
       "journal" bibinfo.check
       "journal" output.check
-      format.date "year" output.check
+      format.year "year" output.check
       date.block
       format.vol.num.pages output
     }
@@ -1135,10 +1184,13 @@ FUNCTION {book}
   if$
   new.block
   format.btitle "title" output.check
+  format.volume output.empty
+  "[M]" output.empty
+  new.block
+  format.translator "translator" output.check
+  new.block
   crossref missing$
-    { format.bvolume output
-      new.block
-      format.edition output
+    { format.edition output
       new.sentence
       format.publisher.address output
     }
@@ -1147,114 +1199,8 @@ FUNCTION {book}
       format.book.crossref output.nonnull
     }
   if$
-  format.date "year" output.check
-  new.block
-  format.pages "pages" output.check
-  format.note output
-  fin.entry
-}
-FUNCTION {booklet}
-{ output.bibitem
-  format.authors output
-  new.block
-  format.title "title" output.check
-  new.block
-  howpublished "howpublished" bibinfo.check output
-  address "address" bibinfo.check output
-  format.date output
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {inbook}
-{ output.bibitem
-  author empty$
-    { format.editors "author and editor" output.check
-    }
-    { format.authors output.nonnull
-      crossref missing$
-        { "author and editor" editor either.or.check }
-        'skip$
-      if$
-    }
-  if$
-  new.block
-  format.btitle "title" output.check
-  crossref missing$
-    {
-      format.volume output
-      format.chapter.pages "chapter and pages" output.check
-      new.block
-      format.edition output
-      new.sentence
-      format.number.series output
-      format.publisher.address output
-    }
-    {
-      format.chapter.pages "chapter and pages" output.check
-      new.block
-      format.book.crossref output.nonnull
-    }
-  if$
-  format.date "year" output.check
-  date.block
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {incollection}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.title "title" output.check
-  new.block
-  crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
-      format.volume output
-      format.edition output
-      format.chapter.pages output
-      new.sentence
-      format.number.series output
-      format.publisher.address output
-    }
-    { format.incoll.inproc.crossref output.nonnull
-      format.chapter.pages output
-    }
-  if$
-  format.date "year" output.check
-  date.block
-  new.block
-  format.note output
-  fin.entry
-}
-FUNCTION {inproceedings}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.title "title" output.check
-  new.block
-  crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
-      format.volume output
-      new.sentence
-      format.number.series output
-      publisher empty$
-        { format.organization.address output }
-        { organization "organization" bibinfo.check output
-          format.publisher.address output
-        }
-      if$
-    }
-    { format.incoll.inproc.crossref output.nonnull
-    }
-  if$
-  format.date "year" output.check
-  date.block
-  add.blank
-  format.pages "pages" output.check
-  new.block
+  format.year "year" output.check
+  format.journal.pages
   format.note output
   fin.entry
 }
@@ -1264,6 +1210,7 @@ FUNCTION {conference}
   format.authors "author" output.check
   new.block
   format.title "title" output.check
+  "[C]" output.empty
   new.block
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
@@ -1279,46 +1226,11 @@ FUNCTION {conference}
     }
   if$
   new.block
-  format.date "year" output.check
+  format.year "year" output.check
   new.block
   format.volume output
   new.sentence
   format.number.series output
-  format.note output
-  fin.entry
-}
-FUNCTION {manual}
-{ output.bibitem
-  author empty$
-    { organization "organization" bibinfo.check
-      duplicate$ empty$ 'pop$
-        { output
-          address "address" bibinfo.check output
-        }
-      if$
-    }
-    { format.authors output.nonnull }
-  if$
-  new.block
-  format.btitle "title" output.check
-  author empty$
-    { organization empty$
-        {
-          address new.block.checka
-          address "address" bibinfo.check output
-        }
-        'skip$
-      if$
-    }
-    {
-      organization address new.block.checkb
-      organization "organization" bibinfo.check output
-      address "address" bibinfo.check output
-    }
-  if$
-  format.edition output
-  format.date output
-  new.block
   format.note output
   fin.entry
 }
@@ -1327,16 +1239,118 @@ FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
   new.block
+  format.title
+  "title" output.check
+  "[D]" output.empty
+  new.block
+  format.school.address output
+  % bbl.mthesis format.thesis.type output.nonnull
+  format.year "year" output.check
+  format.journal.pages
+  new.block
+  format.note output
+  fin.entry
+}
+FUNCTION {phdthesis}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
+  format.title
+  "title" output.check
+  "[D]" output.empty
+  new.block
+  format.school.address output
+  % bbl.phdthesis format.thesis.type output.nonnull
+  format.year "year" output.check
+  format.journal.pages
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {newspaper}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
+  format.title
+  "title" output.check
+  "[N]" output.empty
+  new.block
+  publisher "publisher" output.check
+  format.date "date" output.check
+  format.newspaper.edition output.space
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {online}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
+  format.title
+  "title" output.check
+  "[EB/OL]" output.empty
+  new.block
+  format.url "url" output.check
+  new.block
+  format.urldate output.space
+  format.citedate output.space
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {articleonline}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
+  format.title
+  "title" output.check
+  "[J/OL]" output.empty
+  new.block
+  format.publisher.address output
+  format.url "url" output.check
+  new.block
+  format.year "year" output.check
+  date.block
+  format.vol.num.pages output
+  format.citedate output.empty
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {bookonline}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
   format.btitle
   "title" output.check
+  "[M/OL]" output.empty
   new.block
-  bbl.mthesis format.thesis.type output.nonnull
+  format.publisher.address output
+  format.url "url" output.check
   new.block
-  school "school" bibinfo.warn output
+  format.year "year" output.check
+  date.block
+  format.citedate output.empty
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {techreport}
+{ output.bibitem
+  format.authors "author" output.check
+  new.block
+  format.title
+  "title" output.check
+  new.block
+  format.tr.number output.nonnull
+  institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
-  format.pages "pages" output.check
-  new.block
-  format.date "year" output.check
+  format.year "year" output.check
   new.block
   format.note output
   fin.entry
@@ -1354,104 +1368,6 @@ FUNCTION {misc}
   format.note output
   fin.entry
   empty.misc.check
-}
-FUNCTION {phdthesis}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.btitle
-  "title" output.check
-  new.block
-  bbl.phdthesis format.thesis.type output.nonnull
-  new.block
-  school "school" bibinfo.warn output
-  address "address" bibinfo.check output
-  format.pages "pages" output.check
-  new.block
-  format.date "year" output.check
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {online}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.btitle
-  "title" output.check
-  format.url "url" output.check
-  format.urldate "urldate" output.check
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {proceedings}
-{ output.bibitem
-  editor empty$
-    { organization "organization" bibinfo.check output
-    }
-    { format.editors output.nonnull }
-  if$
-  new.block
-  format.btitle "title" output.check
-  format.volume output
-  editor empty$
-    { publisher empty$
-        {  format.number.series output }
-        {
-          new.sentence
-          format.number.series output
-          format.publisher.address output
-        }
-      if$
-    }
-    { publisher empty$
-        {
-          new.sentence
-          format.number.series output
-          format.organization.address output }
-        {
-          new.sentence
-          format.number.series output
-          organization "organization" bibinfo.check output
-          format.publisher.address output
-        }
-      if$
-     }
-  if$
-      format.date "year" output.check
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {techreport}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.title
-  "title" output.check
-  new.block
-  format.tr.number output.nonnull
-  institution "institution" bibinfo.warn output
-  address "address" bibinfo.check output
-  format.date "year" output.check
-  new.block
-  format.note output
-  fin.entry
-}
-
-FUNCTION {unpublished}
-{ output.bibitem
-  format.authors "author" output.check
-  new.block
-  format.title "title" output.check
-  format.date output
-  new.block
-  format.note "note" output.check
-  fin.entry
 }
 
 FUNCTION {default.type} { misc }

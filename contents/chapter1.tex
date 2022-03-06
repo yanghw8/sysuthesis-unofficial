@@ -1,5 +1,9 @@
 % !TEX root = ../main.tex
-\chapter{前言}
+\chapter{前\hspace*{1\ccwd}言}
+\chapteren{Introduction}
+
+\section{声明}
+\sectionen{Declaration}
 
 \blfootnote{\copyright\ \number\year\ \href{https://github.com/yanghw8}{yanghw8}}
 \blfootnote{更新时间：\today}
@@ -8,7 +12,51 @@
 
 本模版暂时没有为本科生学位论文设置格式，如果您是本科生，请移步至\href{https://github.com/SYSU-SCC/sysu-thesis}{本科生模版}。如果您没有接触过\LaTeX{}，又不打算花费时间和精力来入门，推荐您使用Microsoft Office套装来编写您的学位论文。如果您是\LaTeX{}语言的初学者，那么希望以下内容会对您的学习有所帮助。
 
+\section{更新描述}
+\sectionen{Updated}
+
+最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。\texttt{$\backslash$texttt}命令只在本文档用以展示命令，不建议大家使用。
+
+\section{使用说明}
+\sectionen{Readme}
+
+硕士论文不要求中英双目录和图表双标题，使用时仅使用
+\begin{itemize}
+    \item \texttt{$\backslash$chapter\{\}}
+    \item \texttt{$\backslash$section\{\}}
+    \item \texttt{$\backslash$subsection\{\}}
+    \item \texttt{$\backslash$caption\{\}}
+\end{itemize}
+即可。博士使用
+\begin{itemize}
+    \item \texttt{$\backslash$chapter\{\}}、\texttt{$\backslash$chapteren\{\}}
+    \item \texttt{$\backslash$section\{\}}、\texttt{$\backslash$sectionen\{\}}
+    \item \texttt{$\backslash$subsection\{\}}、\texttt{$\backslash$subsectionen\{\}}
+    \item \texttt{$\backslash$bicaption\{\}\{\}}
+\end{itemize}
+以显示双语效果。此外，如果需要展示目录和索引，请直接使用\ref{tab:listof}中的命令来打开。
+\begin{table}[!htp]
+    \zihao{5}
+    \bicaption{目录索引}
+    {Tableofcontents and  listofX}
+    \label{tab:listof}
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        索引    & 命令 \\
+        \hline
+        中文目录    &  \texttt{$\backslash$tableofcontents} \\
+        英文目录    &  \texttt{$\backslash$tableofcontentsen} \\
+        中文插图索引    &  \texttt{$\backslash$listoffigures} \\
+        英文插图索引    &  \texttt{$\backslash$listoffiguresen} \\
+        中文表格索引   &  \texttt{$\backslash$listoftables} \\
+        英文表格索引   &  \texttt{$\backslash$listoftablesen} \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \section{模版文件结构}
+\sectionen{File structure}
 
 本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译器称为“xelatex”，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为\texttt{main.tex}，在编译时请选择“xelatex”编译器，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
 \begin{itemize}
@@ -19,11 +67,16 @@
 \end{itemize}
 如此您将得到一个最终完成的PDF文件。
 
-本模版的文件目录结构见\ref{fig:dir}。重要的文件为\texttt{sysuthesis.cls}，\texttt{sysuthesis.bst}，分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改这两个文件。您可以编辑的文件有：
+本模版的文件目录结构见\ref{fig:dir}。重要的文件有：
+\begin{itemize}
+    \item \texttt{sysuthesis.cls}
+    \item texttt{sysuthesis.bst}
+\end{itemize}
+分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改这两个文件。您可以编辑的文件有：
 \begin{itemize}
     \item \texttt{setup.tex}文件：编辑您的论文题目、作者姓名、专业、指导教师、关键词和学院及日期等关键信息，设置用于本文档的新\LaTeX{}命令以及调用的宏包；
     \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在\texttt{main.tex}中导入并排好顺序；
-    \item \texttt{ref}文件夹里的\texttt{refs.bib}文件：用于编辑您的引用文献信息，请遵从hologo{BibTeX}的语法格式，以免达成意料之外的效果；
+    \item \texttt{ref}文件夹里的\texttt{refs.bib}文件：用于编辑您的引用文献信息，请遵从\hologo{BibTeX}的语法格式，以免达成意料之外的效果；
     \item 为了方便起见，请将您的要使用的图片和代码文件放到相应的文件夹，以免造成不必要的混乱。
 \end{itemize}
 
@@ -42,13 +95,12 @@
             [chapter1.tex]
             [chapter2.tex]
             [chapter3.tex]
-            [summary.tex, label=right:{\zihao{5}结语内容编辑}]
+            [conclusion.tex, label=right:{\zihao{5}结论内容编辑}]
           ]
           [figures, label=right:{\zihao{5}图片文件夹}
             [hexbin.pdf]
             [histogram.pdf]
             [piechart.pdf]
-            [sysu.pdf]
           ]
           [ref, label=right:{\zihao{5}放置引用文献信息的文件的文件夹}
             [refs.bib, label=right:{\zihao{5}文件的语法格式应为\hologo{BibTeX}格式}]
@@ -61,22 +113,25 @@
           [sysuthesis.cls, label=right:{\zihao{5}设置论文排版格式的类文档}]
         ]
     \end{forest}
-    \caption{本模版的文件目录}
+    \bicaption{本模版的文件目录}
+    {Directory structure of this template}
     \label{fig:dir}
 \end{figure}
 
 \section{\TeX{} Live套装及其他软件}
+\sectionen{\TeX{} Live suite and other software}
 
 \TeX{} Live是由国际\TeX{}用户组（\TeX{} Users Group，TUG）整理和发布的\TeX{}软件套装，包含与\TeX{}系统相关的各种程序、编辑与查看工具、常用宏包及文档、常用字体及多国语言支持。
 
 \subsection{软件下载及安装}
+\subsectionen{Download and install}
 
 \TeX{} Live支持大家主要使用的Unix/Linux、Windows以及Mac OS等操作系统，它保持着每年一版的更新频率，是开源软件。可以直接到\href{https://www.tug.org}{\strong{TUG}}官网下载\href{https://www.tug.org/texlive}{\TeX{} Live}，但可能受国内防火墙限制了下载速度，推荐大家到\href{https://mirrors.tuna.tsinghua.edu.cn/CTAN/}{清华大学开源软件镜像站}下载。请注意，对于Mac OS 系统，请选择下载\strong{Mac\TeX{}}。下载完成后，请根据提示进行安装，一般都是一路默认安装。
 
 \subsection{\LaTeX{}编辑器}
+\subsectionen{\LaTeX{} editor}
 
 \LaTeX{}编辑器一般都会随着套件一起安装下来，如果你觉得默认的编辑器用起来不方便，下面推荐几个\LaTeX{}编辑器。
-
 \begin{itemize}
     \item Visual Studio Code：这是一款由微软开发且跨平台的免费源代码编辑器。该软件支持语法高亮、代码自动补全、代码重构功能，默认支持非常多的编程语言。而且有内置的扩展程序商店，可以下载扩展支持你所需要的语言插件，\strong{需要配置环境}。请到\url{https://code.visualstudio.com}下载。
     \item Overleaf：这是一款\strong{在线协作}的\LaTeX{}编辑器，与很大科学杂志出版商有合作关系，上面不但提供官方期刊的\LaTeX{}模板，还能直接将文件提交至这些出版社。官方网站为\url{https://www.overleaf.com}。
@@ -178,10 +233,11 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.bind.altKeymap.enabled": true,    
 \end{lstlisting}
-    \item 之后可以在\TeX{}环境里，选择对应的\strong{Build LaTeX project}进行编译。
+    \item 之后可以在\TeX{}窗口里，选择对应的\strong{Build LaTeX project}进行编译。
 \end{itemize}
 
 \section{推荐读物}
+\sectionen{Further reading}
 
 本文档不是\LaTeX{}的入门教程，因此不会对复杂的\LaTeX{}代码进行介绍。如果您只是用来编写您的学位论文，完全可以将源代码里的内容替换成你的内容，然后经过若干次复制、粘贴和修改，最终您会得到你所需要的文档。然而，有时候您想实现一些自己的个性化内容，希望下面推荐的读物可以帮助到您：
 \begin{itemize}

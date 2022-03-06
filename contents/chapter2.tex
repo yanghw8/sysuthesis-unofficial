@@ -1,55 +1,47 @@
 % !TEX root = ../main.tex
 \chapter{标题及字体示例}
+\chapteren{Heading and font example}
 
 \section{二级标题}
+\sectionen{Heading 2}
 
 \subsection{三级标题}
-
-\subsubsection{四级标题}
+\sectionen{Heading 3}
 
 \section{字体示例}
+\sectionen{Font example}
 
 \subsection{中文字体}
+\subsectionen{Chinese font}
 
 \begin{center}
+    \zihao{2}\heiti 二号黑体居中
 
-    {\zihao{2}\heiti 二号黑体居中}
+    \zihao{-2}\heiti 小二号黑体居中
 
-    {\zihao{-2}\heiti 小二号黑体居中}
+    \zihao{3}\heiti 三号黑体居中
 
-    {\zihao{3}\heiti 三号黑体居中}
-
-    {\zihao{-3}
-        {\heiti 小三号黑体居中}
-
-        {\songti 小三号宋体居中}
-
-        {\bfseries\songti 小三号宋体加粗居中}
-    }
-
-    {\zihao{4}
-        {\heiti 四号黑体居中}
-
-        {\songti 四号宋体居中}
-
-        {\bfseries\songti 四号宋体加粗居中}
-    }
+    \zihao{-3}\heiti 小三号黑体居中
     
-    {\zihao{-4}
-        {\songti 小四号宋体居中}
+    \songti 小三号宋体居中
+    
+    {\bfseries\songti 小三号宋体加粗居中}
 
-        {\bfseries\songti 小四号宋体加粗居中}
+    \zihao{4}\heiti 四号黑体居中
+    
+    \songti 四号宋体居中
 
-        {\kaishu 小四号楷书居中}
-
-        % {\lishu 小四号隶书居中}
-    }
-
-    {\songti\zihao{5} 宋体五号居中}
-
+    {\bfseries\songti 四号宋体加粗居中}
+    
+    \zihao{-4}\songti 小四号宋体居中
+    
+    {\bfseries\songti 小四号宋体加粗居中}
+    
+    \songti\zihao{5} 宋体五号居中
 \end{center}
 
 \subsection{西文字体}
+\subsectionen{English font}
 
 \subsubsection{正文字体：Times New Roman}
 请直接使用，或通过\texttt{$\backslash$texttt}命令来使用：
@@ -88,6 +80,7 @@ abcdefghjklmnopqrstuvwxyz
 \texttt{1234567890}
 
 \subsection{数学符号}
+\subsectionen{Math symbol}
 数学符号只能在$\$\quad\$$限定域或如\texttt{align}等数学模式（math mode）中使用。
 
 \subsubsection{数学符号为英文字母及阿拉伯数字}
@@ -113,17 +106,18 @@ $\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega$
 
 
 \section{格式内容}
+\sectionen{Format}
 
 主体部分包括引言（前言），国内外文献综述，正文，结语，参考文献。要求图表清晰，叙述流畅，章节有序，层次分明。
 
 引言（前言）部分内容主要为本研究课题的学术背景及理论与实际意义；本研究课题的来源及主要研究内容；建立研究的线索与思路。
 
 \subsection{格式说明}
-
-\subsubsection{说明一}
+\subsectionen{Format notes}
 
 文中的公式、插图、表格等，一律用阿拉伯数字按章顺序编号。如\ref{fig:hexbin}、    \ref{tab:01}、\ref{eqn:taylorseries}等。图序及图名置于图的下方，居中排列；表序及表名置于表的上方，居中排列。
 
-\subsubsection{说明二}
-
 章、节、条的编排为章居中，节左边空二格排版。内文文字排版的字体、字号、行距、字距以版面清晰、容易辨识和阅读为原则，一般可参照下面要求进行排版：章的题名建议采用小二号黑体，居中；节的题名建议采用小三号宋体，加粗，左起空两格；文章段落内容建议采用小四号宋体。
+
+\section{本章小节}
+\sectionen{Brief summary}
