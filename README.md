@@ -13,8 +13,7 @@
 本分支适配了物理与天文学院格式的要求：
 * 重新调整了版面布局；
 * 添加了中英双目录和标题双目录功能；
-* 将中西文字的自动间隔关闭，需要自己在源码里添加空格
-
+* 将中西文字的自动间隔关闭，需要自己在源码里添加空格。
 
 如果需要旧版本，请转`old`分支。
 
@@ -29,8 +28,9 @@
 
 如此您将得到一个最终完成的PDF文件。
 
-如果您使用Visual Studio Code来作为LaTeX编辑器，您需要设置`settings.json`来定制您的编译链，配置代码在`main.pdf`里有说明。
+Overleaf对免费用户只开放了1分钟以内的编译时长，本模版上传至Overleaf编译时长超过1分钟，所以建议您在本地编译，并养成时常备份的好习惯。
 
+如果您使用Visual Studio Code来作为LaTeX编辑器，您需要设置`settings.json`来定制您的编译链，配置代码在`main.pdf`里有说明。
 
 ## 致谢
 
@@ -45,7 +45,7 @@
 
 ## 推荐读物
 本文档不是LaTeX的入门教程，因此不会对复杂的LaTeX代码进行介绍。如果您只是用来编写您的学位论文，完全可以将源代码里的内容替换成你的内容，然后经过若干次复制、粘贴和修改，最终您会得到你所需要的文档。然而，有时候您想实现一些自己的个性化内容，希望下面推荐的读物可以帮助到您：
-* [Overleaf：Documentation](https://www.overleaf.com/learn)，在线英文文档，在里面实现不同功能的$LaTeX示例应有尽有；
+* [Overleaf：Documentation](https://www.overleaf.com/learn)，在线英文文档，在里面实现不同功能的LaTeX示例应有尽有；
 * 《[一份不太简短的LaTeX2e介绍](http://www.ptep-online.com/ctan/lshort_chinese.pdf)》；
 * 《[简单粗暴LaTeX](https://github.com/wklchris/Note-by-LaTeX)》；
 

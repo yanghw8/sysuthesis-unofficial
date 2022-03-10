@@ -140,7 +140,13 @@
 \renewcommand{\headruleskip}{2pt}
 \fancyfoot{}
 \fancyfoot[C]{\zihao{-5}-\ \thepage\ -}
-
+\fancypagestyle{onlyheadrule}{%
+    \fancyhf{}
+    \fancyhead{}
+    \renewcommand{\headrule}{\hrule height 0.8mm \vspace{0.2mm}\hrule height 0.2mm}
+    \fancyfoot{}
+    \fancyfoot[C]{\zihao{-5}-\ \thepage\ -}
+}
 
 % format of footnote
 \RequirePackage{pifont}
@@ -265,7 +271,7 @@
 
 % abstract enviroment setup
 \NewDocumentEnvironment{abszh}{}{%
-    \pagestyle{fancy}
+    \pagestyle{onlyheadrule}
     \phantomsection \label{abszh}
     \addcontentsline{toc}{chapter}{\protect 摘\hspace*{2\ccwd}要}
     \addcontentsline{toe}{chapter}{Abstract (In Chinese)}
@@ -292,7 +298,7 @@
     \clearpage
 }
 \NewDocumentEnvironment{absen}{}{%
-    \pagestyle{fancy}
+    \pagestyle{onlyheadrule}
     \phantomsection \label{absen}
     \addcontentsline{toc}{chapter}{ABSTRACT}
     \addcontentsline{toe}{chapter}{Abstract (In English)}
@@ -346,7 +352,7 @@
         format      = \zihao{-2}\heiti\centering,
         name        = {第~, ~章},
         number      = \arabic{chapter},
-        aftername   = ~,
+        aftername   = \quad,
         afterskip   = 9mm,
         pagestyle   = fancy,
         fixskip     = true,
