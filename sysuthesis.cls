@@ -3,7 +3,7 @@
 %%                  Mar 06, 2022                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% !TeX encoding = UTF-8
 \def\sysuthesis{sysuthesis-unoffical}
 \def\version{1.0.1}
 
@@ -125,7 +125,7 @@
     autoindent  = true,
 }
 % set the space between CJK text and Western text, CJK text and inline math formulas
-\xeCJKsetup{CJKecglue={\hskip0pt}}
+% \xeCJKsetup{CJKecglue={\hskip0pt}}
 
 \setlength\intextsep{6pt}
 % \setlength\abovedisplayskip{0pt}
@@ -187,7 +187,7 @@
         日期：\hspace{3\ccwd}年\hspace{2\ccwd}月\hspace{2\ccwd}日\hspace{2\ccwd}
 
     \end{flushright}
-    \newpage
+    \cleardoublepage
     \vspace*{36pt}
     \begin{center}\heiti{\zihao{3}学位论文使用授权声明}\end{center}
     \vspace*{24pt}
@@ -195,7 +195,7 @@
     \songti\zihao{4}
     \hspace{2\ccwd}本人完全了解中山大学有关保留、使用学位论文的规定，即：学校有权保留学位论文并向国家主管部门或其指定机构送交论文的电子版和纸质版；有权将学位论文用于非盈利目的的少量复制并允许论文进入学校图书馆、院系资料室被查阅；有权将学位论文的内容编入有关数据库进行检索；可以采用复印、缩印或其他方法保存学位论文；可以为存在馆际合作关系的兄弟高校用户提供文献传递服务和交换服务。
         
-    保密论文保密期满后，适用本声明
+    保密论文保密期满后，适用本声明。
     \par \vspace*{18pt}
     \begin{flushleft}
         \songti\zihao{4}
@@ -295,7 +295,7 @@
 {%
     \par \vspace*{12pt}
     {\heiti\zihao{-4}{关键词: }} \songti{\zihao{-4}\@keywords@zh}
-    \clearpage
+    \cleardoublepage
 }
 \NewDocumentEnvironment{absen}{}{%
     \pagestyle{onlyheadrule}
@@ -322,7 +322,7 @@
 {%
     \par \vspace*{12pt}
     {\zihao{-4}\bfseries KeyWords: \@keywords@en}
-    \clearpage
+    \cleardoublepage
 }
 
 % format of the bibliography
@@ -343,6 +343,16 @@
     \clearpage{\pagestyle{empty}\cleardoublepage}
 }
 
+% new command of the journal name with bibtex for ADS Export Citation (in astrophysics area)
+\newcommand{\apj}{The Astrophysical Journal}
+\newcommand{\apjl}{The Astrophysical Journal Letters}
+\newcommand{\apjs}{Astrophysical Journal Supplement}
+\newcommand{\nat}{Nature}
+\newcommand{\araa}{Annual Review of Astronomy and Astrophysics}
+\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society}
+\newcommand{\jcap}{Journal of Cosmology and Astroparticle Physics}
+\newcommand{\prl}{Physical Review Letters}
+\newcommand{\prd}{Physical Review D}
 
 % format of chapter, section, subsection, subsubsection, paragraph and subparagraph
 \pagestyle{fancy}
@@ -360,7 +370,7 @@
     section = {%
         fixskip     = true,
         beforeskip  = 7mm,
-        indent      = 24pt,
+        indent      = 0pt,
         format      = \zihao{-3}\heiti,
         afterindent = true,
         aftername   = ~,
@@ -369,7 +379,7 @@
     subsection = {%
         fixskip     = true,
         beforeskip  = 6mm,
-        indent      = 24pt,
+        indent      = 0pt,
         format      = \zihao{4}\heiti,
         afterindent = true,
         aftername   = ~,
@@ -378,10 +388,10 @@
     subsubsection = {%
         fixskip     = true,
         beforeskip  = 5mm,
-        indent      = 24pt,
+        indent      = 0pt,
         format      = \zihao{-4}\songti,
         name        = {（, ）},
-        number      = \chinese{chapter},
+        number      = \chinese{subsubsection},
         afterindent = true,
         aftername   = ~,
         afterskip   = 5mm,
