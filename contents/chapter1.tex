@@ -1,69 +1,189 @@
-% !TEX root = ../main.tex
+% !TEX root = ../thesis.tex
 \chapter{前\hspace*{1\ccwd}言}
 \chapteren{Introduction}
 
 \section{声明}
 \sectionen{Declaration}
 
-\blfootnote{\copyright\ \number\year\ \href{https://github.com/yanghw8}{yanghw8}}
-\blfootnote{更新时间：\today}
+\footnotetext{\copyright~\number\year~\href{https://github.com/yanghw8}{yanghw8}}
+\footnotetext{更新时间：\today}
 
 \sysuthesis{}是旨在为中山大学熟悉\LaTeX{}语言的研究生提供一个方便易用的学位论文写作模版，其设置的排版格式力求尽可能符合《\href{https://sysgraduate.sysu.edu.cn/sites/graduate.prod.dpcms4.sysu.edu.cn/files/2019-04/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%94%9F%E5%AD%A6%E4%BD%8D%E8%AE%BA%E6%96%87%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.pdf}{中山大学研究生学位论文格式要求}》。首先声明：\strong{本模版不是官方模版，无法保证它完全符合学校的相关要求，在开始使用前，您同意，任何由于本模板而引起的论文格式审查问题与本模板作者无关。}
 
-本模版暂时没有为本科生学位论文设置格式，如果您是本科生，请移步至\href{https://github.com/SYSU-SCC/sysu-thesis}{本科生模版}。如果您没有接触过\LaTeX{}，又不打算花费时间和精力来入门，推荐您使用Microsoft Office套装来编写您的学位论文。如果您是\LaTeX{}语言的初学者，那么希望以下内容会对您的学习有所帮助。
+本模版暂时没有为本科生学位论文设置格式，如果您是本科生，请移步至\href{https://github.com/SYSU-SCC/sysu-thesis}{本科生模版}。如果您没有接触过\LaTeX{}，又不打算花费时间和精力来入门，推荐您使用 Microsoft Office 套装来编写您的学位论文。如果您是\LaTeX{}语言的初学者，那么希望以下内容会对您的学习有所帮助。
 
 \section{更新描述}
 \sectionen{Updated}
 
-最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。\texttt{$\backslash$texttt}命令只在本文档用以展示命令，不建议大家使用。
+\subsection*{v1.1.0 2023/03/03}
+
+\begin{itemize}
+    \item 增加以下模版选项：
+    \begin{itemize}
+        \item \texttt{doctype}，可选 \texttt{thesis}|\texttt{proposal} (\texttt{<default> = thesis})，分别为学位论文和开题报告的格式。
+        \item \texttt{printmode}，可选 \texttt{final}|\texttt{checkmode}|\texttt{blindmode} (\texttt{<default> = final})，分别为终稿、查重和盲审的打印模式。
+        \item \texttt{openright}|\texttt{openany}，互为 \texttt{true}|\texttt{false} (\texttt{<default> = openright})。\texttt{openright} 选项为每一章在右页（奇数页）开始，\texttt{openright} 选项为在上一章结束的下一页开始。
+        \item \texttt{blankleft} (\texttt{<default> = false})，当 \texttt{blankleft = true} 时，章节结束的偶数页如果没有内容，使之空白，但页码计数器仍然有效。
+    \end{itemize}
+    \item 增加了 \texttt{appendixenv}、\texttt{publications}和\texttt{achievements} 环境，分别为附录、学术论文发表列表和学术成果列表的环境。
+    \item 对论文扉页进行了微调。
+    \item 修改 \texttt{lstlisting} 双语标题格式，微调相关颜色。
+    \item 增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免 \hologo{BibTeX} 编译出错。
+\end{itemize}
+
+% \begin{lstlisting}[language=TeX]
+% \newcommand{\actaa}{Acta Astron.} % Acta Astronomica
+% \newcommand{\araa}{Annu. Rev. Astron. Astrophys.} % Annual Review of Astron and Astrophys 
+% \newcommand{\aar}{Astron. Astrophys. Rev.} % Astrononmy and Astrophysics Review 
+% \newcommand{\ab}{Astrobiol.} % Astrobiology
+% \newcommand{\aj}{Astron. J.} % Astrononmical Journal
+% \newcommand{\apjl}{Astrophys. J. Lett.} % Astrophysical Journal, Letters
+% \newcommand{\apjs}{Astrophys. J. Suppl. Ser.} % Astrophysical Journal, Supplement
+% \newcommand{\ao}{Appl. Opt.} % Applied Optics
+% \newcommand{\apss}{Astrophys. Space Sci.} % Astrophysics and Space Science
+% \newcommand{\aap}{Astron. Astrophys.} % Astronomy and Astrophysics
+% \newcommand{\aapr}{Astron. Astrophys. Rev.} % Astronomy and Astrophysics Reviews
+% \newcommand{\aaps}{Astron. Astrophys. Suppl.} % Astronomy and Astrophysics, Supplement
+% \newcommand{\baas}{Bull. Am. Astron. Soc.} % Bulletin of the AAS
+% \newcommand{\caa}{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics 
+% \newcommand{\cjaa}{Chinese J. Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics 
+% \newcommand{\cqg}{Class. Quantum Gravity} % Classical and Quantum Gravity 
+% \newcommand{\gal}{Galaxies} % Galaxies
+% \newcommand{\gca}{Geochim. Cosmochim. Acta} % Geochimica Cosmochimica Acta
+% \newcommand{\icarus}{Icarus} % Icarus 
+% \newcommand{\jcap}{J. Cosmol. Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
+% \newcommand{\jgr}{J. Geophys. Res.} % Journal of Geophysics Research
+% \newcommand{\jgrp}{J. Geophys. Res.: Planets} % Journal of Geophysics Research: Planets
+% \newcommand{\jqsrt}{J. Quant. Spectrosc. Radiat. Transf.} % Journal of Quantitiative Spectroscopy and Radiative Transfer
+% \newcommand{\memsai}{Mem. Soc. Astron. Italiana} % Mem. Societa Astronomica Italiana
+% \newcommand{\mnras}{Mon. Not. R. Astron. Soc.} % Monthly Notices of the RAS
+% \newcommand{\nat}{Nature} % Nature 
+% \newcommand{\nastro}{Nat. Astron.} % Nature Astronomy 
+% \newcommand{\ncomms}{Nat. Commun.} % Nature Communications 
+% \newcommand{\nphys}{Nat. Phys.} % Nature Physics
+% \newcommand{\na}{New Astron.} % New Astronomy
+% \newcommand{\nar}{New Astron. Rev.} % New Astronomy Review
+% \newcommand{\physrep}{Phys. Rep.} % Physics Reports
+% \newcommand{\pra}{Phys. Rev. A} % Physical Review A: General Physics
+% \newcommand{\prb}{Phys. Rev. B} % Physical Review B: Solid State
+% \newcommand{\prc}{Phys. Rev. C} % Physical Review C
+% \newcommand{\prd}{Phys. Rev. D} % Physical Review D
+% \newcommand{\pre}{Phys. Rev. E} % Physical Review E
+% \newcommand{\prl}{Phys. Rev. Lett.} % Physical Review Letters
+% \newcommand{\psj}{Planet. Sci. J.} % Planetary Science Journal
+% \newcommand{\planss}{Planet. Space Sci.} % Planetary Space Science
+% \newcommand{\pnas}{Proc. Natl Acad. Sci. USA} % Proceedings of the US National Academy of Sciences 
+% \newcommand{\procspie}{Proc. SPIE} % Proceedings of the SPIE
+% \newcommand{\pasa}{Publ. Astron. Soc. Aust.} %Publications of the Astron. Soc. of Australia
+% \newcommand{\pasj}{Publ. Astron. Soc. Jpn} % Publications of the ASJ
+% \newcommand{\pasp}{Publ. Astron. Soc. Pac.} % Publications of the ASP
+% \newcommand{\rmxaa}{Rev. Mexicana Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica \newcommand{\sci}{Science} % Science
+% \newcommand{\sciadv}{Sci. Adv.} % Science Advances
+% \newcommand{\solphys}{Sol. Phys.} % Solar Physics
+% \newcommand{\sovast}{Soviet Ast.} % Soviet Astronomy
+% \newcommand{\ssr}{Space Sci. Rev.} % Space Science Reviews
+% \newcommand{\uni}{Universe} % Universe
+% \end{lstlisting}
+
+\subsection*{v1.0.1 2022/03/06}
+
+\begin{itemize}
+    \item 最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。\texttt{\textbackslash texttt}命令只在本文档用以展示命令，不建议大家使用。
+\end{itemize}
+
+\subsection*{v1.0 2022/02/23}
+
+\begin{itemize}
+    \item 最初版本。
+\end{itemize}
+
+
+\section{注意事项}
+\sectionen{Notice}
+
+本模版预设的封面、原创性声明及使用授权说明页、摘要页均以物理与天文学院的格式要求为主。如果您所在学院的要求与本模版预设的不同，建议参考以下 \textdagger 项的说明，正文以及参考文献部分各学院的要求应该是一致的。
+\begin{itemize}
+    \item 一般而言，通常不需要在中英文之间添加额外的空格，但为了代码的可读性（良好的习惯），还是建议在中文字符和 English 字符之间加上空格。
+    \item[\textdagger] 对于扉页，如果对本模版预设的扉页不满意，可以使用 \texttt{pdfpages} 宏包中的 \texttt{\textbackslash includepdf} 命令导入您的扉页的 PDF 文件，例如
+\begin{lstlisting}[language=TeX]
+% \maketitle
+\includepdf{titlepage.pdf}
+\end{lstlisting}
+    其中 \texttt{titlepage.pdf} 为扉页的 PDF 文件。
+    \item[\textdagger] 同样的，对于原创性及使用授权说明页，也可以利用类似的方法：
+\begin{lstlisting}[language=TeX]
+% \makecopyright
+\includepdf{copyrightpage.pdf}
+\end{lstlisting}
+    其中 \texttt{copyrightpage.pdf} 为扉页的 PDF 文件（可以为签字过后的扫描文件）。
+    \item[\textdagger] 对于摘要页，在使用类似上述的命令之后，此外还应将摘要加入目录，因此建议使用以下命令
+\begin{lstlisting}[language=TeX]
+% \include{contents/abstract}
+\addcontentsline{toc}{chapter}{\protect 摘\hspace*{2\ccwd}要}
+\addcontentsline{toe}{chapter}{Abstract (In Chinese)}
+\includepdf{abstract-zh.pdf}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\addcontentsline{toe}{chapter}{Abstract (In English)}
+\includepdf{abstract-en.pdf}
+\end{lstlisting}
+    其中 \texttt{abstract-zh.pdf} 和 \texttt{abstract-en.pdf} 分别为中英文摘要页的 PDF 文件。
+    \item 对于插图和表格的标题，本模版推荐使用 \texttt{bicaption} 宏包的 \texttt{\textbackslash bicaption} 命令，具体用法为:
+\begin{lstlisting}[language=TeX]
+\bicaption[中文短标题]{中文标题}[英文短标题]{英文标题}
+\end{lstlisting}
+    其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示，见\ref{fig:hexbin}示例。
+    \item 在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 \texttt{\{\textbackslash cite\{key\}\}} 来避免上述问题发生。
+\end{itemize}
 
 \section{使用说明}
 \sectionen{Readme}
 
 硕士论文不要求中英双目录和图表双标题，使用时仅使用
 \begin{itemize}
-    \item \texttt{$\backslash$chapter\{\}}
-    \item \texttt{$\backslash$section\{\}}
-    \item \texttt{$\backslash$subsection\{\}}
-    \item \texttt{$\backslash$caption\{\}}
+    \item \texttt{\textbackslash chapter\{\}}
+    \item \texttt{\textbackslash section\{\}}
+    \item \texttt{\textbackslash subsection\{\}}
+    \item \texttt{\textbackslash caption\{\}}
 \end{itemize}
 即可。博士使用
 \begin{itemize}
-    \item \texttt{$\backslash$chapter\{\}}、\texttt{$\backslash$chapteren\{\}}
-    \item \texttt{$\backslash$section\{\}}、\texttt{$\backslash$sectionen\{\}}
-    \item \texttt{$\backslash$subsection\{\}}、\texttt{$\backslash$subsectionen\{\}}
-    \item \texttt{$\backslash$bicaption\{\}\{\}}
+    \item \texttt{\textbackslash chapter\{\}}、\texttt{\textbackslash chapteren\{\}}
+    \item \texttt{\textbackslash section\{\}}、\texttt{\textbackslash sectionen\{\}}
+    \item \texttt{\textbackslash subsection\{\}}、\texttt{\textbackslash subsectionen\{\}}
+    \item \texttt{\textbackslash bicaption\{\}\{\}}
 \end{itemize}
 以显示双语效果。此外，如果需要展示目录和索引，请直接使用\ref{tab:listof}中的命令来打开。
 \begin{table}[!htp]
     \zihao{5}
     \bicaption{目录索引}
-    {Tableofcontents and  listofX}
+    {Table of contents and  List of X}
     \label{tab:listof}
     \centering
     \begin{tabular}{ll}
-        \hline
+        \toprule
         索引    & 命令 \\
-        \hline
-        中文目录    &  \texttt{$\backslash$tableofcontents} \\
-        英文目录    &  \texttt{$\backslash$tableofcontentsen} \\
-        中文插图索引    &  \texttt{$\backslash$listoffigures} \\
-        英文插图索引    &  \texttt{$\backslash$listoffiguresen} \\
-        中文表格索引   &  \texttt{$\backslash$listoftables} \\
-        英文表格索引   &  \texttt{$\backslash$listoftablesen} \\
-        \hline
+        \midrule
+        中文目录    &  \texttt{\textbackslash tableofcontents} \\
+        英文目录    &  \texttt{\textbackslash tableofcontentsen} \\
+        中文插图索引    &  \texttt{\textbackslash listoffigures} \\
+        英文插图索引    &  \texttt{\textbackslash listoffiguresen} \\
+        中文表格索引   &  \texttt{\textbackslash listoftables} \\
+        英文表格索引   &  \texttt{\textbackslash listoftablesen} \\
+        中文代码索引   &  \texttt{\textbackslash lstlistoflistings} \\
+        英文代码索引   &  \texttt{\textbackslash listoflstlistingsen} \\
+        \bottomrule
     \end{tabular}
 \end{table}
 
 \section{模版文件结构}
 \sectionen{File structure}
 
-本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译器称为“xelatex”，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为\texttt{main.tex}，在编译时请选择“xelatex”编译器，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
+本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译命令称为 \texttt{xelatex}，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为\texttt{main.tex}，在编译时请选择\texttt{xelatex}编译命令，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
 \begin{itemize}
-    \item xelatex
-    \item bibtex
-    \item xelatex
-    \item xelatex
+    \item \texttt{xelatex}
+    \item \texttt{bibtex}
+    \item \texttt{xelatex}
+    \item \texttt{xelatex}
 \end{itemize}
 如此您将得到一个最终完成的PDF文件。
 
@@ -84,7 +204,7 @@
     \centering
     \begin{forest}
         directory,
-        [sysuthesis-unoffical,  label=right:{\zihao{5}主目录}
+        [sysuthesis-unofficial,  label=right:{\zihao{5}主目录}
           [codes, label=right:{\zihao{5}代码文件夹}
             [cohere.py, label=right:{\zihao{5}代码环境示例Python代码}]
           ]
@@ -92,7 +212,7 @@
             [abstract.tex, label=right:{\zihao{5}摘要内容编辑}]
             [ack.tex, label=right:{\zihao{5}后记内容编辑}]
             [appendix.tex, label=right:{\zihao{5}附录内容编辑}]
-            [chapter1.tex]
+            [chapter1.tex,  label=right:{\zihao{5}章节内容编辑，下同}]
             [chapter2.tex]
             [chapter3.tex]
             [conclusion.tex, label=right:{\zihao{5}结论内容编辑}]
@@ -102,15 +222,15 @@
             [histogram.pdf]
             [piechart.pdf]
           ]
-          [ref, label=right:{\zihao{5}放置引用文献信息的文件的文件夹}
-            [refs.bib, label=right:{\zihao{5}文件的语法格式应为\hologo{BibTeX}格式}]
-          ]
-          [main.tex, label=right:\strong{\zihao{5}需要编译的主\TeX{}文件}]
-          [main.pdf, label=right:{\zihao{5}编译生成的PDF文件}]
+          [proposal.pdf, label=right:{\zihao{5}编译生成的开题报告PDF文件}]
+          [proposal.tex, label=right:\strong{\zihao{5}需要编译的开题报告\TeX{}文件}]
           [README.md]
+          [refs.bib, label=right:{\zihao{5}文件的语法格式应为\hologo{BibTeX}格式}]
           [setup.tex, label=right:{\zihao{5}配置论文信息、设置新命令以及调用宏包的文件}]
           [sysuthesis.bst, label=right:{\zihao{5}设置参考文献格式的文件}]
           [sysuthesis.cls, label=right:{\zihao{5}设置论文排版格式的类文档}]
+          [thesis.pdf, label=right:{\zihao{5}编译生成的论文PDF文件}]
+          [thesis.tex, label=right:\strong{\zihao{5}需要编译的论文主\TeX{}文件}]
         ]
     \end{forest}
     \bicaption{本模版的文件目录}
@@ -119,7 +239,7 @@
 \end{figure}
 
 \section{\TeX{} Live套装及其他软件}
-\sectionen{\TeX{} Live suite and other software}
+\sectionen{\TeX{} Live suite and other softwares}
 
 \TeX{} Live是由国际\TeX{}用户组（\TeX{} Users Group，TUG）整理和发布的\TeX{}软件套装，包含与\TeX{}系统相关的各种程序、编辑与查看工具、常用宏包及文档、常用字体及多国语言支持。
 
@@ -134,7 +254,7 @@
 \LaTeX{}编辑器一般都会随着套件一起安装下来，如果你觉得默认的编辑器用起来不方便，下面推荐几个\LaTeX{}编辑器。
 \begin{itemize}
     \item Visual Studio Code：这是一款由微软开发且跨平台的免费源代码编辑器。该软件支持语法高亮、代码自动补全、代码重构功能，默认支持非常多的编程语言。而且有内置的扩展程序商店，可以下载扩展支持你所需要的语言插件，\strong{需要配置环境}。请到\url{https://code.visualstudio.com}下载。
-    \item Overleaf：这是一款\strong{在线协作}的\LaTeX{}编辑器，与很大科学杂志出版商有合作关系，上面不但提供官方期刊的\LaTeX{}模板，还能直接将文件提交至这些出版社。官方网站为\url{https://www.overleaf.com}。
+    \item Overleaf：这是一款\strong{在线协作}的\LaTeX{}编辑器，与很多科学杂志出版商有合作关系，上面不但提供官方期刊的\LaTeX{}模板，还能直接将文件提交至这些出版社。官方网站为\url{https://www.overleaf.com}。
     \item TeXstudio：这是一款开源的跨平台\LaTeX{}编辑软件，支持交互式拼写检查、代码折叠、语法高亮等特性。官网网站为\url{http://texstudio.sourceforge.net}。
 \end{itemize}
 
@@ -143,98 +263,104 @@
 各种\LaTeX{}编辑器的配置可以轻易在网上找到，而且有的都比较简单。下面只介绍Visual Studio Code的配置。
 \begin{itemize}
     \item 在扩展商店里找到\strong{LaTeX Workshop}插件，点击安装；
-    \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。以下是我的配置：
-\begin{lstlisting}
-    "latex-workshop.latex.tools": [
-        {
-            "name": "xelatex",
-            "command": "xelatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOCFILE%"
-            ]
-        },
-        {
-            "name": "pdflatex",
-            "command": "pdflatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOCFILE%"
-            ]
-        },
-        {
-            "name": "latexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
-                "%DOCFILE%"
-            ]
-        },
-        {
-            "name": "bibtex",
-            "command": "bibtex",
-            "args": [
-                "%DOCFILE%"
-            ]
-        }
-    ],
-    "latex-workshop.latex.recipes": [
-        {
-            "name": "XeLaTeX",
-            "tools": [
-                "xelatex"
-            ]
-        },
-        {
-            "name": "PDFLaTeX",
-            "tools": [
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "BibTeX",
-            "tools": [
-                "bibtex"
-            ]
-        },
-        {
-            "name": "LaTeXmk",
-            "tools": [
-                "latexmk"
-            ]
-        },
-        {
-            "name": "xelatex -> bibtex -> xelatex*2",
-            "tools": [
-                "xelatex",
-                "bibtex",
-                "xelatex",
-                "xelatex"
-            ]
-        },
-        {
-            "name": "pdflatex -> bibtex -> pdflatex*2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        }
-    ],
-    "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.bind.altKeymap.enabled": true,    
-\end{lstlisting}
+    \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\ref{vscodeconfig}为我的配置;
     \item 之后可以在\TeX{}窗口里，选择对应的\strong{Build LaTeX project}进行编译。
 \end{itemize}
+\begin{lstlisting}[language=Java,
+    caption1={[VSCode \LaTeX{} 配置代码]Visual Studio Code \LaTeX{} 配置代码},
+    caption2={[VSCode \LaTeX{} configuration]Visual Studio Code \LaTeX{} configuration},
+    label=vscodeconfig]
+// 编译工具
+"latex-workshop.latex.tools": [
+    {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=%OUTDIR%",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+            "%DOCFILE%"
+        ]
+    }
+],
+// 编译方法
+"latex-workshop.latex.recipes": [
+    {
+        "name": "XeLaTeX",
+        "tools": [
+            "xelatex"
+        ]
+    },
+    {
+        "name": "PDFLaTeX",
+        "tools": [
+            "pdflatex"
+        ]
+    },
+    {
+        "name": "BibTeX",
+        "tools": [
+            "bibtex"
+        ]
+    },
+    {
+        "name": "LaTeXmk",
+        "tools": [
+            "latexmk"
+        ]
+    },
+    {
+        "name": "xelatex -> bibtex -> xelatex*2",
+        "tools": [
+            "xelatex",
+            "bibtex",
+            "xelatex",
+            "xelatex"
+        ]
+    },
+    {
+        "name": "pdflatex -> bibtex -> pdflatex*2",
+        "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+        ]
+    }
+],
+"latex-workshop.view.pdf.viewer": "tab",
+"latex-workshop.bind.altKeymap.enabled": true,
+"editor.wordWrap": "on", 
+\end{lstlisting}
 
 \section{推荐读物}
 \sectionen{Further reading}

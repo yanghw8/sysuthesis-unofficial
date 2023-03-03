@@ -1,5 +1,5 @@
-% !TeX encoding = UTF-8
-\documentclass{sysuthesis}
+% !TEX encoding = UTF-8 Unicode
+\documentclass[doctype=thesis,printmode=final,openright,blankleft]{sysuthesis}
 
 % 设置论文的基本信息，包括题目、作者、专业、导师、学院、摘要和关键词等必要信息
 \input{setup}
@@ -13,15 +13,15 @@
 \maketitle
 
 % 原创性及使用授权说明
-\copyrightpage
+\makecopyright
 
 % 中英文摘要
-\input{contents/abstract}
+\include{contents/abstract}
 
 % 目录
 \tableofcontents
-
 \tableofcontentsen
+
 % 插图索引
 \listoffigures
 \listoffiguresen
@@ -30,29 +30,32 @@
 \listoftables
 \listoftablesen
 
+%代码索引
+\lstlistoflistings
+\listoflstlistingsen
+
 % 主体部分
 \mainmatter
 
 % 正文
-\input{contents/chapter1}
-\input{contents/chapter2}
-\input{contents/chapter3}
+\include{contents/chapter1}
+\include{contents/chapter2}
+\include{contents/chapter3}
 
 % 结语
-\input{contents/conclusion}
+\include{contents/conclusion}
 
 % 参考文献
-\makebib{ref/refs}
+\makebib{refs}
+
+% 附录
+\appendix
+\include{contents/appendix}
 
 % 后置部分
 \backmatter
 
-% 附录
-\input{contents/appendix}
-
 % 致谢，即后记
-\input{contents/ack}
+\include{contents/ack}
 
-
-\cleardoublepage
 \end{document}

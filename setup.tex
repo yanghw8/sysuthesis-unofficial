@@ -1,10 +1,13 @@
-% !TEX root = ./main.tex
+% !TEX root = ./thesis.tex
 % 设置论文题目，第一个“{}”为中文题目，第二个“{}“为英文题目
 \title{中山大学研究生学位论文\LaTeX{}非官方模版}
 {English Title for Sun Yat-sen University Thesis \LaTeX{} Unofficial Template}
 
 % 设置作者，第一个“{}”为中文名字，第二个“{}“为英文名字
 \author{张三}{Zhang San}
+
+% 设置学号
+\studentid{22110000}
 
 % 设置专业，第一个“{}”为中文专业名，第二个“{}“为英文专业名
 \major{天体物理}{Astrophysics}
@@ -14,7 +17,9 @@
 
 % 设置学位名
 \degreetype{理学}
-\degree{硕士}
+\degree{博士}
+
+\researchteam{天文团队}
 
 % 设置关键词，第一个“{}”为中文关键词，第二个“{}“为英文关键词
 \keywords{天体物理；引力波；黑洞}{Astrophysics; Gravitational Wave; Black Holes}
@@ -28,9 +33,29 @@
 % 设置日期，默认是当天时间，具体到日
 \date{2022年6月}
 
+
+% 定义所有的图片文件在 figures 子目录下
+\graphicspath{{./figures/}}
+
 % 设置新的latex命令
-\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dd}{~\mathrm{d}}
+\AtBeginDocument{%
+    \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
+}
+
 % 调用的宏包
 \usepackage{longtable}
 \usepackage{tablefootnote}
 \usepackage{hologo}
+\usepackage[edges]{forest}
+\forestset{%
+    directory/.style={%
+        for tree={%
+            edge+=thick, 
+            folder, 
+            font=\ttfamily\zihao{5},
+            grow'=0,
+            draw,
+        },
+    },
+}

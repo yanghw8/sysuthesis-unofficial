@@ -1,0 +1,117 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[proposal]{sysuthesis}
+
+% 设置论文的基本信息，包括题目、作者、专业、导师、学院、摘要和关键词等必要信息
+\input{setup}
+
+\usepackage{multirow}
+
+\begin{document}
+
+% 前置部分
+\frontmatter
+
+% 扉页
+\maketitle
+
+% 目录
+\tableofcontents
+
+% 主体部分
+\mainmatter
+
+% 正文
+
+\section*{说\hspace*{2\ccwd}明}
+
+\begin{itemize}
+    \item[一、]开题报告应包括下列主要内容，见目录。
+    \item[二、]开题报告字数应不少于1.5万字。
+    \item[三、]开题报告最迟应于第四学期结束前完成。
+    \item[四、]若本次开题报告未通过，需在6-12个月内再次进行开题报告。第二次学位论文开题报告仍未通过者，按评议小组的建议进行后续分流工作。
+    \item[五、]开题报告结束后，评议小组要填写《博士学位论文开题报告评议结果》，与主席签字的“博士学位论文开题答辩原始记录”一同上报学院研究生教学秘书备案。学生需将修改过的《开题报告》和《博士学位论文开题报告修改情况确认表》于开题答辩后一周内上交学院研究生教学秘书备案。
+    \item[六、]字体、字号及其他规定
+    
+    论文中所用中文字体（除各级标题外）为宋体，各级标题用黑体；论文中所用数字、英文为新罗马字体。
+
+    \begin{tabular}{ll}
+        节标题         &小3号字，建议段前0.5行，段后0.5行；\\
+        条标题         &4号字，建议段前0.5行，段后0.5行；\\
+        款、项标题      &小4号字， 建议段前0行，段后0行；\\
+        正文           &小4号字，建议段前0行，段后0行，每页约33行。
+    \end{tabular}
+    \item[七、]层次代号及说明 
+    \begin{table}[h]
+        \zihao{5}
+        \centering
+        \begin{tabular}{p{0.1\linewidth}|p{0.45\linewidth}|p{0.35\linewidth}}
+            \hline 
+            层次名称 & 示例 & 说明 \\
+            \hline 
+            节 &1~$\Box\Box\cdots\cdots\Box$ & \multirow{3}*{题序顶格书写，阐述内容另起一段} \\
+            \cline{1-2}
+            条 &1.1~$\Box\Box\cdots\cdots\Box$ & \\
+            \cline{1-2}
+            款 &1.1.1~$\Box\Box\cdots\cdots\Box$  & \\
+            \hline
+            项 &\hspace*{2\ccwd}(1)~$\Box\Box\cdots\cdots\Box$ \hspace*{2\ccwd}$\Box\Box\cdots\cdots\Box\Box$  & 题序空4个半角字符书写，内容空4个半角字符接排 \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \item[八、]常用的四种参考文献类型标注形式。例如：
+    \begin{enumerate}
+        \item 这是一个期刊的引用\cite{LIGOScientific:2017zic}；
+        \item 这是一个图书的引用\cite{Rubakov:2017xzr,Zhang:2021}；
+        \item 这是一个研讨会论文的引用\cite{Tanikawa:2021+x}；
+        \item 这是博士论文的引用\cite{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\cite{Shojaeifar:2015csv,SongRen:2020}；
+        \item 这是电子文献的引用\cite{Piro:2021oaa,bilibili:read}。
+        \item 这是报纸的引用\cite{Li:2005}。
+    \end{enumerate}
+\end{itemize}
+
+    
+\section{课题来源及研究的目的和意义}
+\subsection{课题来源或研究背景}
+\subsection{研究的目的及意义}
+（不少于1000字）
+
+\section{国内外在该方向的研究现状及分析}
+（文献综述）
+\subsection{国外研究现状}
+\subsection{国内研究现状}
+（注意对所引用国内外文献的准确标注）
+\subsection{国内外文献综述的简析}
+（不少于1000字）
+（综合评述：国内外研究取得的成果，存在的不足或有待深入研究的问题）
+
+\section{学位论文的主要研究内容、实施方案及其可行性论证前期研究与论证工作的结果}
+\subsection{主要研究内容}
+（不少于2000字）
+（撰写宜使用将来时态，不能只列出论文目录来代替对研究内容的分析论述）
+\subsection{实施方案及其可行性论证}
+（不少于3000字）
+
+\section{已完成的研究工作}
+（详细撰写目前已进行的研究工作内容和完成情况）
+
+\section{论文进度安排，预期达到的目标}
+\subsection{进度安排}
+（从确定博士选题收集文献写起）
+\subsection{预期达到的目标}
+
+\section{学位论文预期创新点}
+（要根据研究内容和国内外研究现状准确提炼，充分体现创新性）
+
+\section{为完成课题已具备和所需的条件、外协计划及经费}
+
+\section{预计研究过程中可能遇到的困难、问题，以及解决的途径}
+
+\section{主要参考文献}
+（应在50篇以上，其中外文资料不少于二分之一，参考文献中近五年（从开题当年算起）内发表的文献一般不少于三分之一，且必须有近二年内发表的文献资料）。
+
+
+
+\makebib{refs}
+
+\cleardoublepage
+\end{document}
