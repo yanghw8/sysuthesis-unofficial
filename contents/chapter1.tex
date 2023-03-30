@@ -5,18 +5,29 @@
 \section{声明}
 \sectionen{Declaration}
 
-\footnotetext{\copyright~\number\year~\href{https://github.com/yanghw8}{yanghw8}}
-\footnotetext{更新时间：\today}
-
-\sysuthesis{}是旨在为中山大学熟悉\LaTeX{}语言的研究生提供一个方便易用的学位论文写作模版，其设置的排版格式力求尽可能符合《\href{https://sysgraduate.sysu.edu.cn/sites/graduate.prod.dpcms4.sysu.edu.cn/files/2019-04/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%94%9F%E5%AD%A6%E4%BD%8D%E8%AE%BA%E6%96%87%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.pdf}{中山大学研究生学位论文格式要求}》。首先声明：\strong{本模版不是官方模版，无法保证它完全符合学校的相关要求，在开始使用前，您同意，任何由于本模板而引起的论文格式审查问题与本模板作者无关。}
+\sysuthesis{}\footnote{\copyright~\number\year~\href{https://github.com/yanghw8}{yanghw8}\hspace*{2\ccwd}更新时间：\today}是旨在为中山大学熟悉\LaTeX{}语言的研究生提供一个方便易用的学位论文写作模版，其设置的排版格式力求尽可能符合《\href{https://graduate.sysu.edu.cn/sites/graduate.prod.dpcms4.sysu.edu.cn/files/2019-04/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%94%9F%E5%AD%A6%E4%BD%8D%E8%AE%BA%E6%96%87%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.pdf}{中山大学研究生学位论文格式要求}》。首先声明：\strong{本模版不是官方模版，无法保证它完全符合学校的相关要求，在开始使用前，您同意，任何由于本模板而引起的论文格式审查问题与本模板作者无关。}
 
 本模版暂时没有为本科生学位论文设置格式，如果您是本科生，请移步至\href{https://github.com/SYSU-SCC/sysu-thesis}{本科生模版}。如果您没有接触过\LaTeX{}，又不打算花费时间和精力来入门，推荐您使用 Microsoft Office 套装来编写您的学位论文。如果您是\LaTeX{}语言的初学者，那么希望以下内容会对您的学习有所帮助。
 
 \section{更新描述}
 \sectionen{Updated}
 
-\subsection*{v1.1.0 2023/03/03}
+\subsection*{v1.1.1 2022/03/30}
+\begin{itemize}
+    \item 使用 \texttt{\textbackslash raggedbottom} 调整页面的垂直对齐方式, 当页面内容不足时, 这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
+    \item 增加 \texttt{fontset} 选项 (\texttt{<default> = fandol})，指定\CTeX{}宏集加载的字库，详情请查看\CTeX{}宏集的具体说明。例如，如果您的系统为Windows，则可以用以下选项：
+\begin{lstlisting}[language=TeX]
+\documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=windows]{sysuthesis}
+\end{lstlisting}
+    如果您在 Overleaf 上编译，则可以设置为:
+\begin{lstlisting}[language=TeX]
+\documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=ubuntu]{sysuthesis}
+\end{lstlisting}
+    目前 Mac OS 可以暂时使用 \texttt{fontset=macnew}，依然解决不了找不到对应字体的警告问题，但无伤大雅。
+    \item 对一些笔误进行了修改。
+\end{itemize}
 
+\subsection*{v1.1.0 2023/03/03}
 \begin{itemize}
     \item 增加以下模版选项：
     \begin{itemize}
@@ -31,77 +42,21 @@
     \item 增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免 \hologo{BibTeX} 编译出错。
 \end{itemize}
 
-% \begin{lstlisting}[language=TeX]
-% \newcommand{\actaa}{Acta Astron.} % Acta Astronomica
-% \newcommand{\araa}{Annu. Rev. Astron. Astrophys.} % Annual Review of Astron and Astrophys 
-% \newcommand{\aar}{Astron. Astrophys. Rev.} % Astrononmy and Astrophysics Review 
-% \newcommand{\ab}{Astrobiol.} % Astrobiology
-% \newcommand{\aj}{Astron. J.} % Astrononmical Journal
-% \newcommand{\apjl}{Astrophys. J. Lett.} % Astrophysical Journal, Letters
-% \newcommand{\apjs}{Astrophys. J. Suppl. Ser.} % Astrophysical Journal, Supplement
-% \newcommand{\ao}{Appl. Opt.} % Applied Optics
-% \newcommand{\apss}{Astrophys. Space Sci.} % Astrophysics and Space Science
-% \newcommand{\aap}{Astron. Astrophys.} % Astronomy and Astrophysics
-% \newcommand{\aapr}{Astron. Astrophys. Rev.} % Astronomy and Astrophysics Reviews
-% \newcommand{\aaps}{Astron. Astrophys. Suppl.} % Astronomy and Astrophysics, Supplement
-% \newcommand{\baas}{Bull. Am. Astron. Soc.} % Bulletin of the AAS
-% \newcommand{\caa}{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics 
-% \newcommand{\cjaa}{Chinese J. Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics 
-% \newcommand{\cqg}{Class. Quantum Gravity} % Classical and Quantum Gravity 
-% \newcommand{\gal}{Galaxies} % Galaxies
-% \newcommand{\gca}{Geochim. Cosmochim. Acta} % Geochimica Cosmochimica Acta
-% \newcommand{\icarus}{Icarus} % Icarus 
-% \newcommand{\jcap}{J. Cosmol. Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
-% \newcommand{\jgr}{J. Geophys. Res.} % Journal of Geophysics Research
-% \newcommand{\jgrp}{J. Geophys. Res.: Planets} % Journal of Geophysics Research: Planets
-% \newcommand{\jqsrt}{J. Quant. Spectrosc. Radiat. Transf.} % Journal of Quantitiative Spectroscopy and Radiative Transfer
-% \newcommand{\memsai}{Mem. Soc. Astron. Italiana} % Mem. Societa Astronomica Italiana
-% \newcommand{\mnras}{Mon. Not. R. Astron. Soc.} % Monthly Notices of the RAS
-% \newcommand{\nat}{Nature} % Nature 
-% \newcommand{\nastro}{Nat. Astron.} % Nature Astronomy 
-% \newcommand{\ncomms}{Nat. Commun.} % Nature Communications 
-% \newcommand{\nphys}{Nat. Phys.} % Nature Physics
-% \newcommand{\na}{New Astron.} % New Astronomy
-% \newcommand{\nar}{New Astron. Rev.} % New Astronomy Review
-% \newcommand{\physrep}{Phys. Rep.} % Physics Reports
-% \newcommand{\pra}{Phys. Rev. A} % Physical Review A: General Physics
-% \newcommand{\prb}{Phys. Rev. B} % Physical Review B: Solid State
-% \newcommand{\prc}{Phys. Rev. C} % Physical Review C
-% \newcommand{\prd}{Phys. Rev. D} % Physical Review D
-% \newcommand{\pre}{Phys. Rev. E} % Physical Review E
-% \newcommand{\prl}{Phys. Rev. Lett.} % Physical Review Letters
-% \newcommand{\psj}{Planet. Sci. J.} % Planetary Science Journal
-% \newcommand{\planss}{Planet. Space Sci.} % Planetary Space Science
-% \newcommand{\pnas}{Proc. Natl Acad. Sci. USA} % Proceedings of the US National Academy of Sciences 
-% \newcommand{\procspie}{Proc. SPIE} % Proceedings of the SPIE
-% \newcommand{\pasa}{Publ. Astron. Soc. Aust.} %Publications of the Astron. Soc. of Australia
-% \newcommand{\pasj}{Publ. Astron. Soc. Jpn} % Publications of the ASJ
-% \newcommand{\pasp}{Publ. Astron. Soc. Pac.} % Publications of the ASP
-% \newcommand{\rmxaa}{Rev. Mexicana Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica \newcommand{\sci}{Science} % Science
-% \newcommand{\sciadv}{Sci. Adv.} % Science Advances
-% \newcommand{\solphys}{Sol. Phys.} % Solar Physics
-% \newcommand{\sovast}{Soviet Ast.} % Soviet Astronomy
-% \newcommand{\ssr}{Space Sci. Rev.} % Space Science Reviews
-% \newcommand{\uni}{Universe} % Universe
-% \end{lstlisting}
-
 \subsection*{v1.0.1 2022/03/06}
-
 \begin{itemize}
     \item 最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。\texttt{\textbackslash texttt}命令只在本文档用以展示命令，不建议大家使用。
 \end{itemize}
 
 \subsection*{v1.0 2022/02/23}
-
 \begin{itemize}
     \item 最初版本。
 \end{itemize}
-
 
 \section{注意事项}
 \sectionen{Notice}
 
 本模版预设的封面、原创性声明及使用授权说明页、摘要页均以物理与天文学院的格式要求为主。如果您所在学院的要求与本模版预设的不同，建议参考以下 \textdagger 项的说明，正文以及参考文献部分各学院的要求应该是一致的。
+
 \begin{itemize}
     \item 一般而言，通常不需要在中英文之间添加额外的空格，但为了代码的可读性（良好的习惯），还是建议在中文字符和 English 字符之间加上空格。
     \item[\textdagger] 对于扉页，如果对本模版预设的扉页不满意，可以使用 \texttt{pdfpages} 宏包中的 \texttt{\textbackslash includepdf} 命令导入您的扉页的 PDF 文件，例如
@@ -190,13 +145,13 @@
 本模版的文件目录结构见\ref{fig:dir}。重要的文件有：
 \begin{itemize}
     \item \texttt{sysuthesis.cls}
-    \item texttt{sysuthesis.bst}
+    \item \texttt{sysuthesis.bst}
 \end{itemize}
 分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改这两个文件。您可以编辑的文件有：
 \begin{itemize}
     \item \texttt{setup.tex}文件：编辑您的论文题目、作者姓名、专业、指导教师、关键词和学院及日期等关键信息，设置用于本文档的新\LaTeX{}命令以及调用的宏包；
-    \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在\texttt{main.tex}中导入并排好顺序；
-    \item \texttt{ref}文件夹里的\texttt{refs.bib}文件：用于编辑您的引用文献信息，请遵从\hologo{BibTeX}的语法格式，以免达成意料之外的效果；
+    \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在\texttt{thesis.tex}中导入并排好顺序；
+    \item \texttt{refs.bib}文件：用于编辑您的引用文献信息，请遵从\hologo{BibTeX}的语法格式，以免达成意料之外的效果；
     \item 为了方便起见，请将您的要使用的图片和代码文件放到相应的文件夹，以免造成不必要的混乱。
 \end{itemize}
 

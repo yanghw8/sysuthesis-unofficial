@@ -280,8 +280,8 @@ FUNCTION {bbl.and}
 
 FUNCTION {bbl.etal}
 { language empty$
-    { "et~al." }
-    { "等"}
+  { "et~al." }
+  { "等"}
   if$
 }
 
@@ -1234,6 +1234,8 @@ FUNCTION {conference}
   format.note output
   fin.entry
 }
+
+FUNCTION {inproceedings}{conference}
 
 FUNCTION {mastersthesis}
 { output.bibitem

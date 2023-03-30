@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Mar 03, 2023                   %%
+%%                  Mar 30, 2023                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2023/03/03 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2023/03/30 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
-\def\version{v1.1.0}
+\def\version{v1.1.1}
 
 \newcommand{\sysu@error}[1]{%
     \ClassError{sysuthesis}{#1}{}%
@@ -39,14 +39,13 @@
 \DeclareBoolOption[false]{blindmode}
 \DeclareStringOption{doctype}[thesis]
 \DeclareStringOption{printmode}[final]
+\DeclareStringOption[fandol]{fontset}[fandol]
 
 \DeclareBoolOption[false]{blankleft}
 \DeclareBoolOption[true]{openright}
 \DeclareComplementaryOption{openany}{openright}
-\DeclareBoolOption[true]{raggedbottom}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
-
 
 \IfStrEq{\sysu@doctype}{thesis}
 {\sysu@thesistrue}{%
@@ -71,14 +70,14 @@
 \fi
 
 % this cls modified base on ctexbook documentclass
-\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39,fontset=\sysu@fontset]{ctexbook}
 
 %  the required packages
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{geometry}
-\RequirePackage{fontspec}
+% \RequirePackage{fontspec}
 \RequirePackage[english,pinyin]{babel}
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
@@ -95,9 +94,9 @@
 \RequirePackage{listings}
 % solution of the clash between the hyperref and bibentry packages
 \RequirePackage{bibentry}
-\let\saved@bibitem\@bibitem
+\ifsysu@checkmode\let\saved@bibitem\@bibitem\fi
 \RequirePackage{hyperref}
-\let\@bibitem\saved@bibitem
+\ifsysu@checkmode\let\@bibitem\saved@bibitem\fi
 
 % font setup
 \setmainfont{Times New Roman}
@@ -269,9 +268,9 @@
 }
 % set the space between CJK text and Western text, CJK text and inline math formulas
 % \xeCJKsetup{CJKecglue={\hskip0pt}}
-\setlength\intextsep{6pt}
-% \setlength\abovedisplayskip{0pt}
-% \setlength\abovedisplayshortskip{0pt}
+\setlength\intextsep{0.0pt}
+\setlength\abovedisplayskip{0.0pt}
+\setlength\abovedisplayshortskip{0.0pt}
 
 % header and footer setup
 \pagestyle{fancy}
@@ -577,7 +576,6 @@
 \newcommand{\ssr}{Space Sci. Rev.} % Space Science Reviews
 \newcommand{\uni}{Universe} % Universe
 
-
 % format of chapter, section, subsection, subsubsection, paragraph and subparagraph
 \pagestyle{fancy}
 \ifsysu@thesis
@@ -716,6 +714,8 @@
         \def\thetable{\arabic{table}}
         \def\theequation{\arabic{equation}}
     \fi
+    % 页面的垂直对齐方式, 当页面内容不足时, 这将减少页面顶部和底部之间的间距
+    \raggedbottom
 }
 
 % setup the bicaption
