@@ -605,7 +605,7 @@
         indent      = 0pt,
         format      = \zihao{4}\heiti,
         afterindent = true,
-        aftername   = ,
+        aftername   = ~,
         afterskip   = 6mm,
     },
     subsubsection = {%
