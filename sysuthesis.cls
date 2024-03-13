@@ -50,7 +50,7 @@
 \IfStrEq{\sysu@doctype}{thesis}
 {\sysu@thesistrue}{%
     \IfStrEq{\sysu@doctype}{proposal}
-    {\sysu@proposaltrue}{\sysu@warning{Invalid doctype option, set to defualt: "thesis"}}
+    {\sysu@proposaltrue}{}
 }
 \IfStrEq{\sysu@printmode}{final}
 {\sysu@finaltrue}{%
@@ -77,7 +77,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{geometry}
-% \RequirePackage{fontspec}
+\RequirePackage{fontspec}
 \RequirePackage[english,pinyin]{babel}
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
@@ -87,11 +87,11 @@
 \RequirePackage{newfloat}
 \RequirePackage{indentfirst}
 \RequirePackage{enumitem}
-\RequirePackage{cite}
 \RequirePackage[skip=2pt]{caption}
 \RequirePackage{subcaption}
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
 \RequirePackage{listings}
+\RequirePackage[sort&compress]{gbt7714}
 % solution of the clash between the hyperref and bibentry packages
 \RequirePackage{bibentry}
 \ifsysu@checkmode\let\saved@bibitem\@bibitem\fi
@@ -147,6 +147,11 @@
 }
 \fi
 
+% colors
+\definecolor{spablue}{RGB}{45,52,83}
+\definecolor{sysugreen}{RGB}{0,86,32}
+\definecolor{sysured}{RGB}{115,2,5}
+
  % hyperlinks style
 \hypersetup{%
     colorlinks=true,
@@ -154,8 +159,8 @@
     bookmarksnumbered=true,
     linkcolor=black,
     filecolor=magenta,  
-    citecolor=black,    
-    urlcolor=blue,
+    citecolor=spablue,    
+    urlcolor=sysugreen,
 }
 \urlstyle{rm}
 
@@ -492,10 +497,7 @@
 \NewDocumentEnvironment{absen}{}{\sysu@setabs@en}{\sysu@setkw@en}
 
 % format of the bibliography
-\renewcommand\@cite[1]{\zihao{-4}\textsuperscript{[#1]}}
-\renewcommand{\@biblabel}[1]{[#1]\hfill}
 \newcommand{\makebib}[1]{%
-    \cleardoublepage
     {%
         \xeCJKsetup{CJKecglue={\hskip0pt}}
         \linespread{1.0}
@@ -507,7 +509,8 @@
             \addcontentsline{toc}{section}{参考文献}
             \addcontentsline{toe}{section}{References}
         \fi
-        \bibliographystyle{sysuthesis}
+        \citestyle{super}
+        \bibliographystyle{gbt7714-numerical}
         \ifsysu@checkmode
             \nobibliography{#1}
         \else
@@ -522,59 +525,59 @@
     }
     \cleardoublepage
 }
-
 % new command of the journal name with bibtex for ADS Export Citation (in astrophysics area)
-\newcommand{\actaa}{Acta Astron.} % Acta Astronomica
-\newcommand{\araa}{Annu. Rev. Astron. Astrophys.} % Annual Review of Astron and Astrophys 
-\newcommand{\aar}{Astron. Astrophys. Rev.} % Astrononmy and Astrophysics Review 
-\newcommand{\ab}{Astrobiol.} % Astrobiology
-\newcommand{\aj}{Astron. J.} % Astrononmical Journal
-\newcommand{\apjl}{Astrophys. J. Lett.} % Astrophysical Journal, Letters
-\newcommand{\apjs}{Astrophys. J. Suppl. Ser.} % Astrophysical Journal, Supplement
-\newcommand{\ao}{Appl. Opt.} % Applied Optics
-\newcommand{\apss}{Astrophys. Space Sci.} % Astrophysics and Space Science
-\newcommand{\aap}{Astron. Astrophys.} % Astronomy and Astrophysics
-\newcommand{\aapr}{Astron. Astrophys. Rev.} % Astronomy and Astrophysics Reviews
-\newcommand{\aaps}{Astron. Astrophys. Suppl.} % Astronomy and Astrophysics, Supplement
-\newcommand{\baas}{Bull. Am. Astron. Soc.} % Bulletin of the AAS
-\newcommand{\caa}{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics 
-\newcommand{\cjaa}{Chinese J. Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics 
-\newcommand{\cqg}{Class. Quantum Gravity} % Classical and Quantum Gravity 
-\newcommand{\gal}{Galaxies} % Galaxies
-\newcommand{\gca}{Geochim. Cosmochim. Acta} % Geochimica Cosmochimica Acta
-\newcommand{\icarus}{Icarus} % Icarus 
-\newcommand{\jcap}{J. Cosmol. Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
-\newcommand{\jgr}{J. Geophys. Res.} % Journal of Geophysics Research
-\newcommand{\jgrp}{J. Geophys. Res.: Planets} % Journal of Geophysics Research: Planets
-\newcommand{\jqsrt}{J. Quant. Spectrosc. Radiat. Transf.} % Journal of Quantitiative Spectroscopy and Radiative Transfer
-\newcommand{\memsai}{Mem. Soc. Astron. Italiana} % Mem. Societa Astronomica Italiana
-\newcommand{\mnras}{Mon. Not. R. Astron. Soc.} % Monthly Notices of the RAS
-\newcommand{\nat}{Nature} % Nature 
-\newcommand{\nastro}{Nat. Astron.} % Nature Astronomy 
-\newcommand{\ncomms}{Nat. Commun.} % Nature Communications 
-\newcommand{\nphys}{Nat. Phys.} % Nature Physics
-\newcommand{\na}{New Astron.} % New Astronomy
-\newcommand{\nar}{New Astron. Rev.} % New Astronomy Review
-\newcommand{\physrep}{Phys. Rep.} % Physics Reports
-\newcommand{\pra}{Phys. Rev. A} % Physical Review A: General Physics
-\newcommand{\prb}{Phys. Rev. B} % Physical Review B: Solid State
-\newcommand{\prc}{Phys. Rev. C} % Physical Review C
-\newcommand{\prd}{Phys. Rev. D} % Physical Review D
-\newcommand{\pre}{Phys. Rev. E} % Physical Review E
-\newcommand{\prl}{Phys. Rev. Lett.} % Physical Review Letters
-\newcommand{\psj}{Planet. Sci. J.} % Planetary Science Journal
-\newcommand{\planss}{Planet. Space Sci.} % Planetary Space Science
-\newcommand{\pnas}{Proc. Natl Acad. Sci. USA} % Proceedings of the US National Academy of Sciences 
-\newcommand{\procspie}{Proc. SPIE} % Proceedings of the SPIE
-\newcommand{\pasa}{Publ. Astron. Soc. Aust.} %Publications of the Astron. Soc. of Australia
-\newcommand{\pasj}{Publ. Astron. Soc. Jpn} % Publications of the ASJ
-\newcommand{\pasp}{Publ. Astron. Soc. Pac.} % Publications of the ASP
-\newcommand{\rmxaa}{Rev. Mexicana Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica \newcommand{\sci}{Science} % Science
-\newcommand{\sciadv}{Sci. Adv.} % Science Advances
-\newcommand{\solphys}{Sol. Phys.} % Solar Physics
-\newcommand{\sovast}{Soviet Ast.} % Soviet Astronomy
-\newcommand{\ssr}{Space Sci. Rev.} % Space Science Reviews
-\newcommand{\uni}{Universe} % Universe
+\def\actaa{Acta Astron.} % Acta Astronomica
+\def\araa{Annu. Rev. Astron. Astrophys.} % Annual Review of Astron and Astrophys 
+\def\aar{Astron. Astrophys. Rev.} % Astrononmy and Astrophysics Review 
+\def\ab{Astrobiol.} % Astrobiology
+\def\aj{Astron. J.} % Astrononmical Journal
+\def\apj{Astrophys. J.}  % Astrophysical Journal
+\def\apjl{Astrophys. J. Lett.} % The Astrophysical Journal, Letters
+\def\apjs{Astrophys. J. Suppl. Ser.} % Astrophysical Journal, Supplement
+\def\ao{Appl. Opt.} % Applied Optics
+\def\apss{Astrophys. Space Sci.} % Astrophysics and Space Science
+\def\aap{Astron. Astrophys.} % Astronomy and Astrophysics
+\def\aapr{Astron. Astrophys. Rev.} % Astronomy and Astrophysics Reviews
+\def\aaps{Astron. Astrophys. Suppl.} % Astronomy and Astrophysics, Supplement
+\def\baas{Bull. Am. Astron. Soc.} % Bulletin of the AAS
+\def\caa{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics 
+\def\cjaa{Chinese J. Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics 
+\def\cqg{Class. Quantum Gravity} % Classical and Quantum Gravity 
+\def\gal{Galaxies} % Galaxies
+\def\gca{Geochim. Cosmochim. Acta} % Geochimica Cosmochimica Acta
+\def\icarus{Icarus} % Icarus 
+\def\jcap{J. Cosmol. Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
+\def\jgr{J. Geophys. Res.} % Journal of Geophysics Research
+\def\jgrp{J. Geophys. Res.: Planets} % Journal of Geophysics Research: Planets
+\def\jqsrt{J. Quant. Spectrosc. Radiat. Transf.} % Journal of Quantitiative Spectroscopy and Radiative Transfer
+\def\memsai{Mem. Soc. Astron. Italiana} % Mem. Societa Astronomica Italiana
+\def\mnras{Mon. Not. R. Astron. Soc.} % Monthly Notices of the RAS
+\def\nat{Nature} % Nature 
+\def\nastro{Nat. Astron.} % Nature Astronomy 
+\def\ncomms{Nat. Commun.} % Nature Communications 
+\def\nphys{Nat. Phys.} % Nature Physics
+\def\na{New Astron.} % New Astronomy
+\def\nar{New Astron. Rev.} % New Astronomy Review
+\def\physrep{Phys. Rep.} % Physics Reports
+\def\pra{Phys. Rev. A} % Physical Review A: General Physics
+\def\prb{Phys. Rev. B} % Physical Review B: Solid State
+\def\prc{Phys. Rev. C} % Physical Review C
+\def\prd{Phys. Rev. D} % Physical Review D
+\def\pre{Phys. Rev. E} % Physical Review E
+\def\prl{Phys. Rev. Lett.} % Physical Review Letters
+\def\psj{Planet. Sci. J.} % Planetary Science Journal
+\def\planss{Planet. Space Sci.} % Planetary Space Science
+\def\pnas{Proc. Natl Acad. Sci. USA} % Proceedings of the US National Academy of Sciences 
+\def\procspie{Proc. SPIE} % Proceedings of the SPIE
+\def\pasa{Publ. Astron. Soc. Aust.} %Publications of the Astron. Soc. of Australia
+\def\pasj{Publ. Astron. Soc. Jpn} % Publications of the ASJ
+\def\pasp{Publ. Astron. Soc. Pac.} % Publications of the ASP
+\def\rmxaa{Rev. Mexicana Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica \def\sci}{Science} % Science
+\def\sciadv{Sci. Adv.} % Science Advances
+\def\solphys{Sol. Phys.} % Solar Physics
+\def\sovast{Soviet Ast.} % Soviet Astronomy
+\def\ssr{Space Sci. Rev.} % Space Science Reviews
+\def\uni{Universe} % Universe
 
 % format of chapter, section, subsection, subsubsection, paragraph and subparagraph
 \pagestyle{fancy}
@@ -646,21 +649,21 @@
     },
     section = {%
         fixskip     = true,
-        beforeskip  = 3.5mm,
+        beforeskip  = 5mm,
         indent      = 0pt,
         format      = \zihao{-3}\heiti\centering,
         afterindent = true,
         aftername   = ~,
-        afterskip   = 3.5mm,
+        afterskip   = 5mm,
     },
     subsection = {%
         fixskip     = true,
-        beforeskip  = 3.5mm,
+        beforeskip  = 5mm,
         indent      = 0pt,
         format      = \zihao{4}\heiti,
         afterindent = true,
         aftername   = ~,
-        afterskip   = 3.5mm,
+        afterskip   = 5mm,
     },
     subsubsection = {%
         fixskip     = true,
