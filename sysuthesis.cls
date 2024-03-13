@@ -26,6 +26,7 @@
 
 % define the options of cls
 \RequirePackage{kvoptions}
+\RequirePackage{kvsetkeys}
 \RequirePackage{xstring}
 \SetupKeyvalOptions{%
     family  = sysu,
@@ -72,7 +73,7 @@
 % this cls modified base on ctexbook documentclass
 \LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39,fontset=\sysu@fontset]{ctexbook}
 
-%  the required packages
+% the required packages
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
@@ -103,31 +104,39 @@
 \setmathrm{Times New Roman} % 数学字体设为 Times New Roman
 \setCJKmathfont{Times New Roman} % 中文里面的数字字体设为 Times New Roman
 
-%  create some new or renew commands
-\renewcommand{\title}[2]{\def\@title@zh{#1}\def\@title@en{#2}}
-\newcommand{\studentid}[1]{\def\@studentid{#1}}
-\newcommand{\major}[2]{\def\@major@zh{#1}\def\@major@en{#2}}
-\newcommand{\researchteam}[1]{\def\@researchteam{#1}}
-\newcommand{\degreetype}[1]{\def\@degreetype{#1}}
-\newcommand{\degree}[1]{\def\@degree{#1}}
-\newcommand{\keywords}[2]{\def\@keywords@zh{#1}\def\@keywords@en{#2}}
-\newcommand{\school}[1]{\def\@school{#1}}
-\newcommand{\campus}[1]{\def\@campus{#1}}
-\def\sysu@header{中山大学\@degreetype\@degree 学位论文}
-\def\sysu@pdfcreator{LaTeX with \sysuthesis~\version}
+% infomation keys
+\define@key{sysu@keys}{author}{\def\@author@zh{#1}}
+\define@key{sysu@keys}{author-en}{\def\@author@en{#1}}
+\define@key{sysu@keys}{title}{\def\@title@zh{#1}}
+\define@key{sysu@keys}{title-en}{\def\@title@en{#1}}
+\define@key{sysu@keys}{student-id}{\def\@studentid{#1}}
+\define@key{sysu@keys}{major}{\def\@major@zh{#1}}
+\define@key{sysu@keys}{major-en}{\def\@major@en{#1}}
+\define@key{sysu@keys}{supervisor}{\def\@supervisor@zh{#1}}
+\define@key{sysu@keys}{supervisor-en}{\def\@supervisor@en{#1}}
+\define@key{sysu@keys}{research-team}{\def\@researchteam{#1}}
+\define@key{sysu@keys}{discipline}{\def\@discipline{#1}}
+\define@key{sysu@keys}{degree}{\def\@degree{#1}}
+\define@key{sysu@keys}{keywords}{\def\@keywords@zh{#1}}
+\define@key{sysu@keys}{keywords-en}{\def\@keywords@en{#1}}
+\define@key{sysu@keys}{school}{\def\@school{#1}}
+\define@key{sysu@keys}{campus}{\def\@campus{#1}}
+\define@key{sysu@keys}{date}{\def\@date{#1}}
+% infomation setup command
+\newcommand{\info}[1]{
+  \kvsetkeys{sysu@keys}{#1}
+}
 
 \ifsysu@blindmode
-    \renewcommand{\author}[2]{\def\@author@zh@hide{#1}\def\@author@en@hide{#2}}
-    \newcommand{\supervisor}[2]{\def\@supervisor@zh@hide{#1}\def\@supervisor@en@hide{#2}}
-    \def\@author@zh{***}
-    \def\@author@en{***}
-    \def\@supervisor@zh{***}
-    \def\@supervisor@en{***}
+    \define@key{sysu@keys}{author}{\def\@author@zh{***}}
+    \define@key{sysu@keys}{author-en}{\def\@author@en{***}}
+    \define@key{sysu@keys}{supervisor}{\def\@supervisor@zh{***}}
+    \define@key{sysu@keys}{supervisor-en}{\def\@supervisor@en{***}}
     \def\sysu@header{\rightmark}
     \def\sysu@pdfcreator{}
 \else
-    \renewcommand{\author}[2]{\def\@author@zh{#1}\def\@author@en{#2}}
-    \newcommand{\supervisor}[2]{\def\@supervisor@zh{#1}\def\@supervisor@en{#2}}
+    \def\sysu@header{中山大学\@discipline\@degree 学位论文}
+    \def\sysu@pdfcreator{LaTeX with \sysuthesis~\version}
 \fi
 
 % the paper geometry setup
@@ -308,7 +317,7 @@
 \renewcommand{\footnotesize}{\zihao{5}\linespread{1.2}\selectfont}
 \def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
 
-% reset the cleardoublepage command, blanckleft
+% reset the \cleardoublepage command when blankleft is true
 \ifsysu@blankleft
 \def\cleardoublepage{\clearpage
     \if@twoside
@@ -321,6 +330,10 @@
         \fi
     \fi
 }
+\fi
+% reset the \cleardoublepage command to \clearpage when checkmode is true
+\ifsysu@checkmode
+    \def\cleardoublepage{\clearpage}
 \fi
 
 % copyright page setup
@@ -776,7 +789,6 @@
 }
 {   \popQED\endtrivlist\@endpefalse }
 
-
 % format of codes display
 \lstdefinestyle{codestyle}{%
     backgroundcolor=\color{blue!5!white},
@@ -824,7 +836,6 @@
 \renewcommand{\lstlistoflistings}{\listoflistings}
 \renewcommand\cftlistingspresnum{代码~}
 \cftsetindents{listings}{0em}{4.5em}
-
 
 % create some new document environment
 \NewDocumentEnvironment{conclusion}{}{%
