@@ -1,0 +1,14 @@
+*.aux
+*.bbl
+*.blg
+*.lof
+*.lof2
+*.log
+*.lol
+*.lol2
+*.lot
+*.lot2
+*.out
+*.synctex.gz
+*.toc
+*.toe
