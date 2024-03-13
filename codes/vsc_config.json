@@ -1,0 +1,90 @@
+// 编译工具
+"latex-workshop.latex.tools": [
+    {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=%OUTDIR%",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+            "%DOCFILE%"
+        ]
+    }
+],
+// 编译方法
+"latex-workshop.latex.recipes": [
+    {
+        "name": "XeLaTeX",
+        "tools": [
+            "xelatex"
+        ]
+    },
+    {
+        "name": "PDFLaTeX",
+        "tools": [
+            "pdflatex"
+        ]
+    },
+    {
+        "name": "BibTeX",
+        "tools": [
+            "bibtex"
+        ]
+    },
+    {
+        "name": "LaTeXmk",
+        "tools": [
+            "latexmk"
+        ]
+    },
+    {
+        "name": "xelatex -> bibtex -> xelatex*2",
+        "tools": [
+            "xelatex",
+            "bibtex",
+            "xelatex",
+            "xelatex"
+        ]
+    },
+    {
+        "name": "pdflatex -> bibtex -> pdflatex*2",
+        "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+        ]
+    }
+],
+"latex-workshop.view.pdf.viewer": "tab",
+"latex-workshop.bind.altKeymap.enabled": true,
+"editor.wordWrap": "on", 
