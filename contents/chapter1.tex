@@ -12,6 +12,16 @@
 \section{更新描述}
 \sectionen{Updated}
 
+\subsection*{v1.1.2 2024/03/14}
+\begin{itemize}
+    \item 放弃自制的 \texttt{sysuthesis.bst}，改用 \texttt{gbt7714} 宏包。
+    \item 增加  \texttt{count\_chinese.py} Python 脚本，用于统计中文字数。
+    \item 重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
+    \item 修改了\texttt{checkmode}的版面，去除无效的空白页。
+    \item 添加了中山大学的颜色 \texttt{sysugreen}、 \texttt{sysured} 和 \texttt{sysublue}。
+    \item 给出了长表格的示例，并配置了 \texttt{tabularray} 的风格。
+\end{itemize}
+
 \subsection*{v1.1.1 2023/03/30}
 \begin{itemize}
     \item 使用 \texttt{\textbackslash raggedbottom} 调整页面的垂直对齐方式, 当页面内容不足时, 这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
@@ -145,9 +155,8 @@
 本模版的文件目录结构见\ref{fig:dir}。重要的文件有：
 \begin{itemize}
     \item \texttt{sysuthesis.cls}
-    \item \texttt{sysuthesis.bst}
 \end{itemize}
-分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改这两个文件。您可以编辑的文件有：
+分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改该文件。您可以编辑的文件有：
 \begin{itemize}
     \item \texttt{setup.tex}文件：编辑您的论文题目、作者姓名、专业、指导教师、关键词和学院及日期等关键信息，设置用于本文档的新\LaTeX{}命令以及调用的宏包；
     \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在\texttt{thesis.tex}中导入并排好顺序；
@@ -162,6 +171,7 @@
         [sysuthesis-unofficial,  label=right:{\zihao{5}主目录}
           [codes, label=right:{\zihao{5}代码文件夹}
             [cohere.py, label=right:{\zihao{5}代码环境示例Python代码}]
+            [vsc\_config.json, label=right:{\zihao{5}VSCode配置文件}]
           ]
           [contents, label=right:{\zihao{5}主要\TeX{}文件的文件夹}
             [abstract.tex, label=right:{\zihao{5}摘要内容编辑}]
@@ -177,12 +187,13 @@
             [histogram.pdf]
             [piechart.pdf]
           ]
+          [.gitignore, label=right:{\zihao{5}git管理需要无视的文件}]
+          [count\_chinese.py, label=right:{\zihao{5}中文字数统计Python代码}]
           [proposal.pdf, label=right:{\zihao{5}编译生成的开题报告PDF文件}]
           [proposal.tex, label=right:\strong{\zihao{5}需要编译的开题报告\TeX{}文件}]
           [README.md]
           [refs.bib, label=right:{\zihao{5}文件的语法格式应为\hologo{BibTeX}格式}]
           [setup.tex, label=right:{\zihao{5}配置论文信息、设置新命令以及调用宏包的文件}]
-          [sysuthesis.bst, label=right:{\zihao{5}设置参考文献格式的文件}]
           [sysuthesis.cls, label=right:{\zihao{5}设置论文排版格式的类文档}]
           [thesis.pdf, label=right:{\zihao{5}编译生成的论文PDF文件}]
           [thesis.tex, label=right:\strong{\zihao{5}需要编译的论文主\TeX{}文件}]
@@ -221,101 +232,11 @@
     \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\ref{vscodeconfig}为我的配置;
     \item 之后可以在\TeX{}窗口里，选择对应的\strong{Build LaTeX project}进行编译。
 \end{itemize}
-\begin{lstlisting}[language=Java,
+\lstinputlisting[language=Java,
     caption1={[VSCode \LaTeX{} 配置代码]Visual Studio Code \LaTeX{} 配置代码},
     caption2={[VSCode \LaTeX{} configuration]Visual Studio Code \LaTeX{} configuration},
     label=vscodeconfig]
-// 编译工具
-"latex-workshop.latex.tools": [
-    {
-        "name": "xelatex",
-        "command": "xelatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "%DOCFILE%"
-        ]
-    },
-    {
-        "name": "pdflatex",
-        "command": "pdflatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "%DOCFILE%"
-        ]
-    },
-    {
-        "name": "latexmk",
-        "command": "latexmk",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-pdf",
-            "-outdir=%OUTDIR%",
-            "%DOCFILE%"
-        ]
-    },
-    {
-        "name": "bibtex",
-        "command": "bibtex",
-        "args": [
-            "%DOCFILE%"
-        ]
-    }
-],
-// 编译方法
-"latex-workshop.latex.recipes": [
-    {
-        "name": "XeLaTeX",
-        "tools": [
-            "xelatex"
-        ]
-    },
-    {
-        "name": "PDFLaTeX",
-        "tools": [
-            "pdflatex"
-        ]
-    },
-    {
-        "name": "BibTeX",
-        "tools": [
-            "bibtex"
-        ]
-    },
-    {
-        "name": "LaTeXmk",
-        "tools": [
-            "latexmk"
-        ]
-    },
-    {
-        "name": "xelatex -> bibtex -> xelatex*2",
-        "tools": [
-            "xelatex",
-            "bibtex",
-            "xelatex",
-            "xelatex"
-        ]
-    },
-    {
-        "name": "pdflatex -> bibtex -> pdflatex*2",
-        "tools": [
-            "pdflatex",
-            "bibtex",
-            "pdflatex",
-            "pdflatex"
-        ]
-    }
-],
-"latex-workshop.view.pdf.viewer": "tab",
-"latex-workshop.bind.altKeymap.enabled": true,
-"editor.wordWrap": "on", 
-\end{lstlisting}
+{codes/vsc_config.json}
 
 \section{推荐读物}
 \sectionen{Further reading}

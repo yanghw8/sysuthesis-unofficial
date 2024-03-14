@@ -80,16 +80,178 @@
         5 & 瑞典 & 8 & 5 & 5 & 18\\
         6 & 荷兰 & 8 & 5 & 4 & 17\\
         7 & 奥地利 & 7 & 7 & 4 & 18\\
-        8 & 法国 & 7 & 2 & 5 & 14\\
+        8 & 瑞士 & 7 & 2 & 5 & 14\\
         9 & 俄罗斯奥林匹克委员会\tablefootnote{俄罗斯由于被禁赛，不能以国家名义参加奥运会，不能使用国旗和国歌。因此俄罗斯代表团绕过禁令，以俄罗斯奥委会（Russian Olympic Committee）的名义参赛，以俄罗斯奥委会的会旗作为代表团的团旗，以柴可夫斯基的《第一钢琴协奏曲》作为团歌\cite{ROC}。} 
             & 6 & 12 & 14 & 32\\ 
         10 & 法国 & 5 & 7 & 2 & 14\\
         \bottomrule
     \end{tabular}
 \end{table}
-这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\textbackslash tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境。
+这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\textbackslash tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\ref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\ref{tab:longtblr}和\ref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\textbackslash toprule}、\texttt{\textbackslash midrule} 和 \texttt{\textbackslash bottomrule} 命令替换掉对应的 \texttt{\textbackslash hline} 即可。
 
-此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\textbackslash toprule}、\texttt{\textbackslash midrule} 和 \texttt{\textbackslash bottomrule} 命令替换掉对应的 \texttt{\textbackslash hline} 即可。
+{\zihao{5}%
+\begin{longtable}[c]{ccc}
+    \bicaption{长表格示例。\label{tab:longtable}}{Long Table Example.}\\
+    
+    \toprule
+    Head & Head & Head \\
+    \midrule
+    \endfirsthead
+    
+    \multicolumn{3}{c}{\ref{tab:longtable}（续）} \\
+    \multicolumn{3}{c}{Table~\thetable~（Continued）} \\
+    \toprule
+    Head & Head & Head \\
+    \midrule
+    \endhead
+    \bottomrule
+    \multicolumn{3}{r}{下页续}
+    
+    \endfoot
+    
+    \bottomrule
+    \endlastfoot
+    
+    Alpha & Beta & Gamma \\
+    Epsilon & Zet & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
+\end{longtable}
+}
+\begin{longtblr}[
+    caption = {一个很长很长的表格示例。},
+    entry = {长表格短标题},
+    label = {tab:longtblr},
+    note{$\dag$} = {It is a long long long long long long footnote.},
+    remark{注意} = {Some general note. Some general note. Some general note.},
+]{
+    colspec = {XXX}, width = 0.85\linewidth,
+    rowhead = 2, rowfoot = 0,
+    % row{odd} = {sysugreen!50}, row{even} = {sysured!50},
+    row{1-Z} = {font=\zihao{5}},
+}
+    \toprule
+    Head & Head & Head \\
+    \midrule
+    Alpha & Beta & Gamma \\
+    Epsilon & Zet & Eta \\
+    Iota & Kappaa\TblrNote{$\dag$} & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
+    \bottomrule
+\end{longtblr}
+\begin{talltblr}[
+    caption = {一个正常表格示例。},
+    entry = {正常表格短标题},
+    label = {tab:tblr},
+    note{$\dag$} = {It is a footnote.},
+    remark{注意} = {Some general note. Some general note. Some general note.},
+]{
+    colspec = {XXX}, width = 0.85\linewidth,
+    rowhead = 2, rowfoot = 0,
+    row{1-Z} = {font=\zihao{5}},
+}
+    \toprule
+    Head & Head & Head \\
+    \midrule
+    Alpha & Beta & Gamma \\
+    Epsilon & Zet & Eta \\
+    Iota & Kappa\TblrNote{$\dag$} & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
+    \bottomrule
+\end{talltblr}
 
 表格的引用示例：\ref{tab:01}是2022年北京冬奥会奖牌榜。
 
@@ -192,7 +354,7 @@ caption2=Python ploting code 2]
 
 例如：
 \begin{enumerate}
-    \item 这是一个期刊的引用\cite{LIGOScientific:2017zic}；
+    \item 这是一个期刊的引用\cite{LIGOScientific:2017zic,ZhaoWen:2017twxjz}；
     \item 这是一个图书的引用\cite{Rubakov:2017xzr,Zhang:2021}；
     \item 这是一个研讨会论文的引用\cite{Tanikawa:2021+x}；
     \item 这是博士论文的引用\cite{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\cite{Shojaeifar:2015csv,SongRen:2020}；
@@ -200,50 +362,7 @@ caption2=Python ploting code 2]
     \item 这是报纸的引用\cite{Li:2005}。
 \end{enumerate}
 
-\subsection{参考文献引用说明}
-\subsectionen{References citation notes}
-
-参考文献的引用格式已经由\texttt{sysuthesis.bst}设置好了。引用时，请将引用信息编入\texttt{ref}文件夹的\texttt{refs.bib}文件中，语法要符合\hologo{BibTeX}格式，并在文中引用处使用\texttt{\textbackslash cite}命令。建议只使用\ref{tab:entrytypes}中的几种\hologo{BibTeX}条目类型（Entry Types）。
-\begin{table}[htbp]
-    \zihao{5}
-    \bicaption{本模版设置好的\hologo{BibTeX}字段类型}
-    {The entry types used in this template}
-    \label{tab:entrytypes}
-    \centering
-    \begin{tabular}{lll}
-    \toprule
-    引用文献的类型  & 标识 & Entry Types \\
-    \midrule
-    期刊    &[J] & \texttt{article} \\
-    图书    &[M] & \texttt{book} \\
-    研讨会论文 &[C]    & \texttt{conference} \\  
-    博士论文   &[D]  & \texttt{phdthesis} \\
-    硕士论文   &[D]  & \texttt{mastersthesis} \\
-    报纸      &[N] & \texttt{newspaper} \\
-    电子公告   &[EB/OL] & \texttt{online} \\
-    电子期刊   &[J/OL] & \texttt{articleonline} \\
-    电子图书   &[M/OL] & \texttt{bookonline} \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-请注意：\strong{如果引用的是中文文献，请再额外添加\texttt{language} 字段，并让它不为空，否者将输出英文引用格式}。例如，这是一个\texttt{article}条目类型的源代码：
-\begin{lstlisting}[language=TeX,
-    caption1={\hologo{BibTeX}代码示例},
-    caption2={\hologo{BibTeX} code example}]
-% ./ref/refs.bib
-@article{ZhaoWen:2017twxjz,
-    author={赵文 and 张星 and 刘小金 and 张杨 and 王运永 and 张帆 and 肇宇航 and 郭越凡 and 陈奕康 and 艾舜柯 and 朱宗宏 and WANG Xiao-ge and LEBIGOT Eric and 都志辉 and 曹军威 and 钱进 and 殷聪 and 王建波 and BLAIR David and JU Li and ZHAO Chun-nong and WEN Lin-qing},
-    title={ 引力波与引力波源 },
-    journal={天文学进展},
-    language={中文},
-    year={2017},
-    volume={35},
-    number={3},
-    pages={316-344},
-    month={1},
-}
-\end{lstlisting}
-请点击\cite{ZhaoWen:2017twxjz}查看该期刊文章的引用效果。这是中文图书的引用效果\cite{Huang:2012hxwl}
+\textbf{注意：本模版旧的参考文献引用格式已经弃用，转用国标，使用的是 Zeping Lee 等人开发的 \texttt{gbt7714} 宏包，具体的使用方法请参考 \url{https://github.com/zepinglee/gbt7714-bibtex-style}。}
 
 \section{注释}
 \sectionen{Remarks}

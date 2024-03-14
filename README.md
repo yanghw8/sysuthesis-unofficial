@@ -10,7 +10,16 @@
 
 ## 更新描述
 
-### v1.1.1 2022/03/30
+### v1.1.2 2024/03/14
+
+-   放弃自制的 `sysuthesis.bst`，改用 `gbt7714` 宏包。
+-   增加 `count_chinese.py` Python 脚本，用于统计中文字数。
+-   重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
+-   修改了`checkmode`的版面，去除无效的空白页。
+-   添加了中山大学的颜色 `sysugreen`、 `sysured} 和 `sysublue`。
+-   给出了长表格的示例，并配置了 `tabularray` 的风格。
+
+### v1.1.1 2023/03/30
 
 -   使用 `\raggedbottom` 调整页面的垂直对齐方式, 当页面内容不足时,
     这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
@@ -134,7 +143,7 @@ Overleaf对免费用户只开放了1分钟以内的编译时长，本模版上�
 - 感谢[CTex-kit](https://github.com/CTeX-org/ctex-kit)提供了LaTeX的中文支持，其开发的[CTeX](https://ctan.org/tex-archive/language/chinese/ctex)宏集在章节格式的排版上提供了很大的方便；
 - 感谢[白鸽坐飞机](https://www.zhihu.com/people/sgcd-33)师兄，本模版在排版上主要参考了他的[中山大学研究生毕业论文模板SYSUpalte](https://www.overleaf.com/latex/templates/zhong-shan-da-xue-yan-jiu-sheng-bi-ye-lun-wen-mo-ban-sysupalte/kybsnywqbcdc)；
 - 感谢[SJTUThesis](https://github.com/sjtug/SJTUThesis)模板的制作小组和[李振楠](https://github.com/nanmu42)（[CQUThesis](https://github.com/nanmu42/CQUThesis)），本模版在编写文档类的过程中主要参考了他们的成果，获益匪浅；
-- 感谢[Patrick W. Daly](https://www.ctan.org/author/daly)，本模版在制作参考文献引用格式时使用了他的[custom-bib](https://www.ctan.org/tex-archive/macros/latex/contrib/custom-bib/)工具；
+- 感谢[Zeping Lee](https://github.com/zepinglee)，本模版的参考文献引用格式直接使用了他的[`gbt7714`](https://github.com/zepinglee/gbt7714-bibtex-style)宏包。
 
 向你们致以真诚的敬意和由衷的感谢！
 
