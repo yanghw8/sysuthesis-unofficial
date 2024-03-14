@@ -16,7 +16,7 @@
 -   增加 `count_chinese.py` Python 脚本，用于统计中文字数。
 -   重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
 -   修改了`checkmode`的版面，去除无效的空白页。
--   添加了中山大学的颜色 `sysugreen`、 `sysured} 和 `sysublue`。
+-   添加了中山大学的颜色 `sysugreen`、 `sysured` 和 `sysublue`。
 -   给出了长表格的示例，并配置了 `tabularray` 的风格。
 
 ### v1.1.1 2023/03/30
