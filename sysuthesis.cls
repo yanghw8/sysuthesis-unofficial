@@ -84,6 +84,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{booktabs}
+\RequirePackage{longtable}
 \RequirePackage[titles]{tocloft}
 \RequirePackage{newfloat}
 \RequirePackage{indentfirst}
@@ -731,24 +732,44 @@
     \raggedbottom
 }
 
+% tabularray setup
+\RequirePackage{tabularray}
+\UseTblrLibrary{booktabs}
+\DefTblrTemplate{contfoot-text}{normal}{下页续}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{（续）}
+\SetTblrTemplate{conthead-text}{normal}
+
+\SetTblrStyle{caption-tag}{font=\zihao{5}}
+\SetTblrStyle{caption-sep}{font=\zihao{5}}
+\SetTblrStyle{caption-text}{font=\zihao{5}}
+\SetTblrStyle{contfoot-text}{font=\zihao{5}}
+\SetTblrStyle{conthead-text}{font=\zihao{5}}
+\SetTblrStyle{note-tag}{font=\zihao{5}}
+\SetTblrStyle{note-sep}{font=\zihao{5}}
+\SetTblrStyle{note-text}{font=\zihao{5}}
+\SetTblrStyle{remark-tag}{font=\zihao{5}}
+\SetTblrStyle{remark-sep}{font=\zihao{5}}
+\SetTblrStyle{remark-text}{font=\zihao{5}}
+
 % setup the bicaption
 \DeclareCaptionFont{caption@font}{\zihao{5}}
 \captionsetup{font=caption@font}
 \DeclareCaptionFont{bi-second}{%
     \zihao{5}
-    \def\figurename{Fig.}
-    \def\tablename{Tab.}
+    \def\figurename{Figure}
+    \def\tablename{Table}
 }
 \DeclareFloatingEnvironment[fileext=lof2,chapterlistsgaps=on]{figuresen}[Figiure][List of Figures]
 \DeclareFloatingEnvironment[fileext=lot2,chapterlistsgaps=on]{tablesen}[Table][List of Tables]
 \PrepareListOf{figuresen}{%
-    \renewcommand{\cftfigpresnum}{Fig.~}
-    \cftsetindents{fig}{0em}{4em}
+    \renewcommand{\cftfigpresnum}{Figure~}
+    \cftsetindents{fig}{0em}{5em}
     \addtocontents{lof2}{\protect\noaddvspace}
 }
 \PrepareListOf{tablesen}{%
-    \renewcommand{\cftfigpresnum}{Tab.~}
-    \cftsetindents{fig}{0em}{4em}
+    \renewcommand{\cftfigpresnum}{Table~}
+    \cftsetindents{fig}{0em}{4.5em}
     \addtocontents{lot2}{\protect\noaddvspace}
 }
 \captionsetup[bi-second]{font=bi-second,skip=0pt}
