@@ -93,8 +93,8 @@
 本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译命令称为 \texttt{xelatex}，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为\texttt{thesis.tex}，在编译时请选择\texttt{xelatex}编译命令，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
 
 \begin{itemize}
-    \item \texttt{xelatex}：生成 \texttt{.axu} 文件，里面包含了文档的结构信息和所有的内部引用（包括参考文献的引用）；
-    \item \texttt{bibtex}：\hologo{BibTeX} 读取 \texttt{.axu} 文件，根据给定的 \texttt{.bbl}  文件中指定的参考文献条目，生成 \texttt{.bbl} 文件，为格式化的参考文献列表；
+    \item \texttt{xelatex}：生成 \texttt{.aux} 文件，里面包含了文档的结构信息和所有的内部引用（包括参考文献的引用）；
+    \item \texttt{bibtex}：\hologo{BibTeX} 读取 \texttt{.aux} 文件，根据给定的 \texttt{.bbl}  文件中指定的参考文献条目，生成 \texttt{.bbl} 文件，为格式化的参考文献列表；
     \item \texttt{xelatex}：将 \texttt{.bbl} 文件的参考文献列表嵌入到文档当中；
     \item \texttt{xelatex}：确保文档中的引用和编号与参考文献列表之间的对应关系是正确的，确保文档中的交叉引用（例如章节、图表、公式等）无误。
 \end{itemize}
