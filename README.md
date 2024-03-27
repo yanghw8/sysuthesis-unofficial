@@ -8,6 +8,21 @@
 
 **本模版不是官方模版，无法保证它完全符合学校的相关要求，在开始使用前，您同意，任何由于本模板而引起的论文格式审查问题与本模板作者无关。**
 
+## 使用方法
+
+本模版仅支持XeTeX排版引擎，其相应的编译命令称为 `xelatex`，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为 `thesis.tex`，在编译时请选择 `xelatex` 编译命令，由于是中文文档并且与 BibTeX 配合使用，请遵从以下编译步骤：
+
+- `xelatex`: 生成 `.axu` 文件，里面包含了文档的结构信息和所有的内部引用（包括参考文献的引用）；
+- `bibtex`: BibTeX 读取 `.axu` 文件，根据给定的 `.bib`  文件中指定的参考文献条目，生成 `.bbl` 文件，为格式化的参考文献列表；
+- `xelatex`: 将 `.bbl` 文件的参考文献列表嵌入到文档当中；
+- `xelatex`: 确保文档中的引用和编号与参考文献列表之间的对应关系是正确的，确保文档中的交叉引用（例如章节、图表、公式等）无误。
+
+如此您将得到一个最终输出的正确的、完整的 PDF 文件。
+
+Overleaf 对免费用户只开放了1分钟以内的编译时长，本模版上传至Overleaf编译时长可能超过1分钟，所以建议您在本地编译，并养成时常备份的好习惯。
+
+如果您使用 Visual Studio Code 来作为 LaTeX 编辑器，您需要设置 `settings.json` 来定制您的编译链，配置代码如 `codes` 文件夹里面的 `vsc_config.json` 所示。
+
 ## 更新描述
 
 ### v1.1.2 2024/03/14
@@ -118,28 +133,13 @@
 
     其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示。
 
--   在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 `{\cite{key}}` 来避免上述问题发生。**在去除 `cite` 宏包之后，该问题似乎已经解决了。**
-
-## 使用方法
-
-本模版仅支持XeTeX排版引擎，其相应的编译命令称为 `xelatex`，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为 `thesis.tex`，在编译时请选择 `xelatex` 编译命令，由于是中文文档并且与 BibTeX 配合使用，请遵从以下编译步骤：
-
-- `xelatex`
-- `bibtex`
-- `xelatex`
-- `xelatex`
-
-如此您将得到一个最终完成的PDF文件。
-
-Overleaf对免费用户只开放了1分钟以内的编译时长，本模版上传至Overleaf编译时长可能超过1分钟，所以建议您在本地编译，并养成时常备份的好习惯。
-
-如果您使用Visual Studio Code来作为LaTeX编辑器，您需要设置`settings.json`来定制您的编译链，配置代码在`thesis.pdf`里有说明。
+-   在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 `{\cite{key}}` 来避免上述问题发生。**在弃用 `cite` 宏包之后，该问题似乎已经解决了。**
 
 ## 致谢
 
 本模版在编写的过程当中，遇到了不少问题，也参考了许多小组以及个人的工具和模版：
 
-- 感谢[CTex-kit](https://github.com/CTeX-org/ctex-kit)提供了LaTeX的中文支持，其开发的[CTeX](https://ctan.org/tex-archive/language/chinese/ctex)宏集在章节格式的排版上提供了很大的方便；
+- 感谢[CTeX-kit](https://github.com/CTeX-org/ctex-kit)提供了LaTeX的中文支持，其开发的[CTeX](https://ctan.org/tex-archive/language/chinese/ctex)宏集在章节格式的排版上提供了很大的方便；
 - 感谢[白鸽坐飞机](https://www.zhihu.com/people/sgcd-33)师兄，本模版在排版上主要参考了他的[中山大学研究生毕业论文模板SYSUpalte](https://www.overleaf.com/latex/templates/zhong-shan-da-xue-yan-jiu-sheng-bi-ye-lun-wen-mo-ban-sysupalte/kybsnywqbcdc)；
 - 感谢[SJTUThesis](https://github.com/sjtug/SJTUThesis)模板的制作小组和[李振楠](https://github.com/nanmu42)（[CQUThesis](https://github.com/nanmu42/CQUThesis)），本模版在编写文档类的过程中主要参考了他们的成果，获益匪浅；
 - 感谢[Zeping Lee](https://github.com/zepinglee)，本模版的参考文献引用格式直接使用了他的[`gbt7714`](https://github.com/zepinglee/gbt7714-bibtex-style)宏包。
