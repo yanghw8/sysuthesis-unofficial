@@ -16,7 +16,7 @@
 -   增加 `count_chinese.py` Python 脚本，用于统计中文字数。
 -   重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
 -   修改了`checkmode`的版面，去除无效的空白页。
--   添加了中山大学的颜色 `sysugreen`、 `sysured` 和 `sysublue`。
+-   添加了中山大学的颜色 `sysugreen`、 `sysured` 和 `spablue`。
 -   给出了长表格的示例，并配置了 `tabularray` 的风格。
 
 ### v1.1.1 2023/03/30
@@ -50,7 +50,7 @@
     -   `printmode`，可选 `final`\|`checkmode`\|`blindmode`
 (`<default> = final`)，分别为终稿、查重和盲审的打印模式。
 
-    -   `openright`\|`openany`，互为 `true`\|`false` (`<default> = openright`)。`openright` 选项为每一章在右页（奇数页）开始，`openright` 选项为在上一章结束的下一页开始。
+    -   `openright`\|`openany`，互为 `true`\|`false` (`<default> = openright`)。`openright` 选项为每一章在右页（奇数页）开始，`openany` 选项为在上一章结束的下一页开始。
 
     -   `blankleft` (`<default> = false`)，当 `blankleft = true` 时，章节结束的偶数页如果没有内容，使之空白，但页码计数器仍然有效。
 
@@ -60,8 +60,7 @@
 
 -   修改 `lstlisting` 双语标题格式，微调相关颜色。
 
--   增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免
-    编译出错。
+-   增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免编译出错。
 
 ### v1.0.1 2023/03/06
 
@@ -119,7 +118,7 @@
 
     其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示。
 
--   在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 `{\cite{key}}` 来避免上述问题发生。
+-   在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 `{\cite{key}}` 来避免上述问题发生。**在去除 `cite` 宏包之后，该问题似乎已经解决了。**
 
 ## 使用方法
 
