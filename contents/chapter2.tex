@@ -2,10 +2,14 @@
 \chapter{一些重要的\LaTeX{}环境}\label{chap:evm}
 \chapteren{Important \LaTeX{} environments}
 
-本模版中的公式、插图、表格和章节等，均用\texttt{\char92 lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{\char92 ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。
+\section{关于标签和引用}
+\sectionen{About labels and references}
 
-\section{关于浮动体}
+本模版中的公式、插图、表格和章节等，均用\texttt{\char92 lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{\char92 ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。为了避免混淆标签类型，建议将 \texttt{<key>} 命名为 \texttt{chap:key}、\texttt{sec:key}、\texttt{fig:key}、\texttt{tab:key}、\texttt{eqn:key} 等。本模版对 \texttt{hyperref} 中的标签名做了预设，已在引用中加上相应的前缀和后缀。\strong{在引用时，建议使用 \texttt{\char92 autoref\{<key>\}} 来引用，这样可以自动识别引用的类型。}例如，\autoref{chap:evm}是本章的引用，\autoref{sec:float}是第 \ref{chap:evm} 章的第 \ref{sec:float} 节的引用。
+
+\section{关于浮动体}\label{sec:float}
 \sectionen{About the floats}
+
 在 \LaTeX{} 中，浮动体是一种用于排版图表（\texttt{figure} 和 \texttt{table} 等环境）和其他大块内容的机制。\LaTeX{} 会自动将浮动体放置在页面的合适位置，以保持最佳的页面排版效果。如果一个浮动体在当前页面无法完全容纳，\LaTeX{} 会自动将其移动到下一页，并确保它的标题跟随着移动。
 
 然而，有时浮动体的自动排版可能会导致一些问题，比如浮动体不在预期位置、过多的浮动体堆积等。我们可以用一些选项来设置浮动体的位置： 
@@ -18,7 +22,7 @@
 \end{itemize}
 此外，也可以适当调整文本内容，以便更好地容纳浮动体。
 
-\section{公式示例}
+\section{公式示例} 
 \sectionen{Formula example}
 
 文中的公式建议使用 \texttt{amsmath} 宏包的 \texttt{align} 环境，该环境在对多行公式对齐方面具有很大的优势，具体的讨论请看知乎用户\href{https://www.zhihu.com/people/bo-xue-duo-wen-63}{\strong{博闻多学}}的\href{https://www.zhihu.com/question/477805692/answer/2045084752}{\strong{回答}}。
@@ -39,7 +43,7 @@
 \end{align}
 这里注意，对不需要编号的行要取消公式编号，即要在该行公式的源代码后边使用\texttt{\char92 nonumber}命令。
 
-公式的引用示例：\ref{eqn:taylorseries}为泰勒级数。
+公式的引用示例：\autoref{eqn:taylorseries}为泰勒级数。
 
 一些特殊符号的\LaTeX{}命令见 \href{https://mirrors.ustc.edu.cn/CTAN/info/symbols/comprehensive/symbols-a4.pdf}{The Great, Big List of LATEX Symbols}。
 
@@ -73,7 +77,7 @@
     \label{fig:subfig}
 \end{figure}
 
-插图的引用示例：\ref{fig:hexbin}是普通插图。
+插图的引用示例：\autoref{fig:hexbin}是普通插图。
 
 \section{表格示例}
 \sectionen{Table example}
@@ -103,7 +107,7 @@
         \bottomrule
     \end{tabular}
 \end{table}
-这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\char92 tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\ref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\ref{tab:longtblr}和\ref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\char92 toprule}、\texttt{\char92 midrule} 和 \texttt{\char92 bottomrule} 命令替换掉对应的 \texttt{\char92 hline} 即可。表格的引用示例：\ref{tab:01}是2022年北京冬奥会奖牌榜。
+这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\char92 tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\autoref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\autoref{tab:longtblr}和\autoref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\char92 toprule}、\texttt{\char92 midrule} 和 \texttt{\char92 bottomrule} 命令替换掉对应的 \texttt{\char92 hline} 即可。表格的引用示例：\autoref{tab:01}是2022年北京冬奥会奖牌榜。
 
 {\zihao{5}%
 \begin{longtable}[c]{ccc}
@@ -114,8 +118,8 @@
     \midrule
     \endfirsthead
     
-    \multicolumn{3}{c}{\ref{tab:longtable}（续）} \\
-    \multicolumn{3}{c}{Table~\thetable~（Continued）} \\
+    \multicolumn{3}{c}{\autoref{tab:longtable}（续）} \\
+    \multicolumn{3}{c}{Table~\ref{tab:longtable}（Continued）} \\
     \toprule
     Head & Head & Head \\
     \midrule

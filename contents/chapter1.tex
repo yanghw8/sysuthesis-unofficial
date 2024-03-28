@@ -43,7 +43,7 @@
 \begin{lstlisting}[language=TeX]
 \bicaption[中文短标题]{中文标题}[英文短标题]{英文标题}
 \end{lstlisting}
-    其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示，见\ref{fig:hexbin}示例。
+    其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示，见\autoref{fig:hexbin}示例。
     \item 在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 \texttt{\{\char92 cite\{key\}\}} 来避免上述问题发生。\strong{在弃用 \texttt{cite} 宏包之后，该问题似乎已经解决了。}
 \end{itemize}
 
@@ -64,7 +64,7 @@
     \item \texttt{\char92 subsection\{\}}、\texttt{\char92 subsectionen\{\}}
     \item \texttt{\char92 bicaption\{\}\{\}}
 \end{itemize}
-以显示双语效果。此外，如果需要展示目录和索引，请直接使用\ref{tab:listof}中的命令来打开。
+以显示双语效果。此外，如果需要展示目录和索引，请直接使用\autoref{tab:listof}中的命令来打开。
 \begin{table}[!htp]
     \zihao{5}
     \bicaption{目录索引}
@@ -140,7 +140,7 @@
     \label{fig:dir}
 \end{figure}
 
-本模版的文件目录结构见\ref{fig:dir}。重要的文件有：
+本模版的文件目录结构见\autoref{fig:dir}。重要的文件有：
 \begin{itemize}
     \item \texttt{sysuthesis.cls}
 \end{itemize}
@@ -177,7 +177,7 @@
 各种\LaTeX{}编辑器的配置可以轻易在网上找到，而且有的都比较简单。下面只介绍Visual Studio Code的配置。
 \begin{itemize}
     \item 在扩展商店里找到\strong{LaTeX Workshop}插件，点击安装；
-    \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\ref{vscodeconfig}为我的配置;
+    \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\autoref{vscodeconfig}为我的配置;
     \item 之后可以在\TeX{}窗口里，选择对应的\strong{Build LaTeX project}进行编译。
 \end{itemize}
 \lstinputlisting[language=Java,

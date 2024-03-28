@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Mar 14, 2024                   %%
+%%                  Mar 28, 2024                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2024/03/14 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2024/03/28 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
-\def\version{v1.1.2}
+\def\version{v1.1.3}
 
 \newcommand{\sysu@error}[1]{%
     \ClassError{sysuthesis}{#1}{}%
@@ -156,20 +156,6 @@
 \definecolor{spablue}{RGB}{45,52,83}
 \definecolor{sysugreen}{RGB}{0,86,32}
 \definecolor{sysured}{RGB}{115,2,5}
-
-% renew the refnames of some environment
-\AtBeginDocument{%
-    \renewcommand{\ref}[1]{\autoref{#1}}
-    \def\figureautorefname~#1\null{图~#1~\null}
-    \def\tableautorefname~#1\null{表~#1~\null}
-    \def\appendixautorefname~#1\null{附录~#1~\null} 
-    \def\equationautorefname~#1\null{公式~(#1)~\null}
-    \def\chapterautorefname~#1\null{第#1章\null}
-    \def\sectionautorefname~#1\null{第#1节~\null}
-    \def\AMSautorefname~#1\null{公式~(#1)~\null}
-    \def\theoremautorefname~#1\null{#1~\null}
-    \def\proofautorefname~#1\null{\null}
-}
 
 % titlepage setup
 \def\sysu@thesistitlepage{%
@@ -800,9 +786,6 @@
     tabsize=2
 }
 \lstset{style=codestyle}
-\AtBeginDocument{%
-    \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
-}
 \addto\captionspinyin{%
   \renewcommand\lstlistingname{代码}
   \renewcommand\lstlistlistingname{代码索引}
@@ -879,6 +862,7 @@
     urlcolor=sysugreen,
 }
 \urlstyle{rm}
+
 % pdf documentinfo
 \AtBeginDocument{%
     \hypersetup{%
@@ -887,6 +871,20 @@
         pdfkeywords={\@keywords@zh},
         pdfcreator={\sysu@pdfcreator},
     }
+}
+
+% renew the refnames of some environment
+\AtBeginDocument{%
+    \def\figureautorefname~#1\null{图~#1~\null}
+    \def\tableautorefname~#1\null{表~#1~\null}
+    \def\appendixautorefname~#1\null{附录~#1~\null} 
+    \def\equationautorefname~#1\null{公式~(#1)~\null}
+    \def\chapterautorefname~#1\null{第#1章\null}
+    \def\sectionautorefname~#1\null{第#1节\null}
+    \def\AMSautorefname~#1\null{公式~(#1)~\null}
+    \def\theoremautorefname~#1\null{#1~\null}
+    \def\proofautorefname~#1\null{\null}
+    \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
 }
 
 \endinput

@@ -1,7 +1,13 @@
 \chapter{更新描述}
 \chapteren{Update Description}
 
-\section*{v1.1.2 2024/03/14}
+\section*{\texttt{v1.1.3 2024/03/28}}
+\begin{itemize}
+    \item 撤销将 \texttt{\char92 ref} 命令的引用格式重设为 \texttt{（\char92 autoref\{key\}）} 的更改。
+    \item 解决了一些与 \texttt{hyperref} 宏包的冲突问题。
+\end{itemize}
+
+\section*{\texttt{v1.1.2 2024/03/14}}
 \begin{itemize}
     \item 放弃自制的 \texttt{sysuthesis.bst}，改用 \texttt{gbt7714} 宏包。
     \item 增加  \texttt{count\_chinese.py} Python 脚本，用于统计中文字数。
@@ -11,7 +17,7 @@
     \item 给出了长表格的示例，并配置了 \texttt{tabularray} 的风格。
 \end{itemize}
 
-\section*{v1.1.1 2023/03/30}
+\section*{\texttt{v1.1.1 2023/03/30}}
 \begin{itemize}
     \item 使用 \texttt{\char92 raggedbottom} 调整页面的垂直对齐方式, 当页面内容不足时, 这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
     \item 增加 \texttt{fontset} 选项 (\texttt{<default> = fandol})，指定\CTeX{}宏集加载的字库，详情请查看\CTeX{}宏集的具体说明。例如，如果您的系统为Windows，则可以用以下选项：
@@ -26,7 +32,7 @@
     \item 对一些笔误进行了修改。
 \end{itemize}
 
-\section*{v1.1.0 2023/03/03}
+\section*{\texttt{v1.1.0 2023/03/03}}
 \begin{itemize}
     \item 增加以下模版选项：
     \begin{itemize}
@@ -41,12 +47,12 @@
     \item 增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免 \hologo{BibTeX} 编译出错。
 \end{itemize}
 
-\section*{v1.0.1 2022/03/06}
+\section*{\texttt{v1.0.1 2022/03/06}}
 \begin{itemize}
     \item 最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。\texttt{\char92 texttt}命令只在本文档用以展示命令，不建议大家使用。
 \end{itemize}
 
-\section*{v1.0 2022/02/23}
+\section*{\texttt{v1.0 2022/02/23}}
 \begin{itemize}
     \item 最初版本。
 \end{itemize}
