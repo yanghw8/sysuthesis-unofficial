@@ -94,11 +94,6 @@
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
 \RequirePackage{listings}
 \RequirePackage[sort&compress]{gbt7714}
-% solution of the clash between the hyperref and bibentry packages
-\RequirePackage{bibentry}
-\ifsysu@checkmode\let\saved@bibitem\@bibitem\fi
-\RequirePackage{hyperref}
-\ifsysu@checkmode\let\@bibitem\saved@bibitem\fi
 
 % font setup
 \setmainfont{Times New Roman}
@@ -161,28 +156,6 @@
 \definecolor{spablue}{RGB}{45,52,83}
 \definecolor{sysugreen}{RGB}{0,86,32}
 \definecolor{sysured}{RGB}{115,2,5}
-
- % hyperlinks style
-\hypersetup{%
-    colorlinks=true,
-    pdfborder={0 0 0},
-    bookmarksnumbered=true,
-    linkcolor=black,
-    filecolor=magenta,  
-    citecolor=spablue,    
-    urlcolor=sysugreen,
-}
-\urlstyle{rm}
-
-% pdf documentinfo
-\AtBeginDocument{%
-    \hypersetup{%
-        pdfauthor={\@author@zh},
-        pdftitle={\@title@zh},
-        pdfkeywords={\@keywords@zh},
-        pdfcreator={\sysu@pdfcreator},
-    }
-}
 
 % renew the refnames of some environment
 \AtBeginDocument{%
@@ -420,7 +393,6 @@
 % \renewcommand{\cftchapfont}{\mdseries}
 % \renewcommand{\cftchappagefont}{\mdseries}
 % \renewcommand{\cftchapafterpnum}{}
-
 
 % setup of \tableofcontentsen
 \newcommand\contentsnameen{Contents}
@@ -828,9 +800,9 @@
     tabsize=2
 }
 \lstset{style=codestyle}
-% unsolved bug, I move this command in setup.tex
-% \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
-
+\AtBeginDocument{%
+    \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
+}
 \addto\captionspinyin{%
   \renewcommand\lstlistingname{代码}
   \renewcommand\lstlistlistingname{代码索引}
@@ -890,5 +862,31 @@
         \fi
     \fi
 }{\cleardoublepage}
+
+\RequirePackage{bibentry}
+% \ifsysu@checkmode\let\saved@bibitem\@bibitem\fi
+\RequirePackage{hyperref}
+% \ifsysu@checkmode\let\@bibitem\saved@bibitem\fi
+
+ % hyperlinks style
+\hypersetup{%
+    colorlinks=true,
+    pdfborder={0 0 0},
+    bookmarksnumbered=true,
+    linkcolor=black,
+    filecolor=magenta,  
+    citecolor=spablue,    
+    urlcolor=sysugreen,
+}
+\urlstyle{rm}
+% pdf documentinfo
+\AtBeginDocument{%
+    \hypersetup{%
+        pdfauthor={\@author@zh},
+        pdftitle={\@title@zh},
+        pdfkeywords={\@keywords@zh},
+        pdfcreator={\sysu@pdfcreator},
+    }
+}
 
 \endinput
