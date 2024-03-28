@@ -16,7 +16,7 @@
 
 \begin{itemize}
     \item 一般而言，通常不需要在中英文之间添加额外的空格，但为了代码的可读性（良好的习惯），还是建议在中文字符和 English 字符之间加上空格。
-    \item[\textdagger] 对于扉页，如果对本模版预设的扉页不满意，可以使用 \texttt{pdfpages} 宏包中的 \texttt{\textbackslash includepdf} 命令导入您的扉页的 PDF 文件，例如
+    \item[\textdagger] 对于扉页，如果对本模版预设的扉页不满意，可以使用 \texttt{pdfpages} 宏包中的 \texttt{\char92 includepdf} 命令导入您的扉页的 PDF 文件，例如
 \begin{lstlisting}[language=TeX]
 % \maketitle
 \includepdf{titlepage.pdf}
@@ -39,12 +39,12 @@
 \includepdf{abstract-en.pdf}
 \end{lstlisting}
     其中 \texttt{abstract-zh.pdf} 和 \texttt{abstract-en.pdf} 分别为中英文摘要页的 PDF 文件。
-    \item 对于插图和表格的标题，本模版推荐使用 \texttt{bicaption} 宏包的 \texttt{\textbackslash bicaption} 命令，具体用法为:
+    \item 对于插图和表格的标题，本模版推荐使用 \texttt{bicaption} 宏包的 \texttt{\char92 bicaption} 命令，具体用法为:
 \begin{lstlisting}[language=TeX]
 \bicaption[中文短标题]{中文标题}[英文短标题]{英文标题}
 \end{lstlisting}
     其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示，见\ref{fig:hexbin}示例。
-    \item 在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 \texttt{\{\textbackslash cite\{key\}\}} 来避免上述问题发生。\strong{在弃用 \texttt{cite} 宏包之后，该问题似乎已经解决了。}
+    \item 在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 \texttt{\{\char92 cite\{key\}\}} 来避免上述问题发生。\strong{在弃用 \texttt{cite} 宏包之后，该问题似乎已经解决了。}
 \end{itemize}
 
 \section{使用说明}
@@ -52,17 +52,17 @@
 
 硕士论文不要求中英双目录和图表双标题，使用时仅使用
 \begin{itemize}
-    \item \texttt{\textbackslash chapter\{\}}
-    \item \texttt{\textbackslash section\{\}}
-    \item \texttt{\textbackslash subsection\{\}}
-    \item \texttt{\textbackslash caption\{\}}
+    \item \texttt{\char92 chapter\{\}}
+    \item \texttt{\char92 section\{\}}
+    \item \texttt{\char92 subsection\{\}}
+    \item \texttt{\char92 caption\{\}}
 \end{itemize}
 即可。博士使用
 \begin{itemize}
-    \item \texttt{\textbackslash chapter\{\}}、\texttt{\textbackslash chapteren\{\}}
-    \item \texttt{\textbackslash section\{\}}、\texttt{\textbackslash sectionen\{\}}
-    \item \texttt{\textbackslash subsection\{\}}、\texttt{\textbackslash subsectionen\{\}}
-    \item \texttt{\textbackslash bicaption\{\}\{\}}
+    \item \texttt{\char92 chapter\{\}}、\texttt{\char92 chapteren\{\}}
+    \item \texttt{\char92 section\{\}}、\texttt{\char92 sectionen\{\}}
+    \item \texttt{\char92 subsection\{\}}、\texttt{\char92 subsectionen\{\}}
+    \item \texttt{\char92 bicaption\{\}\{\}}
 \end{itemize}
 以显示双语效果。此外，如果需要展示目录和索引，请直接使用\ref{tab:listof}中的命令来打开。
 \begin{table}[!htp]
@@ -75,14 +75,14 @@
         \toprule
         索引    & 命令 \\
         \midrule
-        中文目录    &  \texttt{\textbackslash tableofcontents} \\
-        英文目录    &  \texttt{\textbackslash tableofcontentsen} \\
-        中文插图索引    &  \texttt{\textbackslash listoffigures} \\
-        英文插图索引    &  \texttt{\textbackslash listoffiguresen} \\
-        中文表格索引   &  \texttt{\textbackslash listoftables} \\
-        英文表格索引   &  \texttt{\textbackslash listoftablesen} \\
-        中文代码索引   &  \texttt{\textbackslash lstlistoflistings} \\
-        英文代码索引   &  \texttt{\textbackslash listoflstlistingsen} \\
+        中文目录    &  \texttt{\char92 tableofcontents} \\
+        英文目录    &  \texttt{\char92 tableofcontentsen} \\
+        中文插图索引    &  \texttt{\char92 listoffigures} \\
+        英文插图索引    &  \texttt{\char92 listoffiguresen} \\
+        中文表格索引   &  \texttt{\char92 listoftables} \\
+        英文表格索引   &  \texttt{\char92 listoftablesen} \\
+        中文代码索引   &  \texttt{\char92 lstlistoflistings} \\
+        英文代码索引   &  \texttt{\char92 listoflstlistingsen} \\
         \bottomrule
     \end{tabular}
 \end{table}

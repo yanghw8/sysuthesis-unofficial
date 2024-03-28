@@ -2,7 +2,7 @@
 \chapter{一些重要的\LaTeX{}环境}\label{chap:evm}
 \chapteren{Important \LaTeX{} environments}
 
-本模版中的公式、插图、表格和章节等，均用\texttt{\textbackslash lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{\textbackslash ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。
+本模版中的公式、插图、表格和章节等，均用\texttt{\char92 lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{\char92 ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。
 
 \section{关于浮动体}
 \sectionen{About the floats}
@@ -37,7 +37,7 @@
     &= 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots + \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!} + \cdots
     \label{eqn:taylorseries}
 \end{align}
-这里注意，对不需要编号的行要取消公式编号，即要在该行公式的源代码后边使用\texttt{\textbackslash nonumber}命令。
+这里注意，对不需要编号的行要取消公式编号，即要在该行公式的源代码后边使用\texttt{\char92 nonumber}命令。
 
 公式的引用示例：\ref{eqn:taylorseries}为泰勒级数。
 
@@ -46,7 +46,7 @@
 \section{插图示例}
 \sectionen{Figure example}
 
-文中插图的插图建议使用\texttt{graphicx}宏包的\texttt{figure}环境搭配 \\ \texttt{\textbackslash includegraphics}命令。例如：
+文中插图的插图建议使用\texttt{graphicx}宏包的\texttt{figure}环境搭配 \\ \texttt{\char92 includegraphics}命令。例如：
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/hexbin.pdf}
@@ -103,7 +103,7 @@
         \bottomrule
     \end{tabular}
 \end{table}
-这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\textbackslash tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\ref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\ref{tab:longtblr}和\ref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\textbackslash toprule}、\texttt{\textbackslash midrule} 和 \texttt{\textbackslash bottomrule} 命令替换掉对应的 \texttt{\textbackslash hline} 即可。表格的引用示例：\ref{tab:01}是2022年北京冬奥会奖牌榜。
+这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\char92 tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\ref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\ref{tab:longtblr}和\ref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\char92 toprule}、\texttt{\char92 midrule} 和 \texttt{\char92 bottomrule} 命令替换掉对应的 \texttt{\char92 hline} 即可。表格的引用示例：\ref{tab:01}是2022年北京冬奥会奖牌榜。
 
 {\zihao{5}%
 \begin{longtable}[c]{ccc}
@@ -353,12 +353,12 @@ axs[1].set_ylabel('coherence')
 fig.tight_layout()
 plt.show()
 \end{lstlisting}
-或\texttt{\textbackslash lstinputlisting}命令，如：
+或\texttt{\char92 lstinputlisting}命令，如：
 \lstinputlisting[language=Python,
 caption1=Python 画图代码2,
 caption2=Python ploting code 2]
 {codes/cohere.py}
-建议代码不用\texttt{caption}选项，也不要使用\texttt{\textbackslash ref}来引用，因为我还没设置好 (> <)。
+建议代码不用\texttt{caption}选项，也不要使用\texttt{\char92 ref}来引用，因为我还没设置好 (> <)。
 
 \section{参考文献}\label{sec:bibstyle}
 \sectionen{References example}
