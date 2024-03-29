@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Mar 28, 2024                   %%
+%%                  Mar 29, 2024                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2024/03/28 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2024/03/29 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
 \def\version{v1.1.3}
@@ -40,12 +40,12 @@
 \DeclareBoolOption[false]{blindmode}
 \DeclareStringOption{doctype}[thesis]
 \DeclareStringOption{printmode}[final]
-\DeclareStringOption[fandol]{fontset}[fandol]
-
+\DeclareStringOption{language}
+\DeclareBoolOption[true]{chinese}
+\DeclareComplementaryOption{english}{chinese}
 \DeclareBoolOption[false]{blankleft}
-\DeclareBoolOption[true]{openright}
-\DeclareComplementaryOption{openany}{openright}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+
 \ProcessKeyvalOptions*
 
 \IfStrEq{\sysu@doctype}{thesis}
@@ -63,15 +63,19 @@
         {\sysu@blindmodetrue}{\sysu@warning{Invalid printmode option, set to defualt: "final"}}
     }
 }
-
-\ifsysu@openright
-    \PassOptionsToClass{openright}{book}
-\else
-    \PassOptionsToClass{openany}{book}
-\fi
+\IfStrEq{\sysu@language}{chinese}
+{\sysu@chinesetrue}{%
+    \IfStrEq{\sysu@language}{english}
+    {\sysu@englishtrue}{}
+}
+\IfStrEq{\sysu@language}{zh}
+{\sysu@chinesetrue}{%
+    \IfStrEq{\sysu@language}{en}
+    {\sysu@englishtrue}{}
+}
 
 % this cls modified base on ctexbook documentclass
-\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39,fontset=\sysu@fontset]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39]{ctexbook}
 
 % the required packages
 \RequirePackage{amsmath}
@@ -95,45 +99,152 @@
 \RequirePackage{listings}
 \RequirePackage[sort&compress]{gbt7714}
 
+
+%  language setup
+\ifsysu@chinese
+    \def\bibname{参考文献}%
+    \def\appendixname{附录}%
+    \def\indexname{索引}%
+    \def\contentsname{目\hspace{\ccwd}录}%
+    \def\listfigurename{插图索引}%
+    \def\listtablename{表格索引}%
+    \def\listequationname{公式索引}%
+    \def\cftfigpresnum{图~}
+    \def\cfttabpresnum{表~}
+    \def\sysu@lof@indent{3.25em}
+    \def\sysu@lot@indent{3.25em}
+    \def\sysu@longtable@conthead{（续）}
+    \def\sysu@longtable@contfoot{下页续}
+    \def\sysu@codename{代码}%
+    \def\sysu@lolname{代码索引}%
+    \def\sysu@chaptername@begin{第~}%
+    \def\sysu@chaptername@end{~章}%
+    \def\sysu@conclusionname{结\hspace{\ccwd}论}%
+    \def\sysu@acknowledgementsname{致\hspace{\ccwd}谢}%
+    
+    \def\sysu@assumptionname{假设}%
+    \def\sysu@axiomname{公理}%
+    \def\sysu@conjecturename{猜想}%
+    \def\sysu@corollaryname{推论}%
+    \def\sysu@definitionname{定义}%
+    \def\sysu@examplename{例}%
+    \def\sysu@exercisename{练习}%
+    \def\sysu@lemmaname{引理}%
+    \def\sysu@problemname{问题}%
+    \def\sysu@propositionname{命题}%
+    \def\sysu@theoremname{定理}%
+    \def\sysu@remarkname{注释}%
+    \def\sysu@solutionname{解}%
+    \def\proofname{证明}%
+\else
+    \def\bibname{References}%
+    \def\appendixname{Appendix}%
+    \def\indexname{Index}%
+    \def\contentsname{Contents}%
+    \def\listfigurename{List of Figures}%
+    \def\listtablename{List of Tables}%
+    \def\listequationname{List of Equations}%
+    \def\figurename{Figure}%
+    \def\tablename{Table}%
+    \def\cftfigpresnum{Figure~}%
+    \def\cfttabpresnum{Table~}%
+    \def\sysu@lof@indent{5em}%
+    \def\sysu@lot@indent{4.5em}%
+    \def\sysu@longtable@conthead{(Continued)}%
+    \def\sysu@longtable@contfoot{Continued on next page}%
+    \def\sysu@codename{Code}%
+    \def\sysu@lolname{List of Codes}%
+    \def\sysu@chaptername@begin{Chapter~}%
+    \def\sysu@chaptername@end{}%
+    \def\sysu@conclusionname{Conclusion}%
+    \def\sysu@acknowledgementsname{Acknowledgements}%
+
+    \def\sysu@assumptionname{Assumption}%
+    \def\sysu@axiomname{Axiom}%
+    \def\sysu@conjecturename{Conjecture}%
+    \def\sysu@corollaryname{Corollary}%
+    \def\sysu@definitionname{Definition}%
+    \def\sysu@examplename{Example}%
+    \def\sysu@exercisename{Exercise}%
+    \def\sysu@lemmaname{Lemma}%
+    \def\sysu@problemname{Problem}%
+    \def\sysu@propositionname{Proposition}%
+    \def\sysu@theoremname{Theorem}%
+    \def\sysu@remarkname{Remark}%
+    \def\sysu@solutionname{Solution}%
+    \def\proofname{Proof}%
+\fi
+
+
 % font setup
 \setmainfont{Times New Roman}
 \setmathrm{Times New Roman} % 数学字体设为 Times New Roman
 \setCJKmathfont{Times New Roman} % 中文里面的数字字体设为 Times New Roman
 
-% infomation keys
-\define@key{sysu@keys}{author}{\def\@author@zh{#1}}
-\define@key{sysu@keys}{author-en}{\def\@author@en{#1}}
-\define@key{sysu@keys}{title}{\def\@title@zh{#1}}
-\define@key{sysu@keys}{title-en}{\def\@title@en{#1}}
-\define@key{sysu@keys}{student-id}{\def\@studentid{#1}}
-\define@key{sysu@keys}{major}{\def\@major@zh{#1}}
-\define@key{sysu@keys}{major-en}{\def\@major@en{#1}}
-\define@key{sysu@keys}{supervisor}{\def\@supervisor@zh{#1}}
-\define@key{sysu@keys}{supervisor-en}{\def\@supervisor@en{#1}}
-\define@key{sysu@keys}{research-team}{\def\@researchteam{#1}}
-\define@key{sysu@keys}{discipline}{\def\@discipline{#1}}
-\define@key{sysu@keys}{degree}{\def\@degree{#1}}
-\define@key{sysu@keys}{keywords}{\def\@keywords@zh{#1}}
-\define@key{sysu@keys}{keywords-en}{\def\@keywords@en{#1}}
-\define@key{sysu@keys}{school}{\def\@school{#1}}
-\define@key{sysu@keys}{campus}{\def\@campus{#1}}
-\define@key{sysu@keys}{date}{\def\@date{#1}}
-% infomation setup command
-\newcommand{\info}[1]{
+
+\newcommand{\sysuset}[1]{
   \kvsetkeys{sysu@keys}{#1}
 }
 
+% sysu keys setup
+\define@key{sysu@keys}{main-color}{\def\sysu@maincolor{#1}}
+\define@key{sysy@keys}{bib-name}{\def\bibname{#1}}
+\define@key{sysy@keys}{appendix-name}{\def\appendixname{#1}}
+\define@key{sysy@keys}{index-name}{\def\indexname{#1}}
+\define@key{sysy@keys}{contents-name}{\def\contentsname{#1}}
+\define@key{sysy@keys}{listfigure-name}{\def\listfigurename{#1}}
+\define@key{sysy@keys}{listtable-name}{\def\listtablename{#1}}
+\define@key{sysy@keys}{list-equation-name}{\def\listequationname{#1}}
+\define@key{sysy@keys}{figure-name}{\def\figurename{#1}}
+\define@key{sysy@keys}{table-name}{\def\tablename{#1}}
+\define@key{sysy@keys}{figure-prename-in-lof}{\def\cftfigpresnum{#1}}
+\define@key{sysy@keys}{table-prename-in-lot}{\def\cfttabpresnum{#1}}
+\define@key{sysy@keys}{indent-in-lof}{\def\sysu@lof@indent{#1}}
+\define@key{sysy@keys}{indent-in-lot}{\def\sysu@lot@indent{#1}}
+\define@key{sysy@keys}{longtable-continued-head}{\def\sysu@longtable@conthead{#1}}
+\define@key{sysy@keys}{longtable-continued-foot}{\def\sysu@longtable@contfoot{#1}}
+\define@key{sysy@keys}{lstlisting-name}{\def\sysu@codename{Code}}
+\define@key{sysy@keys}{listoflistings-name}{\def\sysu@lolname{#1}}
+\define@key{sysy@keys}{conclusion-name}{\def\sysu@conclusionname{#1}}
+\define@key{sysy@keys}{ack-name}{\def\sysu@acknowledgementsname{#1}}
+\define@key{sysu@keys}{caption-labelsep}{\def\sysu@captionlabelsep{#1}}
+\define@key{sysu@keys}{lst-style}{\def\sysu@lststyle{#1}}
+
+% infomation keys
+\define@key{sysu@keys}{author}{\def\sysu@author@zh{#1}}
+\define@key{sysu@keys}{author-en}{\def\sysu@author@en{#1}}
+\define@key{sysu@keys}{title}{\def\sysu@title@zh{#1}}
+\define@key{sysu@keys}{title-en}{\def\sysu@title@en{#1}}
+\define@key{sysu@keys}{student-id}{\def\sysu@studentid{#1}}
+\define@key{sysu@keys}{major}{\def\sysu@major@zh{#1}}
+\define@key{sysu@keys}{major-en}{\def\sysu@major@en{#1}}
+\define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{#1}}
+\define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{#1}}
+\define@key{sysu@keys}{research-team}{\def\sysu@researchteam{#1}}
+\define@key{sysu@keys}{discipline}{\def\sysu@discipline{#1}}
+\define@key{sysu@keys}{degree}{\def\sysu@degree{#1}}
+\define@key{sysu@keys}{keywords}{\def\sysu@keywords@zh{#1}}
+\define@key{sysu@keys}{keywords-en}{\def\sysu@keywords@en{#1}}
+\define@key{sysu@keys}{school}{\def\sysu@school{#1}}
+\define@key{sysu@keys}{campus}{\def\sysu@campus{#1}}
+\define@key{sysu@keys}{date}{\def\sysu@date{#1}}
 \ifsysu@blindmode
-    \define@key{sysu@keys}{author}{\def\@author@zh{***}}
-    \define@key{sysu@keys}{author-en}{\def\@author@en{***}}
-    \define@key{sysu@keys}{supervisor}{\def\@supervisor@zh{***}}
-    \define@key{sysu@keys}{supervisor-en}{\def\@supervisor@en{***}}
+    \define@key{sysu@keys}{author}{\def\sysu@author@zh{***}}
+    \define@key{sysu@keys}{author-en}{\def\sysu@author@en{***}}
+    \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{***}}
+    \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{***}}
     \def\sysu@header{\rightmark}
     \def\sysu@pdfcreator{}
 \else
-    \def\sysu@header{中山大学\@discipline\@degree 学位论文}
+    \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
     \def\sysu@pdfcreator{LaTeX with \sysuthesis~\version}
 \fi
+
+\sysuset{%
+    main-color = sysugreen,
+    caption-labelsep = colon,
+    lst-style = codestyle,
+}
 
 % the paper geometry setup
 \ifsysu@thesis
@@ -158,13 +269,13 @@
 \definecolor{sysured}{RGB}{115,2,5}
 
 % titlepage setup
-\def\sysu@thesistitlepage{%
+\def\spa@titlepage{%
 \begin{titlepage}
     \vspace*{14pt}
     \begin{center}
-        \songti{\zihao{3}\@title@zh}\\
+        \songti{\zihao{3}\sysu@title@zh}\\
         \vspace*{45pt}
-        {\fontspec{Times New Roman}{\zihao{-4}\@title@en}}\\
+        {\fontspec{Times New Roman}{\zihao{-4}\sysu@title@en}}\\
     \end{center}
     \vspace*{55pt}
     \begin{flushleft}
@@ -172,9 +283,9 @@
         \renewcommand\arraystretch{1.2}
         \ziju{0.25}
         \begin{tabular}{p{4.5em}ll}
-            &学\hspace*{0.7\ccwd}位\hspace*{0.7\ccwd}申\hspace*{0.7\ccwd}请\hspace*{0.7\ccwd}人：&\@author@zh\\
-            &专\hspace*{1.2\ccwd}业\hspace*{1.2\ccwd}名\hspace*{1.2\ccwd}称：&\@major@zh\\
-            &导师姓名及职称：&\@supervisor@zh
+            &学\hspace*{0.7\ccwd}位\hspace*{0.7\ccwd}申\hspace*{0.7\ccwd}请\hspace*{0.7\ccwd}人：&\sysu@author@zh\\
+            &专\hspace*{1.2\ccwd}业\hspace*{1.2\ccwd}名\hspace*{1.2\ccwd}称：&\sysu@major@zh\\
+            &导师姓名及职称：&\sysu@supervisor@zh
         \end{tabular}\\
         \vspace*{85pt}
         \bfseries\zihao{-3}
@@ -187,35 +298,35 @@
     \clearpage{\thispagestyle{empty}\cleardoublepage}
 \end{titlepage}
 }
-\def\sysu@proposaltitlepage{%
+\def\sysu@proposal@titlepage{%
 \begin{titlepage}
     \bfseries\songti
     \vspace*{6pt}
     \begin{center}
         \ziju{0.2}
-        {\bfseries\kaishu\zihao{-2}中山大学\@school}\\
+        {\bfseries\kaishu\zihao{-2}中山大学\sysu@school}\\
         \vspace*{26pt}
-        \zihao{2}\@degree 学位论文开题报告
+        \zihao{2}\sysu@degree 学位论文开题报告
     \end{center}
     \vspace*{8pt}
     \begin{flushleft}
-        \bfseries\zihao{-2}题\hspace*{0.5\ccwd}目：\@title@zh
+        \bfseries\zihao{-2}题\hspace*{0.5\ccwd}目：\sysu@title@zh
         \vfill
         \zihao{3}
         \renewcommand\arraystretch{1.25}
         \begin{tabular}{p{3em}lp{1em}p{8.5em}}
-            &所\hspace*{0.6667\ccwd}在\hspace*{0.6667\ccwd}团\hspace*{0.6667\ccwd}队 & & \@researchteam \\ \cmidrule[1.0pt]{3-4}
-            &学\hspace*{4\ccwd}科 & &\@major@zh \\ \cmidrule[1.0pt]{3-4}
-            &导\hspace*{4\ccwd}师 & & \@supervisor@zh \\ \cmidrule[1.0pt]{3-4}
-            &研\hspace*{1.5\ccwd}究\hspace*{1.5\ccwd}生 & & \@author@zh \\ \cmidrule[1.0pt]{3-4}
-            &学\hspace*{4\ccwd}号 & & \@studentid \\ \cmidrule[1.0pt]{3-4}
-            &开题报告日期 & & \@date \\ \cmidrule[1.0pt]{3-4}
+            &所\hspace*{0.6667\ccwd}在\hspace*{0.6667\ccwd}团\hspace*{0.6667\ccwd}队 & & \sysu@researchteam \\ \cmidrule[1.0pt]{3-4}
+            &学\hspace*{4\ccwd}科 & &\sysu@major@zh \\ \cmidrule[1.0pt]{3-4}
+            &导\hspace*{4\ccwd}师 & & \sysu@supervisor@zh \\ \cmidrule[1.0pt]{3-4}
+            &研\hspace*{1.5\ccwd}究\hspace*{1.5\ccwd}生 & & \sysu@author@zh \\ \cmidrule[1.0pt]{3-4}
+            &学\hspace*{4\ccwd}号 & & \sysu@studentid \\ \cmidrule[1.0pt]{3-4}
+            &开题报告日期 & & \sysu@date \\ \cmidrule[1.0pt]{3-4}
         \end{tabular}\\
     \end{flushleft}
     \vspace*{114pt}
     \begin{center}
         \zihao{3}
-        \@school 制
+        \sysu@school 制
     \end{center}
     \vspace{32pt}
     \clearpage{\thispagestyle{empty}\cleardoublepage}
@@ -223,14 +334,15 @@
 \setcounter{page}{1}
 \pagenumbering{Roman}
 }
+\def\sysu@thesis@titlepage{\spa@titlepage}
 \renewcommand{\maketitle}{%
     \ifsysu@thesis
         \ifsysu@checkmode\relax
         \else
-            \sysu@thesistitlepage
+            \sysu@thesis@titlepage
         \fi
     \else
-        \sysu@proposaltitlepage
+        \sysu@proposal@titlepage
     \fi
 }
 
@@ -250,8 +362,8 @@
 \pagestyle{fancy}
 \fancyhead{}
 \ifsysu@thesis
-    \fancyhead[OC]{\songti\zihao{-5}\leftmark}
-    \fancyhead[EC]{\songti\zihao{-5}\sysu@header}
+    \fancyhead[OC]{\songti\zihao{-5}\nouppercase{\leftmark}}
+    \fancyhead[EC]{\songti\zihao{-5}\nouppercase{\sysu@header}}
     \renewcommand{\headrule}{\hrule height 0.8mm \vspace{0.2mm}\hrule height 0.2mm}
     \renewcommand{\headruleskip}{2pt}
 \else
@@ -346,9 +458,9 @@
 
 % format of the tableofcontents, listoffigures and listoftables
 \tocloftpagestyle{fancy}
-\renewcommand*{\contentsname}{目\hspace{\ccwd}录}
-\renewcommand{\listfigurename}{插图索引}
-\renewcommand{\listtablename}{表格索引}
+% \renewcommand*{\contentsname}{目\hspace{\ccwd}录}
+% \renewcommand{\listfigurename}{插图索引}
+% \renewcommand{\listtablename}{表格索引}
 \setlength{\cftbeforechapskip}{0pt}
 \setlength\cftbeforefigskip{\cftbeforechapskip}
 \setlength\cftbeforetabskip{\cftbeforechapskip}
@@ -357,8 +469,8 @@
 \newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
 \addtocontents{lof}{\protect\noaddvspace}
 \addtocontents{lot}{\protect\noaddvspace}
-\renewcommand{\cftfigpresnum}{图~}
-\renewcommand{\cfttabpresnum}{表~}
+% \renewcommand{\cftfigpresnum}{图~}
+% \renewcommand{\cfttabpresnum}{表~}
 \cftsetindents{chapter}{0em}{1.5em}
 \ifsysu@thesis
     \cftsetindents{section}{1em}{1.5em}
@@ -367,8 +479,8 @@
     \cftsetindents{section}{0em}{1em}
     \cftsetindents{subsection}{1em}{1em}
 \fi
-\cftsetindents{fig}{0em}{3.25em}
-\cftsetindents{tab}{0em}{3.25em}
+\cftsetindents{fig}{0em}{\sysu@lof@indent}
+\cftsetindents{tab}{0em}{\sysu@lot@indent}
 \renewcommand{\cftdot}{$\cdot$}
 \renewcommand{\cftdotsep}{2}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
@@ -416,13 +528,13 @@
     \vspace*{10pt}
     \linespread{1.5}
     \begin{center}
-        \songti\zihao{-3}\@title@zh
+        \songti\zihao{-3}\sysu@title@zh
         \par
-        专业：\@major@zh
+        专业：\sysu@major@zh
         \par
-        \@degree 生：\@author@zh
+        \sysu@degree 生：\sysu@author@zh
         \par
-        指导教师：\@supervisor@zh
+        指导教师：\sysu@supervisor@zh
         \par \vspace*{36pt}
         {\heiti\zihao{-2}{摘\hspace{2\ccwd}要}}
         \par \vspace*{11pt}
@@ -432,7 +544,7 @@
 }
 \def\sysu@setkw@zh{%
     \par \vspace*{12pt}
-    {\heiti\zihao{-4}{关键词: }} \songti{\zihao{-4}\@keywords@zh}
+    {\heiti\zihao{-4}{关键词: }} \songti{\zihao{-4}\sysu@keywords@zh}
     \cleardoublepage
 }
 \def\sysu@setabs@en{%
@@ -443,13 +555,13 @@
     \vspace*{10pt}
     \linespread{1.5}
     \begin{center}
-        \zihao{-3}\@title@en
+        \zihao{-3}\sysu@title@en
         \par
-        Major：\@major@en
+        Major：\sysu@major@en
         \par
-        Name：\@author@en
+        Name：\sysu@author@en
         \par
-        Supervisor：\@supervisor@en
+        Supervisor：\sysu@supervisor@en
         \par \vspace*{36pt}
         {\zihao{-2}{\bfseries Abstract}}
         \par \vspace*{11pt}
@@ -459,7 +571,7 @@
 }
 \def\sysu@setkw@en{%
     \par \vspace*{12pt}
-    {\zihao{-4}\bfseries KeyWords: \@keywords@en}
+    {\zihao{-4}\bfseries KeyWords: \sysu@keywords@en}
     \cleardoublepage
 }
 \NewDocumentEnvironment{abszh}{}{\sysu@setabs@zh}{\sysu@setkw@zh}
@@ -472,10 +584,10 @@
         \linespread{1.0}
         \zihao{-4}
         \ifsysu@thesis
-            \addcontentsline{toc}{chapter}{参考文献}
+            \addcontentsline{toc}{chapter}{\bibname}
             \addcontentsline{toe}{chapter}{References}
         \else
-            \addcontentsline{toc}{section}{参考文献}
+            \addcontentsline{toc}{section}{\bibname}
             \addcontentsline{toe}{section}{References}
         \fi
         \citestyle{super}
@@ -555,7 +667,7 @@
     chapter = {%
         beforeskip  = 9mm,
         format      = \zihao{-2}\heiti\centering,
-        name        = {第~, ~章},
+        name        = {\sysu@chaptername@begin, \sysu@chaptername@end},
         number      = \arabic{chapter},
         aftername   = \quad,
         afterskip   = 9mm,
@@ -693,9 +805,9 @@
 % tabularray setup
 \RequirePackage{tabularray}
 \UseTblrLibrary{booktabs}
-\DefTblrTemplate{contfoot-text}{normal}{下页续}
+\DefTblrTemplate{conthead-text}{normal}{\sysu@longtable@conthead}
+\DefTblrTemplate{contfoot-text}{normal}{\sysu@longtable@contfoot}
 \SetTblrTemplate{contfoot-text}{normal}
-\DefTblrTemplate{conthead-text}{normal}{（续）}
 \SetTblrTemplate{conthead-text}{normal}
 
 \SetTblrStyle{caption-tag}{font=\zihao{5}}
@@ -713,12 +825,14 @@
 % setup the bicaption
 \DeclareCaptionFont{caption@font}{\zihao{5}}
 \captionsetup{font=caption@font}
+\captionsetup[figure]{labelsep=\sysu@captionlabelsep}
+\captionsetup[table]{labelsep=\sysu@captionlabelsep}
 \DeclareCaptionFont{bi-second}{%
     \zihao{5}
     \def\figurename{Figure}
     \def\tablename{Table}
 }
-\DeclareFloatingEnvironment[fileext=lof2,chapterlistsgaps=on]{figuresen}[Figiure][List of Figures]
+\DeclareFloatingEnvironment[fileext=lof2,chapterlistsgaps=on]{figuresen}[Figure][List of Figures]
 \DeclareFloatingEnvironment[fileext=lot2,chapterlistsgaps=on]{tablesen}[Table][List of Tables]
 \PrepareListOf{figuresen}{%
     \renewcommand{\cftfigpresnum}{Figure~}
@@ -743,19 +857,19 @@
     {0.5em}
     {\thmname{#1}\thmnumber{~#2}\thmnote{~(#3)}}
 \theoremstyle{thmsty}
-\newtheorem{assumption}{假设}[chapter]
-\newtheorem{axiom}{公理}[chapter]
-\newtheorem{conjecture}{猜想}[chapter]
-\newtheorem{corollary}{推论}[chapter]
-\newtheorem{definition}{定义}[chapter]
-\newtheorem{example}{例}[chapter]
-\newtheorem{exercise}{练习}[chapter]
-\newtheorem{lemma}{引理}[chapter]
-\newtheorem{problem}{问题}[chapter]
-\newtheorem{proposition}{命题}[chapter]
-\newtheorem{theorem}{定理}[chapter]
-\newtheorem*{remark}{注释}
-\newtheorem*{solution}{解}
+\newtheorem{assumption}{\sysu@assumptionname}[chapter]
+\newtheorem{axiom}{\sysu@axiomname}[chapter]
+\newtheorem{conjecture}{\sysu@conjecturename}[chapter]
+\newtheorem{corollary}{\sysu@corollaryname}[chapter]
+\newtheorem{definition}{\sysu@definitionname}[chapter]
+\newtheorem{example}{\sysu@examplename}[chapter]
+\newtheorem{exercise}{\sysu@exercisename}[chapter]
+\newtheorem{lemma}{\sysu@lemmaname}[chapter]
+\newtheorem{problem}{\sysu@problemname}[chapter]
+\newtheorem{proposition}{\sysu@propositionname}[chapter]
+\newtheorem{theorem}{\sysu@theoremname}[chapter]
+\newtheorem*{remark}{\sysu@remarkname}
+\newtheorem*{solution}{\sysu@solutionname}
 \renewenvironment{proof}[1][\proofname]{\par
     \pushQED{\qed}
     \mdseries \topsep6\p@\@plus6\p@\relax
@@ -767,11 +881,11 @@
 
 % format of codes display
 \lstdefinestyle{codestyle}{%
-    backgroundcolor=\color{blue!5!white},
+    backgroundcolor=\color{spablue!10},
     commentstyle=\color{gray},
     basicstyle=\ttfamily\footnotesize,
-    keywordstyle=\color{violet},
-    stringstyle=\color{teal},
+    keywordstyle=\color{sysured},
+    stringstyle=\color{sysugreen},
     breakatwhitespace=false,         
     breaklines=true,                 
     captionpos=t,                    
@@ -780,15 +894,15 @@
     showstringspaces=false,
     showtabs=false,
     numberbychapter=true,
-    aboveskip=0pt,
-    belowskip=0pt,
+    aboveskip=0.5em,
+    belowskip=0.5em,
     lineskip=0pt,
-    tabsize=2
+    tabsize=1
 }
-\lstset{style=codestyle}
+\lstset{style=\sysu@lststyle}
 \addto\captionspinyin{%
-  \renewcommand\lstlistingname{代码}
-  \renewcommand\lstlistlistingname{代码索引}
+  \renewcommand\lstlistingname{\sysu@codename}
+  \renewcommand\lstlistlistingname{\sysu@lolname}
 }
 \addto\captionsenglish{%
   \renewcommand\lstlistingname{Code}
@@ -807,12 +921,13 @@
 \endgroup
 \let\l@lstlisting\l@listings
 \renewcommand{\lstlistoflistings}{\listoflistings}
-\renewcommand\cftlistingspresnum{代码~}
+\renewcommand\cftlistingspresnum{\sysu@codename~}
 \cftsetindents{listings}{0em}{4.5em}
+\captionsetup[lstlisting]{labelsep=\sysu@captionlabelsep}
 
 % create some new document environment
 \NewDocumentEnvironment{conclusion}{}{%
-    \ctexset{chapter/numbering=false}\chapter{结\hspace{\ccwd}论}
+    \ctexset{chapter/numbering=false}\chapter{\sysu@conclusionname}
     \addcontentsline{toe}{chapter}{Conclusions}
 }{}
 
@@ -838,7 +953,7 @@
     \ifsysu@checkmode\relax
     \else\ifsysu@blindmode\relax
         \else\ifsysu@final
-            \ctexset{chapter/numbering=false}\chapter{后记}
+            \ctexset{chapter/numbering=false}\chapter{\sysu@acknowledgementsname}
             \addcontentsline{toe}{chapter}{Acknowledgements}
             #1
             \fi
@@ -857,33 +972,41 @@
     pdfborder={0 0 0},
     bookmarksnumbered=true,
     linkcolor=black,
-    filecolor=magenta,  
-    citecolor=spablue,    
-    urlcolor=sysugreen,
+    filecolor=\sysu@maincolor,  
+    citecolor=\sysu@maincolor,    
+    urlcolor=\sysu@maincolor,
 }
 \urlstyle{rm}
 
 % pdf documentinfo
 \AtBeginDocument{%
     \hypersetup{%
-        pdfauthor={\@author@zh},
-        pdftitle={\@title@zh},
-        pdfkeywords={\@keywords@zh},
+        pdfauthor={\sysu@author@zh},
+        pdftitle={\sysu@title@zh},
+        pdfkeywords={\sysu@keywords@zh},
         pdfcreator={\sysu@pdfcreator},
     }
 }
 
 % renew the refnames of some environment
 \AtBeginDocument{%
-    \def\figureautorefname~#1\null{图~#1~\null}
-    \def\tableautorefname~#1\null{表~#1~\null}
-    \def\appendixautorefname~#1\null{附录~#1~\null} 
-    \def\equationautorefname~#1\null{公式~(#1)~\null}
-    \def\chapterautorefname~#1\null{第#1章\null}
-    \def\sectionautorefname~#1\null{第#1节\null}
-    \def\AMSautorefname~#1\null{公式~(#1)~\null}
-    \def\theoremautorefname~#1\null{#1~\null}
-    \def\proofautorefname~#1\null{\null}
+    \ifsysu@chinese
+        \def\figureautorefname~#1\null{图~#1~\null}
+        \def\tableautorefname~#1\null{表~#1~\null}
+        \def\appendixautorefname~#1\null{附录~#1~\null} 
+        \def\equationautorefname~#1\null{公式~(#1)~\null}
+        \def\chapterautorefname~#1\null{第#1章\null}
+        \def\sectionautorefname~#1\null{第#1节\null}
+        \def\AMSautorefname~#1\null{公式~(#1)~\null}
+        \def\theoremautorefname~#1\null{#1~\null}
+        \def\proofautorefname~#1\null{\null}
+    \else
+        \def\chapterautorefname~#1\null{Chapter~#1\null}
+        \def\sectionautorefname~#1\null{Section#1\null}
+        \def\equationautorefname~#1\null{Equation~(#1)~\null}
+        \def\AMSautorefname~#1\null{Equation~(#1)~\null}
+    \fi
+
     \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
 }
 
