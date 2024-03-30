@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Mar 29, 2024                   %%
+%%                  Mar 30, 2024                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2024/03/29 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2024/03/30 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
 \def\version{v1.1.3}
@@ -51,7 +51,7 @@
 \IfStrEq{\sysu@doctype}{thesis}
 {\sysu@thesistrue}{%
     \IfStrEq{\sysu@doctype}{proposal}
-    {\sysu@proposaltrue}{}
+    {\sysu@proposaltrue}{\sysu@thesistrue\sysu@warning{Invalid or no doctype option, set to defualt: "thesis"}}
 }
 \IfStrEq{\sysu@printmode}{final}
 {\sysu@finaltrue}{%
@@ -60,7 +60,7 @@
     {\sysu@checkmodetrue}{%
         \sysu@checkmodefalse
         \IfStrEq{\sysu@printmode}{blindmode}
-        {\sysu@blindmodetrue}{\sysu@warning{Invalid printmode option, set to defualt: "final"}}
+        {\sysu@blindmodetrue}{\sysu@finaltrue\sysu@warning{Invalid or no printmode option, set to defualt: "final"}}
     }
 }
 \IfStrEq{\sysu@language}{chinese}
@@ -97,8 +97,7 @@
 \RequirePackage{subcaption}
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
 \RequirePackage{listings}
-\RequirePackage[sort&compress]{gbt7714}
-
+\RequirePackage[compress]{gbt7714}
 
 %  language setup
 \ifsysu@chinese
@@ -115,13 +114,14 @@
     \def\sysu@lot@indent{3.25em}
     \def\sysu@longtable@conthead{（续）}
     \def\sysu@longtable@contfoot{下页续}
+    \def\sysu@algorithmname{算法}%
+    \def\sysu@listalgorithmname{算法索引}%
     \def\sysu@codename{代码}%
     \def\sysu@lolname{代码索引}%
     \def\sysu@chaptername@begin{第~}%
     \def\sysu@chaptername@end{~章}%
     \def\sysu@conclusionname{结\hspace{\ccwd}论}%
     \def\sysu@acknowledgementsname{致\hspace{\ccwd}谢}%
-    
     \def\sysu@assumptionname{假设}%
     \def\sysu@axiomname{公理}%
     \def\sysu@conjecturename{猜想}%
@@ -152,13 +152,14 @@
     \def\sysu@lot@indent{4.5em}%
     \def\sysu@longtable@conthead{(Continued)}%
     \def\sysu@longtable@contfoot{Continued on next page}%
+    \def\sysu@algorithmname{Algorithm}%
+    \def\sysu@listalgorithmname{List of Algorithms}%
     \def\sysu@codename{Code}%
     \def\sysu@lolname{List of Codes}%
     \def\sysu@chaptername@begin{Chapter~}%
     \def\sysu@chaptername@end{}%
     \def\sysu@conclusionname{Conclusion}%
     \def\sysu@acknowledgementsname{Acknowledgements}%
-
     \def\sysu@assumptionname{Assumption}%
     \def\sysu@axiomname{Axiom}%
     \def\sysu@conjecturename{Conjecture}%
@@ -208,7 +209,9 @@
 \define@key{sysy@keys}{conclusion-name}{\def\sysu@conclusionname{#1}}
 \define@key{sysy@keys}{ack-name}{\def\sysu@acknowledgementsname{#1}}
 \define@key{sysu@keys}{caption-labelsep}{\def\sysu@captionlabelsep{#1}}
+\define@key{sysu@keys}{algorithm-labelsep}{\def\sysu@algorithm@labelsep{#1}}
 \define@key{sysu@keys}{lst-style}{\def\sysu@lststyle{#1}}
+\define@key{sysu@keys}{bib-style}{\def\sysu@bibstyle{#1}}
 
 % infomation keys
 \define@key{sysu@keys}{author}{\def\sysu@author@zh{#1}}
@@ -236,7 +239,11 @@
     \def\sysu@header{\rightmark}
     \def\sysu@pdfcreator{}
 \else
-    \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
+    \ifsysu@chinese
+        \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
+    \else
+        \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
+    \fi
     \def\sysu@pdfcreator{LaTeX with \sysuthesis~\version}
 \fi
 
@@ -244,6 +251,7 @@
     main-color = sysugreen,
     caption-labelsep = colon,
     lst-style = codestyle,
+    bib-style = numerical,
 }
 
 % the paper geometry setup
@@ -458,9 +466,6 @@
 
 % format of the tableofcontents, listoffigures and listoftables
 \tocloftpagestyle{fancy}
-% \renewcommand*{\contentsname}{目\hspace{\ccwd}录}
-% \renewcommand{\listfigurename}{插图索引}
-% \renewcommand{\listtablename}{表格索引}
 \setlength{\cftbeforechapskip}{0pt}
 \setlength\cftbeforefigskip{\cftbeforechapskip}
 \setlength\cftbeforetabskip{\cftbeforechapskip}
@@ -469,8 +474,6 @@
 \newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
 \addtocontents{lof}{\protect\noaddvspace}
 \addtocontents{lot}{\protect\noaddvspace}
-% \renewcommand{\cftfigpresnum}{图~}
-% \renewcommand{\cfttabpresnum}{表~}
 \cftsetindents{chapter}{0em}{1.5em}
 \ifsysu@thesis
     \cftsetindents{section}{1em}{1.5em}
@@ -582,6 +585,7 @@
     {%
         \xeCJKsetup{CJKecglue={\hskip0pt}}
         \linespread{1.0}
+        \setlength{\bibsep}{0.5ex}
         \zihao{-4}
         \ifsysu@thesis
             \addcontentsline{toc}{chapter}{\bibname}
@@ -590,8 +594,7 @@
             \addcontentsline{toc}{section}{\bibname}
             \addcontentsline{toe}{section}{References}
         \fi
-        \citestyle{super}
-        \bibliographystyle{gbt7714-numerical}
+        \bibliographystyle{gbt7714-\sysu@bibstyle}
         \ifsysu@checkmode
             \nobibliography{#1}
         \else
@@ -662,6 +665,16 @@
 
 % format of chapter, section, subsection, subsubsection, paragraph and subparagraph
 \pagestyle{fancy}
+\ctexset{%
+    paragraph = {%
+        fixskip     = true,
+        afterindent = true,
+    },
+    subparagraph = {%
+        fixskip     = true,
+        afterindent = true,
+    },
+}
 \ifsysu@thesis
     \ctexset{%
     chapter = {%
@@ -702,14 +715,6 @@
         afterindent = true,
         aftername   = ~,
         afterskip   = 5mm,
-    },
-    paragraph = {%
-        fixskip     = true,
-        afterindent = true,
-    },
-    subparagraph = {%
-        fixskip     = true,
-        afterindent = true,
     },
 }
 \else
@@ -754,14 +759,6 @@
         afterindent = true,
         aftername   = ~,
         afterskip   = 10.5pt,
-    },
-    paragraph = {%
-        fixskip     = true,
-        afterindent = true,
-    },
-    subparagraph = {%
-        fixskip     = true,
-        afterindent = true,
     },
     }
 \fi
@@ -809,7 +806,6 @@
 \DefTblrTemplate{contfoot-text}{normal}{\sysu@longtable@contfoot}
 \SetTblrTemplate{contfoot-text}{normal}
 \SetTblrTemplate{conthead-text}{normal}
-
 \SetTblrStyle{caption-tag}{font=\zihao{5}}
 \SetTblrStyle{caption-sep}{font=\zihao{5}}
 \SetTblrStyle{caption-text}{font=\zihao{5}}
@@ -878,6 +874,16 @@
     {\bfseries\songti#1}\hspace\labelsep\ignorespaces
 }
 {   \popQED\endtrivlist\@endpefalse }
+
+% format of algorithm
+\RequirePackage[ruled,vlined]{algorithm2e}
+\SetAlgorithmName{\sysu@algorithmname}{\sysu@algorithmname}{\sysu@listalgorithmname}
+\SetAlFnt{\zihao{5}}
+\SetAlgoCaptionLayout{small}
+\SetAlgoCaptionSeparator{\sysu@algorithm@labelsep}
+\renewcommand{\thealgocf}{\thechapter-\arabic{algocf}}
+\let\oldl@algocf\l@algocf
+\renewcommand{\l@algocf}[2]{\oldl@algocf{\sysu@algorithmname~#1}{#2}}
 
 % format of codes display
 \lstdefinestyle{codestyle}{%
@@ -1006,7 +1012,6 @@
         \def\equationautorefname~#1\null{Equation~(#1)~\null}
         \def\AMSautorefname~#1\null{Equation~(#1)~\null}
     \fi
-
     \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
 }
 

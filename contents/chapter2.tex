@@ -5,12 +5,12 @@
 \section{关于标签和引用}
 \sectionen{About labels and references}
 
-本模版中的公式、插图、表格和章节等，均用\texttt{\char92 lable\{<key>\}}来在\LaTeX{}代码中标记位置，用\texttt{\char92 ref\{<key>\}}来在代码中引用，其中\texttt{<key>}为自定义的标签。为了避免混淆标签类型，建议将 \texttt{<key>} 命名为 \texttt{chap:key}、\texttt{sec:key}、\texttt{fig:key}、\texttt{tab:key}、\texttt{eqn:key} 等。本模版对 \texttt{hyperref} 中的标签名做了预设，已在引用中加上相应的前缀和后缀。\strong{在引用时，建议使用 \texttt{\char92 autoref\{<key>\}} 来引用，这样可以自动识别引用的类型。}例如，\autoref{chap:evm}是本章的引用，\autoref{sec:float}是第 \ref{chap:evm} 章的第 \ref{sec:float} 节的引用。
+本模版中的公式、插图、表格和章节等，均用 \texttt{\char92 lable\{<key>\}}来在\LaTeX{}代码中标记位置，用 \texttt{\char92 ref\{<key>\}}来在代码中引用，其中 \texttt{<key>}为自定义的标签。为了避免混淆标签类型，建议将 \texttt{<key>} 命名为 \texttt{chap:key}、 \texttt{sec:key}、 \texttt{fig:key}、 \texttt{tab:key}、 \texttt{eqn:key} 等。本模版对 \texttt{hyperref} 中的标签名做了预设，已在引用中加上相应的前缀和后缀。\strong{在引用时，建议使用 \texttt{\char92 autoref\{<key>\}} 来引用，这样可以自动识别引用的类型。}例如，\autoref{chap:evm}是本章的引用，\autoref{sec:float}是第 \ref{chap:evm} 章的第 \ref{sec:float} 节的引用。
 
 \section{关于浮动体}\label{sec:float}
 \sectionen{About the floats}
 
-在 \LaTeX{} 中，浮动体是一种用于排版图表（\texttt{figure} 和 \texttt{table} 等环境）和其他大块内容的机制。\LaTeX{} 会自动将浮动体放置在页面的合适位置，以保持最佳的页面排版效果。如果一个浮动体在当前页面无法完全容纳，\LaTeX{} 会自动将其移动到下一页，并确保它的标题跟随着移动。
+在 \LaTeX{} 中，浮动体是一种用于排版图表（ \texttt{figure} 和 \texttt{table} 等环境）和其他大块内容的机制。\LaTeX{} 会自动将浮动体放置在页面的合适位置，以保持最佳的页面排版效果。如果一个浮动体在当前页面无法完全容纳，\LaTeX{} 会自动将其移动到下一页，并确保它的标题跟随着移动。
 
 然而，有时浮动体的自动排版可能会导致一些问题，比如浮动体不在预期位置、过多的浮动体堆积等。我们可以用一些选项来设置浮动体的位置： 
 \begin{itemize}
@@ -41,7 +41,7 @@
     &= 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots + \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!} + \cdots
     \label{eqn:taylorseries}
 \end{align}
-这里注意，对不需要编号的行要取消公式编号，即要在该行公式的源代码后边使用\texttt{\char92 nonumber}命令。
+这里注意，对不需要编号的行要取消公式编号，即要在该行公式的源代码后边使用 \texttt{\char92 nonumber}命令。
 
 公式的引用示例：\autoref{eqn:taylorseries}为泰勒级数。
 
@@ -50,7 +50,7 @@
 \section{插图示例}
 \sectionen{Figure example}
 
-文中插图的插图建议使用\texttt{graphicx}宏包的\texttt{figure}环境搭配 \\ \texttt{\char92 includegraphics}命令。例如：
+文中插图的插图建议使用 \texttt{graphicx}宏包的 \texttt{figure}环境搭配 \\ \texttt{\char92 includegraphics}命令。例如：
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/hexbin.pdf}
@@ -82,7 +82,7 @@
 \section{表格示例}
 \sectionen{Table example}
 
-文中的表格建议使用\texttt{table}环境里嵌套\texttt{tabular}环境。
+文中的表格建议使用 \texttt{table}环境里嵌套 \texttt{tabular}环境。
 \begin{table}[htbp]
     \zihao{5}
     \bicaption{2022年北京冬奥会奖牌榜}
@@ -101,13 +101,13 @@
         6 & 荷兰 & 8 & 5 & 4 & 17\\
         7 & 奥地利 & 7 & 7 & 4 & 18\\
         8 & 瑞士 & 7 & 2 & 5 & 14\\
-        9 & 俄罗斯奥林匹克委员会\tablefootnote{俄罗斯由于被禁赛，不能以国家名义参加奥运会，不能使用国旗和国歌。因此俄罗斯代表团绕过禁令，以俄罗斯奥委会（Russian Olympic Committee）的名义参赛，以俄罗斯奥委会的会旗作为代表团的团旗，以柴可夫斯基的《第一钢琴协奏曲》作为团歌\cite{ROC}。} 
-            & 6 & 12 & 14 & 32\\ 
+        9 & 俄罗斯奥林匹克委员会\footnotemark & 6 & 12 & 14 & 32\\ 
         10 & 法国 & 5 & 7 & 2 & 14\\
         \bottomrule
     \end{tabular}
 \end{table}
-这里需要注意，如果需要在表格内添加注释，请使用\texttt{tablefootnote}宏包的\texttt{\char92 tablefootnote}命令。如果要制作长表格，请使用\texttt{longtable}宏包的\texttt{longtable}环境，如\autoref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\autoref{tab:longtblr}和\autoref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tabls 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\char92 toprule}、\texttt{\char92 midrule} 和 \texttt{\char92 bottomrule} 命令替换掉对应的 \texttt{\char92 hline} 即可。表格的引用示例：\autoref{tab:01}是2022年北京冬奥会奖牌榜。
+\footnotetext{俄罗斯由于被禁赛，不能以国家名义参加奥运会，不能使用国旗和国歌。因此俄罗斯代表团绕过禁令，以俄罗斯奥委会（Russian Olympic Committee）的名义参赛，以俄罗斯奥委会的会旗作为代表团的团旗，以柴可夫斯基的《第一钢琴协奏曲》作为团歌\cite{ROC}。}
+这里需要注意，如果需要在表格内添加注释，请使用 \texttt{tablefootnote}宏包的 \texttt{\char92 tablefootnote}命令。如果要制作长表格，请使用 \texttt{longtable}宏包的 \texttt{longtable}环境，如\autoref{tab:longtable}。此外，本模版还对 \texttt{tabularray} 宏包进行了设置，可以使用 \texttt{longtblr} 环境来制作表格，如\autoref{tab:longtblr}和\autoref{tab:tblr}。\textbf{但注意：目前 \texttt{tabularray} 还未对双语标题和 List Of Tables 进行设置。}此外，在科技论文的排版中，一般使用三线表。推荐您使用 \texttt{booktabs} 宏包，该宏包支持三线表。本模版已经装载了 \texttt{booktabs} 宏包，可使用 \texttt{\char92 toprule}、 \texttt{\char92 midrule} 和 \texttt{\char92 bottomrule} 命令替换掉对应的 \texttt{\char92 hline} 即可。表格的引用示例：\autoref{tab:01}是2022年北京冬奥会奖牌榜。
 
 {\zihao{5}%
 \begin{longtable}[c]{ccc}
@@ -134,18 +134,6 @@
     
     Alpha & Beta & Gamma \\
     Epsilon & Zet & Eta \\
-    Iota & Kappa & Lambda \\
-    Nu & Xi & Omicron \\
-    Rho & Sigma & Tau \\
-    Phi & Chi & Psi \\
-    Alpha & Beta & Gamma \\
-    Epsilon & Zeta & Eta \\
-    Iota & Kappa & Lambda \\
-    Nu & Xi & Omicron \\
-    Rho & Sigma & Tau \\
-    Phi & Chi & Psi \\
-    Alpha & Beta & Gamma \\
-    Epsilon & Zeta & Eta \\
     Iota & Kappa & Lambda \\
     Nu & Xi & Omicron \\
     Rho & Sigma & Tau \\
@@ -234,18 +222,6 @@
     Nu & Xi & Omicron \\
     Rho & Sigma & Tau \\
     Phi & Chi & Psi \\
-    Alpha & Beta & Gamma \\
-    Epsilon & Zeta & Eta \\
-    Iota & Kappa & Lambda \\
-    Nu & Xi & Omicron \\
-    Rho & Sigma & Tau \\
-    Phi & Chi & Psi \\
-    Alpha & Beta & Gamma \\
-    Epsilon & Zeta & Eta \\
-    Iota & Kappa & Lambda \\
-    Nu & Xi & Omicron \\
-    Rho & Sigma & Tau \\
-    Phi & Chi & Psi \\
     Foot & Foot & Foot \\
     \bottomrule
 \end{longtblr}
@@ -289,7 +265,7 @@
     \begin{align}
         \zeta(s) = \frac{1}{1^s} + \frac{1}{2^s} + \frac{1}{3^s} + \frac{1}{4^s} + \cdots
     \end{align}
-    非平凡点的实数部分是$\dfrac{1}{2}$。
+    非平凡点的实数部分是$1/2$。
 \end{conjecture}
 \begin{definition}[定义的定义]
     对一个概念或者词或者词组的定义是描写其内涵，即描写其所有和仅有的元素的共有特征。其外延是所有这个概念、词或者词组包含的事物。
@@ -322,10 +298,73 @@
     因为爱情，不会轻易悲伤，所以一切都是幸福的模样。
 \end{proof}
 
+\section{算法环境}
+
+在论文中插入算法，我们使用的是 \texttt{algorithm2e} 宏包的 \texttt{algorithm} 环境。在 \texttt{algorithm} 环境中，你可以使用 \texttt{\char92 For}、 \texttt{\char92 While}、 \texttt{\char92 If}、 \texttt{\char92 eIF} 等命令来编写算法的结构，具体的使用方法请参考 \texttt{algorithm2e} 宏包的文档。例如\autoref{algo:algorithm} 和\autoref{algo:IR} 是算法示例。
+
+\begin{algorithm}[htb]
+    \caption{算法示例（How to write algorithms）}
+    \label{algo:algorithm}
+    \SetAlgoLined
+    \KwData{this text}
+    \KwResult{how to write algorithm with \LaTeX2e }
+    initialization\;
+    \While{not at end of this document}{
+      read current\;
+      \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+        }{
+        go back to the beginning of current section\;
+        }
+      }
+\end{algorithm}
+\begin{algorithm}[p]
+    \DontPrintSemicolon
+    \KwData{$G=(X,U)$ such that $G^{tc}$ is an order.}
+    \KwResult{$G’=(X,V)$ with $V\subseteq U$ such that $G’^{tc}$ is an
+    interval order.}
+    \Begin{
+    $V \longleftarrow U$\;
+    $S \longleftarrow \emptyset$\;
+    \For{$x\in X$}{
+    $NbSuccInS(x) \longleftarrow 0$\;
+    $NbPredInMin(x) \longleftarrow 0$\;
+    $NbPredNotInMin(x) \longleftarrow |ImPred(x)|$\;
+    }
+    \For{$x \in X$}{
+    \If{$NbPredInMin(x) = 0$ {\bf and} $NbPredNotInMin(x) = 0$}{
+    $AppendToMin(x)$}
+    }
+    \nl\While{$S \neq \emptyset$}{\label{InRes1}
+    \nlset{REM} remove $x$ from the list of $T$ of maximal index\;\label{InResR}
+    \lnl{InRes2}\While{$|S \cap ImSucc(x)| \neq |S|$}{
+    \For{$ y \in S-ImSucc(x)$}{
+    \{ remove from $V$ all the arcs $zy$ : \}\;
+    \For{$z \in ImPred(y) \cap Min$}{
+    remove the arc $zy$ from $V$\;
+    $NbSuccInS(z) \longleftarrow NbSuccInS(z) - 1$\;
+    move $z$ in $T$ to the list preceding its present list\;
+    \{i.e. If $z \in T[k]$, move $z$ from $T[k]$ to
+    $T[k-1]$\}\;
+    }
+    $NbPredInMin(y) \longleftarrow 0$\;
+    $NbPredNotInMin(y) \longleftarrow 0$\;
+    $S \longleftarrow S - \{y\}$\;
+    $AppendToMin(y)$\;
+    }
+    }
+    $RemoveFromMin(x)$\;
+    }
+    }
+    \caption{IntervalRestriction}
+    \label{algo:IR}
+\end{algorithm}
+
 \section{代码示例}
 \sectionen{Code listings example}
 
-在论文中插入代码，我们使用的是\texttt{listings}宏包的\texttt{lstlisting}环境，如：
+在论文中插入代码，我们使用的是 \texttt{listings}宏包的 \texttt{lstlisting}环境，如：
 \begin{lstlisting}[language=Python,
     caption1=Python 画图代码1,
     caption2=Python ploting code 1]
@@ -357,12 +396,20 @@ axs[1].set_ylabel('coherence')
 fig.tight_layout()
 plt.show()
 \end{lstlisting}
-或\texttt{\char92 lstinputlisting}命令，如：
+或 \texttt{\char92 lstinputlisting}命令，如：
 \lstinputlisting[language=Python,
-caption1=Python 画图代码2,
-caption2=Python ploting code 2]
+    caption1=Python 画图代码2,
+    caption2=Python ploting code 2,
+    label=lst:cohere]
 {codes/cohere.py}
-建议代码不用\texttt{caption}选项，也不要使用\texttt{\char92 ref}来引用，因为我还没设置好 (> <)。
+代码可以使用 \texttt{caption} 选项，如果是双语标题请分别使用 \texttt{caption1} 和 \texttt{caption2}。例如\autoref{lst:cohere} 的\TeX{}源代码为：
+\begin{lstlisting}[language=TeX]
+\lstinputlisting[language=Python,
+    caption1=Python 画图代码2,
+    caption2=Python ploting code 2,
+    label=lst:cohere]
+{codes/cohere.py}
+\end{lstlisting}
 
 \section{参考文献}\label{sec:bibstyle}
 \sectionen{References example}
@@ -370,17 +417,19 @@ caption2=Python ploting code 2]
 \subsection{引用格式}
 \subsectionen{Citation format}
 
-例如：
-\begin{enumerate}
-    \item 这是一个期刊的引用\cite{LIGOScientific:2017zic,ZhaoWen:2017twxjz}；
-    \item 这是一个图书的引用\cite{Rubakov:2017xzr,Zhang:2021}；
-    \item 这是一个研讨会论文的引用\cite{Tanikawa:2021+x}；
-    \item 这是博士论文的引用\cite{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\cite{Shojaeifar:2015csv,SongRen:2020}；
-    \item 这是电子文献的引用\cite{Piro:2021oaa,bilibili:read}。
-    \item 这是报纸的引用\cite{Li:2005}。
-\end{enumerate}
-
 \textbf{注意：本模版旧的参考文献引用格式已经弃用，转用国标，使用的是 Zeping Lee 等人开发的 \texttt{gbt7714} 宏包，具体的使用方法请参考 \url{https://github.com/zepinglee/gbt7714-bibtex-style}。}
+
+\texttt{gbt7714} 宏包的引用标注方法与 \texttt{natbib} 宏包类似，分别有 \texttt{\char92 cite} 、\texttt{\char92 citep} 和 \texttt{\char92 citet} 三种命令，其中在顺序编码制（\texttt{numberical}）中 \texttt{\char92 cite} 命令同 \texttt{\char92 citep}，而在著者-出版年制（\texttt{author-year}）中 \texttt{\char92 cite} 命令同 \texttt{\char92 citet}。引用有可选项，可以把引文页码放进来。此外，如果想用正文模式，还可以使用 \texttt{\char92 citestyle\{numbers\}} 命令（除非你想此后的引用标注都是正文模式，否则请用一对花括号将它的作用范围限制住，以防溢出，并且只在顺序编码制中使用）。例如：
+\begin{enumerate}
+    \item 这是一个期刊的引用\cite{LIGOScientific:2017zic}；
+    \item 这是一个加入作者的期刊引用：\citet{ZhaoWen:2017twxjz}在研究中发现……
+    \item 这是一个图书的引用\cite{Rubakov:2017xzr}；
+    \item 这是一个加入引文页码的图书的引用\cite[92]{Zhang:2021}；
+    \item 这是一个研讨会论文的引用：文献{\citestyle{numbers}\cite{Tanikawa:2021+x}}中说明……
+    \item 这是博士论文的引用\citep{Migenda:2019xbm,HuangGuoYuan:2020}，这是硕论文的引用\citep{Shojaeifar:2015csv,SongRen:2020}；
+    \item 这是电子文献的引用\citep{Piro:2021oaa,bilibili:read}。
+    \item 这是报纸的引用\citep{Li:2005}。
+\end{enumerate}
 
 \section{注释}
 \sectionen{Remarks}
