@@ -1,5 +1,21 @@
 % !TEX encoding = UTF-8 Unicode
-\documentclass[doctype=thesis,printmode=final,openany,blankleft=true,fontset=fandol]{sysuthesis}
+\documentclass[doctype=thesis,printmode=final,blankleft]{sysuthesis}
+
+% 选项说明
+% doctype=[thesis|proposal],                  % 可选（默认：thesis），论文类型，thesis 为学位论文，proposal 为开题报告
+% printmode=[final|checkmode|blindmode],      % 可选（默认：final），打印模式，final 为终稿，checkmode 为查重模式，blindmode 为盲审模式
+% language= [chinese|english] or [zh|en],     % 可选（默认：chinese），论文的主要语言
+% blankleft=[true|false],                     % 可选（默认：false），使无内容的偶数页空白
+%
+% 以下为 ctexbook 文档类的选项，可将此类参数传递到本模板中
+% [openright|openany],                        % 可选（默认：openright），章节分页，奇数页或任意页开始新章
+% fontset=[fandol|windows|macnew|ubuntu],     % 可选（默认：fandol），字体设置，请根据使用的计算机系统选择适当的选项
+% [fleqn|leqno],                              % 可选 公式对齐方式，默认公式居中对齐编号居右对齐，fleqn 选项将使公式居左对齐，leqno 选项将使公式编号居左对齐
+% [final|draft],                              % 可选（默认：final），选择 draft 选项将启用草稿模式，这时：
+%     1. 文档中的图形（如图片）将以一个框的形式显示，而不是实际的图像内容。
+%     2. lstlisting 环境中的内容将不见，只留有标签
+%     3. 异常长的行会显示为黑色盒子，需要调整文本以适应页面宽度
+% 草稿模式主要用于在编辑文档时快速查看页面布局和图形位置，同时减少编译时间。**注意要将此选项放在第一个**，否则不起作用。
 
 % 设置论文的基本信息，包括题目、作者、专业、导师、学院、摘要和关键词等必要信息
 \input{setup}
@@ -29,6 +45,9 @@
 % % 表格索引
 % \listoftables
 % \listoftablesen
+
+% % 算法索引
+% \listofalgorithms
 
 % %代码索引
 % \lstlistoflistings

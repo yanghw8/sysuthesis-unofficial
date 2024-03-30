@@ -19,71 +19,40 @@
 
 如此您将得到一个最终输出的正确的、完整的 PDF 文件。
 
-Overleaf 对免费用户只开放了1分钟以内的编译时长，本模版上传至Overleaf编译时长可能超过1分钟，所以建议您在本地编译，并养成时常备份的好习惯。
+Overleaf 用户请直接点击以下图片直接食用
+
+[![Overleaf](https://img.shields.io/badge/Overleaf-sysuthesis--unofficial-005620
+)](https://www.overleaf.com/latex/templates/sysu-thesis-unofficial-template/ymmwwkgmykjg)
+
+然而 Overleaf 对免费用户只开放了1分钟以内的编译时长，如果您的项目编译时长超过1分钟，建议在本地编译，并养成时常备份的好习惯。
 
 如果您使用 Visual Studio Code 来作为 LaTeX 编辑器，您需要设置 `settings.json` 来定制您的编译链，配置代码如 `codes` 文件夹里面的 `vsc_config.json` 所示。
 
-## 更新描述
+## 模版选项说明
 
-### v1.1.2 2024/03/14
+-   `doctype=[thesis|proposal]`,                  可选（默认：`thesis`），论文类型，thesis 为学位论文，proposal 为开题报告。
+-   `printmode=[final|checkmode|blindmode]`,      可选（默认：`final`），打印模式，`final` 为终稿，`checkmode` 为查重模式，`blindmode` 为盲审模式。
+-   `language= [chinese|english] or [zh|en]`,     可选（默认：`chinese`），论文的主要语言。
+-   `blankleft=[true|false]`,                     可选（默认：`false`），使无内容的偶数页空白。
 
--   放弃自制的 `sysuthesis.bst`，改用 `gbt7714` 宏包。
--   增加 `count_chinese.py` Python 脚本，用于统计中文字数。
--   重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
--   修改了`checkmode`的版面，去除无效的空白页。
--   添加了中山大学的颜色 `sysugreen`、 `sysured` 和 `spablue`。
--   给出了长表格的示例，并配置了 `tabularray` 的风格。
+以下为 ctexbook 文档类的选项，可将此类参数传递到本模板中
 
-### v1.1.1 2023/03/30
+-   `[openright|openany]`,                        可选（默认：`openright`），章节分页，奇数页或任意页开始新章。
+-   `fontset=[fandol|windows|macnew|ubuntu]`,     可选（默认：`fandol`），字体设置，请根据使用的计算机系统选择适当的选项。
+-   `[fleqn|leqno]`,                              可选，公式对齐方式，默认公式居中对齐编号居右对齐，fleqn 选项将使公式居左对齐，leqno 选项将使公式编号居左对齐。
+-   `[final|draft]`,                              可选（默认：`final`），选择 `draft` 选项将启用草稿模式，这时：
+    1. 文档中的图形（如图片）将以一个框的形式显示，而不是实际的图像内容。
+    2. `lstlisting` 环境中的内容将不见，只留有标签。
+    3. 异常长的行会显示为黑色盒子，需要调整文本以适应页面宽度。
+    
+    草稿模式主要用于在编辑文档时快速查看页面布局和图形位置，同时减少编译时间。**注意要将此选项放在第一个**，否则不起作用。
 
--   使用 `\raggedbottom` 调整页面的垂直对齐方式, 当页面内容不足时,
-    这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
+示例:
+```
+\documentclass[doctype=thesis,printmode=final,language=zh,blankleft,openright,fontset=fandol]{sysuthesis}
+```
+**此外，关于论文信息的设置，您还需要按照 `setup.tex` 文件中的格式一一配置好。**
 
--   增加 `fontset` 选项 (`<default> = fandol`)，指定CTeX宏集加载的字库，详情请查看CTeX宏集的具体说明。例如，如果您的系统为Windows，则可以用以下选项：
-
-    ``` {.latex language="TeX"}
-    \documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=windows]{sysuthesis}
-    ```
-
-    如果您在 Overleaf 上编译，则可以设置为:
-
-    ``` {.latex language="TeX"}
-    \documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=ubuntu]{sysuthesis}
-    ```
-
-    目前 Mac OS 可以暂时使用 `fontset=macnew`，依然解决不了找不到对应字体的警告问题，但无伤大雅。
-
--   对一些笔误进行了修改。
-
-
-### v1.1.0 2023/03/03
-
--   增加以下模版选项：
-
-    -   `doctype`，可选 `thesis`\|`proposal` (`<default> = thesis`)，分别为学位论文和开题报告的格式。
-
-    -   `printmode`，可选 `final`\|`checkmode`\|`blindmode`
-(`<default> = final`)，分别为终稿、查重和盲审的打印模式。
-
-    -   `openright`\|`openany`，互为 `true`\|`false` (`<default> = openright`)。`openright` 选项为每一章在右页（奇数页）开始，`openany` 选项为在上一章结束的下一页开始。
-
-    -   `blankleft` (`<default> = false`)，当 `blankleft = true` 时，章节结束的偶数页如果没有内容，使之空白，但页码计数器仍然有效。
-
--   增加了 `appendixenv`、`publications` 和 `achievements` 环境，分别为附录、学术论文发表列表和学术成果列表的环境。
-
--   对论文扉页进行了微调。
-
--   修改 `lstlisting` 双语标题格式，微调相关颜色。
-
--   增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免编译出错。
-
-### v1.0.1 2023/03/06
-
--   最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。`\texttt` 命令只在本文档用以展示命令，不建议大家使用。
-
-### v1.0 2022/02/23
-
--   最初版本。
 
 ## 注意事项
 
@@ -134,6 +103,77 @@ Overleaf 对免费用户只开放了1分钟以内的编译时长，本模版上�
     其中，短标题在插图索引或者表格索引中展示，而标题则在插图下方或者表格上方展示。
 
 -   在图表标题中，出现了引用文献后字号变回正文字号的问题，该问题有一个简单的解决方法，即使用 `{\cite{key}}` 来避免上述问题发生。**在弃用 `cite` 宏包之后，该问题似乎已经解决了。**
+
+## 更新描述
+
+### v1.1.3 2024/03/30
+
+-   在模板参数中对 `gbt7714` 宏包进行参数传递，可以使用著者-出版年制的参考文献格式。
+-   使用 `algorithm2e` 宏包定制算法环境。
+-   增加 `language` 选项，可选 `chinese` | `english` ( `<default> = chinese`)，或 `zh` | `en`。如果选项为 `language=english`（或 `language=en`），这将会将章节图表等的标题语言设置为英文。
+-   将 `\info` 命令改为 `\sysuset`，对模版的一些参数（如图表标签名和 `acknowledgements` 环境名称等）任由用户自定义，详情见 `setup.tex` 文件。
+-   `openany`、`openright` 和 `fontset` 为 `ctexbook` 文档类的选项，不应作为模板的选项，现已移除。
+-   撤销将 `\ref` 命令的引用格式重设为 `（\autoref{key}）` 的更改。
+-   解决了一些与 `hyperref` 宏包的冲突问题。
+
+### v1.1.2 2024/03/14
+
+-   放弃自制的 `sysuthesis.bst`，改用 `gbt7714` 宏包。
+-   增加 `count_chinese.py` Python 脚本，用于统计中文字数。
+-   重新设置论文信息的设置方式，即键值对（key-value）的格式，更加友好。
+-   修改了`checkmode`的版面，去除无效的空白页。
+-   添加了中山大学的颜色 `sysugreen`、 `sysured` 和 `spablue`。
+-   给出了长表格的示例，并配置了 `tabularray` 的风格。
+
+### v1.1.1 2023/03/30
+
+-   使用 `\raggedbottom` 调整页面的垂直对齐方式, 当页面内容不足时,
+    这将减少页面顶部和底部之间的间距，使得页面看起来更加紧凑。
+
+-   增加 `fontset` 选项 (`<default> = fandol`)，指定CTeX宏集加载的字库，详情请查看CTeX宏集的具体说明。例如，如果您的系统为Windows，则可以用以下选项：
+
+    ``` {.latex language="TeX"}
+    \documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=windows]{sysuthesis}
+    ```
+
+    如果您在 Overleaf 上编译，则可以设置为:
+
+    ``` {.latex language="TeX"}
+    \documentclass[doctype=thesis,printmode=final,openright,blankleft,fontset=ubuntu]{sysuthesis}
+    ```
+
+    目前 Mac OS 可以暂时使用 `fontset=macnew`，依然解决不了找不到对应字体的警告问题，但无伤大雅。
+
+-   对一些笔误进行了修改。
+
+### v1.1.0 2023/03/03
+
+-   增加以下模版选项：
+
+    -   `doctype`，可选 `thesis`\|`proposal` (`<default> = thesis`)，分别为学位论文和开题报告的格式。
+
+    -   `printmode`，可选 `final`\|`checkmode`\|`blindmode`
+(`<default> = final`)，分别为终稿、查重和盲审的打印模式。
+
+    -   `openright`\|`openany`，互为 `true`\|`false` (`<default> = openright`)。`openright` 选项为每一章在右页（奇数页）开始，`openany` 选项为在上一章结束的下一页开始。
+
+    -   `blankleft` (`<default> = false`)，当 `blankleft = true` 时，章节结束的偶数页如果没有内容，使之空白，但页码计数器仍然有效。
+
+-   增加了 `appendixenv`、`publications` 和 `achievements` 环境，分别为附录、学术论文发表列表和学术成果列表的环境。
+
+-   对论文扉页进行了微调。
+
+-   修改 `lstlisting` 双语标题格式，微调相关颜色。
+
+-   增加了 NASA/ADS Export Citation 的期刊名命令，不需要再手动修改以避免编译出错。
+
+### v1.0.1 2022/03/06
+
+-   最新适配物理与天文学院的格式要求，调整了参考文献的引用格式并添加文献类型标识，将中文与西文之间的一个半角字符的自动间距关闭。`\texttt` 命令只在本文档用以展示命令，不建议大家使用。
+
+### v1.0 2022/02/23
+
+-   最初版本。
 
 ## 致谢
 

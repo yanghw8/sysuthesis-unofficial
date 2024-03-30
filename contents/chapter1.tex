@@ -59,9 +59,9 @@
 \end{itemize}
 即可。博士使用
 \begin{itemize}
-    \item \texttt{\char92 chapter\{\}}、\texttt{\char92 chapteren\{\}}
-    \item \texttt{\char92 section\{\}}、\texttt{\char92 sectionen\{\}}
-    \item \texttt{\char92 subsection\{\}}、\texttt{\char92 subsectionen\{\}}
+    \item \texttt{\char92 chapter\{\}}、 \texttt{\char92 chapteren\{\}}
+    \item \texttt{\char92 section\{\}}、 \texttt{\char92 sectionen\{\}}
+    \item \texttt{\char92 subsection\{\}}、 \texttt{\char92 subsectionen\{\}}
     \item \texttt{\char92 bicaption\{\}\{\}}
 \end{itemize}
 以显示双语效果。此外，如果需要展示目录和索引，请直接使用\autoref{tab:listof}中的命令来打开。
@@ -81,6 +81,7 @@
         英文插图索引    &  \texttt{\char92 listoffiguresen} \\
         中文表格索引   &  \texttt{\char92 listoftables} \\
         英文表格索引   &  \texttt{\char92 listoftablesen} \\
+        算法索引   &  \texttt{\char92 listofalgorithms} \\
         中文代码索引   &  \texttt{\char92 lstlistoflistings} \\
         英文代码索引   &  \texttt{\char92 listoflstlistingsen} \\
         \bottomrule
@@ -90,7 +91,7 @@
 \section{模版文件结构}
 \sectionen{File structure}
 
-本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译命令称为 \texttt{xelatex}，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为\texttt{thesis.tex}，在编译时请选择\texttt{xelatex}编译命令，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
+本模版仅支持\hologo{XeTeX}排版引擎，其相应的编译命令称为 \texttt{xelatex}，字符编码仅支持UTF-8，进行编译时，您需要使用正确编译器。本模版需要编译的主文件为 \texttt{thesis.tex}，在编译时请选择 \texttt{xelatex}编译命令，由于是中文文档并且与\hologo{BibTeX}配合使用，请遵从以下编译步骤：
 
 \begin{itemize}
     \item \texttt{xelatex}：生成 \texttt{.aux} 文件，里面包含了文档的结构信息和所有的内部引用（包括参考文献的引用）；
@@ -147,7 +148,7 @@
 分别是设置了本模版的论文排版格式和参考文献引用格式，在使用时，请您不要轻易修改该文件。您可以编辑的文件有：
 \begin{itemize}
     \item \texttt{setup.tex}文件：编辑您的论文题目、作者姓名、专业、指导教师、关键词和学院及日期等关键信息，设置用于本文档的新\LaTeX{}命令以及调用的宏包；
-    \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在\texttt{thesis.tex}中导入并排好顺序；
+    \item \texttt{contents}文件夹里面的文件：将您的文章内容分为多个部分编辑好，并在 \texttt{thesis.tex}中导入并排好顺序；
     \item \texttt{refs.bib}文件：用于编辑您的引用文献信息，请遵从\hologo{BibTeX}的语法格式，以免达成意料之外的效果；
     \item 为了方便起见，请将您的要使用的图片和代码文件放到相应的文件夹，以免造成不必要的混乱。
 \end{itemize}
@@ -177,11 +178,11 @@
 各种\LaTeX{}编辑器的配置可以轻易在网上找到，而且有的都比较简单。下面只介绍Visual Studio Code的配置。
 \begin{itemize}
     \item 在扩展商店里找到\strong{LaTeX Workshop}插件，点击安装；
-    \item 找到扩展设置（Extension Settings），找到\texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\autoref{vscodeconfig}为我的配置;
+    \item 找到扩展设置（Extension Settings），找到 \texttt{settings.json}文件，编辑它，在里面加入你的配置代码。如\autoref{vscodeconfig}为我的配置;
     \item 之后可以在\TeX{}窗口里，选择对应的\strong{Build LaTeX project}进行编译。
 \end{itemize}
 \lstinputlisting[language=Java,
-    caption1={[VSCode \LaTeX{} 配置代码]Visual Studio Code \LaTeX{} 配置代码},
+    caption={[VSCode \LaTeX{} 配置代码]Visual Studio Code \LaTeX{} 配置代码},
     caption2={[VSCode \LaTeX{} configuration]Visual Studio Code \LaTeX{} configuration},
     label=vscodeconfig]
 {codes/vsc_config.json}
