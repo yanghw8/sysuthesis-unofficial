@@ -231,21 +231,6 @@
 \define@key{sysu@keys}{school}{\def\sysu@school{#1}}
 \define@key{sysu@keys}{campus}{\def\sysu@campus{#1}}
 \define@key{sysu@keys}{date}{\def\sysu@date{#1}}
-\ifsysu@blindmode
-    \define@key{sysu@keys}{author}{\def\sysu@author@zh{***}}
-    \define@key{sysu@keys}{author-en}{\def\sysu@author@en{***}}
-    \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{***}}
-    \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{***}}
-    \def\sysu@header{\rightmark}
-    \def\sysu@pdfcreator{}
-\else
-    \ifsysu@chinese
-        \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
-    \else
-        \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
-    \fi
-    \def\sysu@pdfcreator{LaTeX with \sysuthesis~\version}
-\fi
 
 \sysuset{%
     main-color = sysugreen,
@@ -253,6 +238,21 @@
     lst-style = codestyle,
     bib-style = numerical,
 }
+
+\ifsysu@blindmode
+    \define@key{sysu@keys}{author}{\def\sysu@author@zh{***}}
+    \define@key{sysu@keys}{author-en}{\def\sysu@author@en{***}}
+    \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{***}}
+    \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{***}}
+    \def\sysu@header{\rightmark}
+    \def\sysu@maincolor{blue}
+\else
+    \ifsysu@chinese
+        \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
+    \else
+        \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
+    \fi
+\fi
 
 % the paper geometry setup
 \ifsysu@thesis
@@ -990,7 +990,7 @@
         pdfauthor={\sysu@author@zh},
         pdftitle={\sysu@title@zh},
         pdfkeywords={\sysu@keywords@zh},
-        pdfcreator={\sysu@pdfcreator},
+        pdfcreator={},
     }
 }
 
