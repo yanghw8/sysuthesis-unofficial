@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Mar 30, 2024                   %%
+%%                  Apr 10, 2024                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2024/03/30 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2024/04/10 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
-\def\version{v1.1.3}
+\def\version{v1.1.4}
 
 \newcommand{\sysu@error}[1]{%
     \ClassError{sysuthesis}{#1}{}%
@@ -379,13 +379,6 @@
 \fi
 \fancyfoot{}
 \fancyfoot[C]{\zihao{-5}-~\thepage~-}
-\fancypagestyle{onlyheadrule}{%
-    \fancyhf{}
-    \fancyhead{}
-    \renewcommand{\headrule}{\hrule height 0.8mm \vspace{0.2mm}\hrule height 0.2mm}
-    \fancyfoot{}
-    \fancyfoot[C]{\zihao{-5}-~\thepage~-}
-}
 
 % format of footnote
 \RequirePackage[symbol*,stable,bottom]{footmisc}
@@ -522,13 +515,19 @@
     \original@appendix
     \renewcommand\chapternameen{Appendix~}
 }
+\newcommand\notagchapter[1]{%
+    \chapter*{#1}%
+    \addcontentsline{toc}{chapter}{#1}%
+    \markboth{#1}{\sysu@header}%
+}
+\newcommand\notagchapteren[1]{\addcontentsline{toe}{chapter}{#1}}
 
 % abstract enviroment setup
 \def\sysu@setabs@zh{%
     % set the page counter to 1 at abstract
     \setcounter{page}{1}
     \pagenumbering{Roman}
-    \pagestyle{onlyheadrule}
+    \markboth{\protect 摘\hspace*{\ccwd}要}{\sysu@header}
     \phantomsection \label{abszh}
     \addcontentsline{toc}{chapter}{\protect 摘\hspace*{2\ccwd}要}
     \addcontentsline{toe}{chapter}{Abstract (In Chinese)}
@@ -555,7 +554,7 @@
     \cleardoublepage
 }
 \def\sysu@setabs@en{%
-    \pagestyle{onlyheadrule}
+    \markboth{Abstract}{\sysu@header}
     \phantomsection \label{absen}
     \addcontentsline{toc}{chapter}{ABSTRACT}
     \addcontentsline{toe}{chapter}{Abstract (In English)}
