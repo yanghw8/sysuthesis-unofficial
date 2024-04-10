@@ -108,7 +108,7 @@ Overleaf 用户请直接点击以下图片直接食用
 
 ### v1.1.4 2024/04/10
 
--   修复了附录章在英文模式下的标签名，从 Chapter 改为 Appendix。并且新增了两个无标签章的命令 `notagchapter` 和 `\notagchapteren`，用于不带章节标签的章节。
+-   修复了附录章在英文模式下的标签名，从 Chapter 改为 Appendix。并且新增了两个无标签章的命令 `\notagchapter` 和 `\notagchapteren`，用于不带章节标签的章节。
 -   对图表标题的对齐方式进行了调整，使之居中，并将之前第二标题的额外空格去除。
 -   完善 `algorithm2e` 标题的格式，使之与图表标题一致。
 
