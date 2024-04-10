@@ -93,7 +93,6 @@
 \RequirePackage{newfloat}
 \RequirePackage{indentfirst}
 \RequirePackage{enumitem}
-\RequirePackage[skip=2pt]{caption}
 \RequirePackage{subcaption}
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
 \RequirePackage{listings}
@@ -518,6 +517,11 @@
 \newcommand\chapteren[1]{\addcontentsen{chapter}{#1}}
 \newcommand\sectionen[1]{\addcontentsen{section}{#1}}
 \newcommand\subsectionen[1]{\addcontentsen{subsection}{#1}}
+\let\original@appendix\appendix
+\renewcommand{\appendix}{
+    \original@appendix
+    \renewcommand\chapternameen{Appendix~}
+}
 
 % abstract enviroment setup
 \def\sysu@setabs@zh{%
@@ -819,14 +823,15 @@
 \SetTblrStyle{remark-text}{font=\zihao{5}}
 
 % setup the bicaption
+\captionsetup{justification=centering}
 \DeclareCaptionFont{caption@font}{\zihao{5}}
 \captionsetup{font=caption@font}
 \captionsetup[figure]{labelsep=\sysu@captionlabelsep}
 \captionsetup[table]{labelsep=\sysu@captionlabelsep}
 \DeclareCaptionFont{bi-second}{%
-    \zihao{5}
-    \def\figurename{Figure}
-    \def\tablename{Table}
+    \zihao{5}%
+    \def\figurename{Figure}%
+    \def\tablename{Table}%
 }
 \DeclareFloatingEnvironment[fileext=lof2,chapterlistsgaps=on]{figuresen}[Figure][List of Figures]
 \DeclareFloatingEnvironment[fileext=lot2,chapterlistsgaps=on]{tablesen}[Table][List of Tables]
@@ -876,7 +881,7 @@
 {   \popQED\endtrivlist\@endpefalse }
 
 % format of algorithm
-\RequirePackage[ruled,vlined]{algorithm2e}
+\RequirePackage[ruled,vlined,algochapter]{algorithm2e}
 \SetAlgorithmName{\sysu@algorithmname}{\sysu@algorithmname}{\sysu@listalgorithmname}
 \SetAlFnt{\zihao{5}}
 \newcommand\algocaptionlayout{\zihao{5}\centering}
