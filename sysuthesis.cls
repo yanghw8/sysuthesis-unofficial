@@ -879,7 +879,8 @@
 \RequirePackage[ruled,vlined]{algorithm2e}
 \SetAlgorithmName{\sysu@algorithmname}{\sysu@algorithmname}{\sysu@listalgorithmname}
 \SetAlFnt{\zihao{5}}
-\SetAlgoCaptionLayout{small}
+\newcommand\algocaptionlayout{\zihao{5}\centering}
+\SetAlgoCaptionLayout{algocaptionlayout}
 \SetAlgoCaptionSeparator{\sysu@algorithm@labelsep}
 \renewcommand{\thealgocf}{\thechapter-\arabic{algocf}}
 \let\oldl@algocf\l@algocf
