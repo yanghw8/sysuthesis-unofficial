@@ -81,22 +81,23 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
-\RequirePackage{geometry}
-\RequirePackage{fontspec}
 \RequirePackage[english,pinyin]{babel}
-\RequirePackage{fancyhdr}
-\RequirePackage{graphicx}
-\RequirePackage{xcolor}
-\RequirePackage{booktabs}
-\RequirePackage{longtable}
-\RequirePackage[titles]{tocloft}
-\RequirePackage{newfloat}
-\RequirePackage{indentfirst}
-\RequirePackage{enumitem}
-\RequirePackage{subcaption}
+\RequirePackage{bibentry}
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
-\RequirePackage{listings}
+\RequirePackage{booktabs}
+\RequirePackage{enumitem}
 \RequirePackage[compress]{gbt7714}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{fontspec}
+\RequirePackage{indentfirst}
+\RequirePackage{listings}
+\RequirePackage{longtable}
+\RequirePackage{newfloat}
+\RequirePackage{subcaption}
+\RequirePackage[titles]{tocloft}
+\RequirePackage{xcolor}
 
 %  language setup
 \ifsysu@chinese
@@ -239,18 +240,20 @@
 }
 
 \ifsysu@blindmode
-    \define@key{sysu@keys}{author}{\def\sysu@author@zh{***}}
-    \define@key{sysu@keys}{author-en}{\def\sysu@author@en{***}}
-    \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{***}}
-    \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{***}}
+    \define@key{sysu@keys}{author}{\def\sysu@author@zh{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
+    \define@key{sysu@keys}{author-en}{\def\sysu@author@en{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
+    \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
+    \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
     \def\sysu@header{\rightmark}
     \def\sysu@maincolor{blue}
+    \newcommand{\blindthis}[2][]{#1}
 \else
     \ifsysu@chinese
         \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
     \else
         \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
     \fi
+    \newcommand{\blindthis}[2][]{#2}
 \fi
 
 % the paper geometry setup
@@ -779,7 +782,7 @@
 \setlist[publications,achievements]{%
     topsep      = 0bp,
     itemsep     = 0bp,
-    leftmargin  = 1em,
+    leftmargin  = 1.5em,
     labelsep    = 0.5em,
     align       = right,
     label       = [\arabic*],
@@ -961,21 +964,18 @@
 }{}
 
 \NewDocumentEnvironment{acknowledgements}{ +b }{%
-    \ifsysu@checkmode\relax
-    \else\ifsysu@blindmode\relax
-        \else\ifsysu@final
-            \ctexset{chapter/numbering=false}\chapter{\sysu@acknowledgementsname}
-            \addcontentsline{toe}{chapter}{Acknowledgements}
-            #1
+    \ifsysu@checkmode\relax%
+    \else\ifsysu@blindmode\relax%
+        \else\ifsysu@final%
+            \ctexset{chapter/numbering=false}\chapter{\sysu@acknowledgementsname}%
+            \addcontentsline{toe}{chapter}{Acknowledgements}%
+            #1%
             \fi
         \fi
     \fi
 }{\cleardoublepage}
 
-\RequirePackage{bibentry}
-% \ifsysu@checkmode\let\saved@bibitem\@bibitem\fi
 \RequirePackage{hyperref}
-% \ifsysu@checkmode\let\@bibitem\saved@bibitem\fi
 
  % hyperlinks style
 \hypersetup{%
