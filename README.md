@@ -109,6 +109,7 @@ Overleaf 用户请直接点击以下图片直接食用
 ### v1.1.5 2024/04/12
 
 -   增加了 `blindthis[<replace>]{<content>}` 命令，用于在盲审模式下（即 `printmode=blindmode`）替换内容。在非盲审模式下，该命令不会有任何效果。在盲审模式下，该命令会将 `<content>` 替换为 `<replace>`；如果直接使用 `\blindthis{<content>}` 命令，则内容不会打印出来。
+-   微调 `publications` 和 `achievements` 环境中标签的左边距。
 
 ### v1.1.4 2024/04/10
 
