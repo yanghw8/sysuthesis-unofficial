@@ -1,6 +1,12 @@
 \chapter{更新描述}
 \chapteren{Update Description}
 
+\section*{\texttt{v1.1.5 2024/04/12}}
+\begin{itemize}
+    \item 增加了 \texttt{\char92 blindthis[<replace>]\{<content>\}} 命令，用于在盲审模式下（即 \texttt{printmode=blindmode}）替换内容。在非盲审模式下，该命令不会有任何效果。在盲审模式下，该命令会将 \texttt{<content>} 替换为 \texttt{<replace>}；如果直接使用 \texttt{\char92 blindthis\{<content>\}} 命令，则内容不会打印出来。
+    \item 微调 \texttt{publications} 和 \texttt{achievements} 环境中标签的左边距。
+\end{itemize}
+
 \section*{\texttt{v1.1.4 2024/04/10}}
 \begin{itemize}
     \item 修复了附录章在英文模式下的标签名，从 Chapter 改为 Appendix。并且新增了两个无标签章的命令 \texttt{\char92 notagchapter} 和 \texttt{\char92 notagchapteren}，用于不带章节标签的章节。

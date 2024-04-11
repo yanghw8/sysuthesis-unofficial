@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Apr 10, 2024                   %%
+%%                  Apr 12, 2024                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sysuthesis}[2024/04/10 Sun Yat-sen University Thesis Unofficial Template]
+\ProvidesClass{sysuthesis}[2024/04/12 Sun Yat-sen University Thesis Unofficial Template]
 
 \def\sysuthesis{sysuthesis-unofficial}
-\def\version{v1.1.4}
+\def\version{v1.1.5}
 
 \newcommand{\sysu@error}[1]{%
     \ClassError{sysuthesis}{#1}{}%

@@ -106,6 +106,10 @@ Overleaf 用户请直接点击以下图片直接食用
 
 ## 更新描述
 
+### v1.1.5 2024/04/12
+
+-   增加了 `blindthis[<replace>]{<content>}` 命令，用于在盲审模式下（即 `printmode=blindmode`）替换内容。在非盲审模式下，该命令不会有任何效果。在盲审模式下，该命令会将 `<content>` 替换为 `<replace>`；如果直接使用 `\blindthis{<content>}` 命令，则内容不会打印出来。
+
 ### v1.1.4 2024/04/10
 
 -   修复了附录章在英文模式下的标签名，从 Chapter 改为 Appendix。并且新增了两个无标签章的命令 `\notagchapter` 和 `\notagchapteren`，用于不带章节标签的章节。
