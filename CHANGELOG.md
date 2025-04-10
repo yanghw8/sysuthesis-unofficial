@@ -2,6 +2,7 @@
 
 ### v1.1.6 2025/04/10
 
+-  修复 $\hbar$ 输出错误问题，修复参考文献的引用标注排序问题。
 - 更新查重和盲审模式下的输出，查重模式保留附录，盲审模式保留学校信息。
 - 更新 VSCode 的 `latex-workshop` 插件的推荐配置，使用[王然老师的配置](https://github.com/OsbertWang/install-latex-guide-zh-cn)。
 

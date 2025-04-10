@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                 sysuthesis.cls                  %%
-%%                  Apr 12, 2024                   %%
+%%                  Apr 10, 2025                   %%
 %% Copyright (C) by yanghw8 <yanghewen8@gmail.com> %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % !TeX encoding = UTF-8
@@ -86,7 +86,7 @@
 \RequirePackage[lang=english,listtype+=sen]{bicaption}
 \RequirePackage{booktabs}
 \RequirePackage{enumitem}
-\RequirePackage[compress]{gbt7714}
+\RequirePackage[sort&compress]{gbt7714}
 \RequirePackage{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
@@ -95,6 +95,7 @@
 \RequirePackage{listings}
 \RequirePackage{longtable}
 \RequirePackage{newfloat}
+\RequirePackage{newtxmath}
 \RequirePackage{subcaption}
 \RequirePackage[titles]{tocloft}
 \RequirePackage{xcolor}
