@@ -244,15 +244,9 @@
     \define@key{sysu@keys}{author-en}{\def\sysu@author@en{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
     \define@key{sysu@keys}{supervisor}{\def\sysu@supervisor@zh{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
     \define@key{sysu@keys}{supervisor-en}{\def\sysu@supervisor@en{\textasteriskcentered\textasteriskcentered\textasteriskcentered}}
-    \def\sysu@header{\rightmark}
     \def\sysu@maincolor{blue}
     \newcommand{\blindthis}[2][]{#1}
 \else
-    \ifsysu@chinese
-        \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
-    \else
-        \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
-    \fi
     \newcommand{\blindthis}[2][]{#2}
 \fi
 
@@ -371,6 +365,11 @@
 % header and footer setup
 \pagestyle{fancy}
 \fancyhead{}
+\ifsysu@chinese
+    \def\sysu@header{中山大学\sysu@discipline\sysu@degree 学位论文}
+\else
+    \def\sysu@header{\sysu@degree Thesis in \sysu@discipline at Sun Yat-sen University}
+\fi
 \ifsysu@thesis
     \fancyhead[OC]{\songti\zihao{-5}\nouppercase{\leftmark}}
     \fancyhead[EC]{\songti\zihao{-5}\nouppercase{\sysu@header}}
@@ -946,21 +945,18 @@
 }{}
 
 \NewDocumentEnvironment{appendixenv}{ +b }{%
-    \ifsysu@checkmode\relax
-    \else
-        \ctexset{
-            subsubsection = {%
-                fixskip     = true,
-                beforeskip  = 12pt,,
-                indent      = 0pt,
-                format      = \bf \zihao{-4}\songti,
-                afterindent = true,
-                aftername   = ,
-                afterskip   = 14pt,
-            },
-        }
-        #1
-    \fi
+    \ctexset{
+        subsubsection = {%
+            fixskip     = true,
+            beforeskip  = 12pt,,
+            indent      = 0pt,
+            format      = \bf \zihao{-4}\songti,
+            afterindent = true,
+            aftername   = ,
+            afterskip   = 14pt,
+        },
+    }
+    #1
 }{}
 
 \NewDocumentEnvironment{acknowledgements}{ +b }{%
