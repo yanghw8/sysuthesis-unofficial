@@ -13,3 +13,7 @@
 *.toc
 *.toe
 *.loa
+*.pdf
+*.fdb_latexmk
+*.fls
+*.xdv
