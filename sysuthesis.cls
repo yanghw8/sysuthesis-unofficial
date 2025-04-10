@@ -526,10 +526,7 @@
 \newcommand\notagchapteren[1]{\addcontentsline{toe}{chapter}{#1}}
 
 % abstract enviroment setup
-\def\sysu@setabs@zh{%
-    % set the page counter to 1 at abstract
-    \setcounter{page}{1}
-    \pagenumbering{Roman}
+\def\sysu@absaboveinfo@zh{%
     \markboth{\protect 摘\hspace*{\ccwd}要}{\sysu@header}
     \phantomsection \label{abszh}
     \addcontentsline{toc}{chapter}{\protect 摘\hspace*{2\ccwd}要}
@@ -548,6 +545,12 @@
         {\heiti\zihao{-2}{摘\hspace{2\ccwd}要}}
         \par \vspace*{11pt}
     \end{center}
+}
+\newcommand{\sysu@setabs@zh}[1]{%
+    % set the page counter to 1 at abstract
+    \setcounter{page}{1}
+    \pagenumbering{Roman}
+    {#1}
     \songti\zihao{-4}
     \par
 }
@@ -556,7 +559,7 @@
     {\heiti\zihao{-4}{关键词: }} \songti{\zihao{-4}\sysu@keywords@zh}
     \cleardoublepage
 }
-\def\sysu@setabs@en{%
+\def\sysu@absaboveinfo@en{%
     \markboth{Abstract}{\sysu@header}
     \phantomsection \label{absen}
     \addcontentsline{toc}{chapter}{ABSTRACT}
@@ -564,17 +567,20 @@
     \vspace*{10pt}
     \linespread{1.5}
     \begin{center}
-        \zihao{-3}\sysu@title@en
+        \songti\zihao{-3}\sysu@title@en
         \par
-        Major：\sysu@major@en
+        Major: \sysu@major@en
         \par
-        Name：\sysu@author@en
+        Degree: \sysu@degree\hspace*{\ccwd}Student: \sysu@author@en
         \par
-        Supervisor：\sysu@supervisor@en
+        Supervisor: \sysu@supervisor@en
         \par \vspace*{36pt}
-        {\zihao{-2}{\bfseries Abstract}}
+        {\heiti\zihao{-2}{Abstract}}
         \par \vspace*{11pt}
     \end{center}
+}
+\newcommand{\sysu@setabs@en}[1]{%
+    {#1}
     \songti\zihao{-4}
     \par
 }
@@ -583,8 +589,24 @@
     {\zihao{-4}\bfseries KeyWords: \sysu@keywords@en}
     \cleardoublepage
 }
-\NewDocumentEnvironment{abszh}{}{\sysu@setabs@zh}{\sysu@setkw@zh}
-\NewDocumentEnvironment{absen}{}{\sysu@setabs@en}{\sysu@setkw@en}
+\NewDocumentEnvironment{abszh}{o}{
+    \IfStrEq{#1}{noinfo}
+        {\sysu@setabs@zh{
+            \notagchapter{摘\hspace*{\ccwd}要}
+            \notagchapteren{Abstract (In Chinese)}
+        }}
+        {\sysu@setabs@zh{\sysu@absaboveinfo@zh}}
+    }
+    {\sysu@setkw@zh}
+\NewDocumentEnvironment{absen}{o}{
+     \IfStrEq{#1}{noinfo}
+        {\sysu@setabs@en{
+            \notagchapter{Abstract}
+            \notagchapteren{Abstract (In English)}
+        }}
+        {\sysu@setabs@en{\sysu@absaboveinfo@en}}
+    }
+    {\sysu@setkw@en}
 
 % format of the bibliography
 \newcommand{\makebib}[1]{%
