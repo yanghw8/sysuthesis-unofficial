@@ -1,90 +1,45 @@
-// 编译工具
 "latex-workshop.latex.tools": [
     {
-        "name": "xelatex",
-        "command": "xelatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "%DOCFILE%"
+      "name": "latexmkpdf",
+      "command": "latexmk",
+      "args":
+        [
+          "-synctex=1", "%DOCFILE%",
+          "-halt-on-error", "-file-line-error",
+          "-pdf", "-interaction=nonstopmode"
         ]
     },
     {
-        "name": "pdflatex",
-        "command": "pdflatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "%DOCFILE%"
+      "name": "latexmkxe",
+      "command": "latexmk",
+      "args":
+        [
+          "-synctex=1", "%DOCFILE%",
+          "-halt-on-error", "-file-line-error", 
+          "-xelatex", "-interaction=nonstopmode",
         ]
     },
+  ],
+  "latex-workshop.latex.recipes": [
     {
-        "name": "latexmk",
-        "command": "latexmk",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-pdf",
-            "-outdir=%OUTDIR%",
-            "%DOCFILE%"
-        ]
+      "name": "latexmkpdf",
+      "tools": [ "latexmkpdf" ]
     },
     {
-        "name": "bibtex",
-        "command": "bibtex",
-        "args": [
-            "%DOCFILE%"
-        ]
+      "name": "latexmkxe",
+      "tools": [ "latexmkxe" ]
     }
-],
-// 编译方法
-"latex-workshop.latex.recipes": [
-    {
-        "name": "XeLaTeX",
-        "tools": [
-            "xelatex"
-        ]
-    },
-    {
-        "name": "PDFLaTeX",
-        "tools": [
-            "pdflatex"
-        ]
-    },
-    {
-        "name": "BibTeX",
-        "tools": [
-            "bibtex"
-        ]
-    },
-    {
-        "name": "LaTeXmk",
-        "tools": [
-            "latexmk"
-        ]
-    },
-    {
-        "name": "xelatex -> bibtex -> xelatex*2",
-        "tools": [
-            "xelatex",
-            "bibtex",
-            "xelatex",
-            "xelatex"
-        ]
-    },
-    {
-        "name": "pdflatex -> bibtex -> pdflatex*2",
-        "tools": [
-            "pdflatex",
-            "bibtex",
-            "pdflatex",
-            "pdflatex"
-        ]
-    }
-],
-"latex-workshop.view.pdf.viewer": "tab",
-"latex-workshop.bind.altKeymap.enabled": true,
-"editor.wordWrap": "on", 
+  ],
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.view.pdf.viewer": "tab"
+  // "latex-workshop.view.pdf.viewer": "external",
+  // "latex-workshop.view.pdf.ref.viewer": "external",
+  // "latex-workshop.view.pdf.external.viewer.command": "<SumatraPDFROOT>/SumatraPDF.exe",
+  // "latex-workshop.view.pdf.external.viewer.args": [
+  //   "-inverse-search", "%PDF%",
+  //   "\"<VSCodeROOT>/bin/code.cmd\" -r -g \"%f:%l\"",
+  // ],
+  // "latex-workshop.view.pdf.external.synctex.command":"<SumatraPDFROOT>/SumatraPDF.exe",
+  // "latex-workshop.view.pdf.external.synctex.args":[
+  //   "-forward-search", "%TEX%", "%LINE%", "%PDF%"
+  // ],
