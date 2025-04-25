@@ -571,7 +571,7 @@
         \par
         Major: \sysu@major@en
         \par
-        Degree: \sysu@degree\hspace*{\ccwd}Student: \sysu@author@en
+        Name: \sysu@author@en
         \par
         Supervisor: \sysu@supervisor@en
         \par \vspace*{36pt}
