@@ -75,7 +75,7 @@
 }
 
 % this cls modified base on ctexbook documentclass
-\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.39]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,twoside,linespread=1.3]{ctexbook}
 
 % the required packages
 \RequirePackage{amsmath}
@@ -255,9 +255,8 @@
 \ifsysu@thesis
     \geometry{%
         a4paper,
-        left=30mm,right=30mm,top=37mm,bottom=23mm,
-        head=30mm, headsep=3mm, foot=6mm, footnotesep=3mm,
-        includefoot
+	top=38mm, bottom=30mm, left=30mm, right=30mm,
+        head=30mm, headsep=2.3mm, foot=23mm, footskip=5.5mm
     }
 \else
     \geometry{%
